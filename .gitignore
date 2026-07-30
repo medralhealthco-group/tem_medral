@@ -1,0 +1,22 @@
+node_modules/
+npm-debug.log
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.DS_Store
+.agents/
+information.txt
+audit_report.md
+logs/
+ui_modernization_prd.md
+ui_audit_report.md
+docs/
+CODEBASE_DATA.md
+developer_help.md
+
+# User-uploaded product images (keep directory + protection files)
+public/uploads/*
+!public/uploads/.gitkeep
+!public/uploads/.htaccess

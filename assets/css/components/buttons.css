@@ -1,0 +1,379 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — BUTTON COMPONENT LIBRARY (buttons.css)
+   Consolidated Button System: Pill Shape, Outfit Font, Soft Elevation,
+   Smooth Spring Transitions, and Premium Clinical Wellness Token Integration.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BASE BUTTON (.btn)
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-6);
+  height: 44px;
+  border-radius: var(--radius-button);
+  font-family: var(--font-heading);
+  font-size: var(--type-small);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: none;
+  text-decoration: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  vertical-align: middle;
+  box-shadow: var(--shadow-xs);
+  transition: all var(--duration-fast) var(--ease-spring);
+}
+
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-xs);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px var(--color-primary-light) !important;
+}
+
+.btn:disabled,
+.btn.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   2. BUTTON VARIANTS
+   -------------------------------------------------------------------------- */
+
+/* Primary Button (Crimson) */
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  border-color: transparent;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-hover);
+  color: var(--color-text-inverse);
+  box-shadow: var(--shadow-md);
+}
+
+/* Secondary Button */
+.btn--secondary {
+  background: var(--color-surface);
+  color: var(--color-secondary);
+  border-color: var(--color-border);
+}
+
+.btn--secondary:hover {
+  background: var(--color-secondary-light);
+  border-color: var(--color-secondary);
+  color: var(--color-secondary-hover);
+}
+
+/* Accent Button */
+.btn--accent {
+  background: var(--color-accent);
+  color: var(--color-surface);
+  border-color: transparent;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--accent:hover {
+  background: var(--color-accent-hover);
+  color: var(--color-surface);
+  box-shadow: var(--shadow-md);
+}
+
+/* Ghost Button */
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text-primary);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.btn--ghost:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+/* Danger / Destructive Button */
+.btn--danger {
+  background: var(--color-danger-bg);
+  color: var(--color-danger-text);
+  border-color: var(--color-danger-border);
+}
+
+.btn--danger:hover {
+  background: var(--color-danger);
+  color: var(--color-surface);
+  border-color: transparent;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Inverse Button (On Dark Backgrounds) */
+.btn--inverse {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border-color: transparent;
+}
+
+.btn--inverse:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary-hover);
+}
+
+/* Modifier: Pill Shape */
+.btn--pill {
+  border-radius: var(--radius-pill);
+}
+
+/* --------------------------------------------------------------------------
+   3. BUTTON SIZES
+   -------------------------------------------------------------------------- */
+
+/* Small Button (34px height) */
+.btn--sm {
+  height: 34px;
+  padding: 0 var(--space-4);
+  font-size: var(--type-caption);
+  border-radius: var(--radius-pill);
+}
+
+/* Large Button (52px height) */
+.btn--lg {
+  height: 52px;
+  padding: 0 var(--space-8);
+  font-size: var(--type-body);
+  border-radius: var(--radius-pill);
+}
+
+/* Full Width Button */
+.btn--full {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   4. BACKWARD COMPATIBILITY ALIAS MAPPINGS
+   Ensures legacy button classes inherit canonical system styles.
+   -------------------------------------------------------------------------- */
+
+/* Legacy Primary CTAs */
+.btn-primary,
+.btn--solid,
+.auth-btn,
+.btn-submit,
+.form-submit,
+.btn-place-order,
+.btn-drawer-cart,
+.btn--catalogue,
+.btn-price-filter,
+.btn-detail-add-cart,
+.admin-btn,
+.btn-update {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-6);
+  height: 44px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-size: var(--type-small);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--duration-fast) var(--ease-spring);
+}
+
+.btn-primary:hover,
+.btn--solid:hover,
+.auth-btn:hover,
+.btn-submit:hover,
+.form-submit:hover,
+.btn-place-order:hover,
+.btn-drawer-cart:hover,
+.btn--catalogue:hover,
+.btn-price-filter:hover,
+.btn-detail-add-cart:hover,
+.admin-btn:hover,
+.btn-update:hover {
+  background: var(--color-primary-hover);
+  color: var(--color-text-inverse);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Legacy Outline / Secondary CTAs */
+.btn--outline,
+.btn-secondary,
+.btn-cancel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-5);
+  height: 44px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-size: var(--type-small);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-spring);
+}
+
+.btn--outline:hover,
+.btn-secondary:hover,
+.btn-cancel:hover {
+  background: var(--color-secondary-light);
+  border-color: var(--color-secondary);
+  color: var(--color-secondary-hover);
+  transform: translateY(-1px);
+}
+
+/* Legacy Header / Nav CTA */
+.nav-cta {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-size: var(--type-small);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  transition: all var(--duration-fast) var(--ease-spring);
+  box-shadow: var(--shadow-xs);
+}
+
+.nav-cta:hover {
+  background: var(--color-primary-hover);
+  color: var(--color-text-inverse);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Legacy Small Product Action Buttons */
+.btn-add-cart-sm {
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-size: var(--type-caption);
+  font-weight: 600;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all var(--duration-fast);
+}
+
+.btn-add-cart-sm:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn-view-product {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary-muted);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-size: var(--type-caption);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--duration-fast);
+}
+
+.btn-view-product:hover {
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border-color: var(--color-primary);
+}
+
+/* Table Action Buttons */
+.btn-edit {
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: var(--type-caption);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  background: var(--color-secondary-light);
+  color: var(--color-secondary-hover);
+  border: 1px solid var(--color-border);
+  transition: all var(--duration-fast);
+}
+
+.btn-edit:hover {
+  background: var(--color-secondary);
+  color: var(--color-surface);
+}
+
+.btn-delete {
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: var(--type-caption);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  background: var(--color-danger-bg);
+  color: var(--color-danger-text);
+  border: 1px solid var(--color-danger-border);
+  transition: all var(--duration-fast);
+}
+
+.btn-delete:hover {
+  background: var(--color-danger);
+  color: var(--color-surface);
+}
+
+.btn-view {
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: var(--type-caption);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary-muted);
+  transition: all var(--duration-fast);
+}
+
+.btn-view:hover {
+  background: var(--color-primary);
+  color: var(--color-surface);
+}

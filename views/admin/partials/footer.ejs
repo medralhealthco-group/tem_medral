@@ -1,0 +1,19 @@
+<footer class="admin-footer">
+  <div class="admin-footer__text">
+    &copy; <%= new Date().getFullYear() %> <strong>Medral Health Co</strong>. Store Administration System v1.0.
+  </div>
+  <div class="admin-footer__links">
+    <span>Production Environment</span>
+  </div>
+</footer>
+
+<script nonce="<%= cspNonce %>">
+  // Mobile sidebar toggle script
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const adminSidebar = document.getElementById('adminSidebar');
+  if (sidebarToggle && adminSidebar) {
+    sidebarToggle.addEventListener('click', function() {
+      adminSidebar.classList.toggle('is-open');
+    });
+  }
+</script>

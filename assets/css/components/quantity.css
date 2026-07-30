@@ -1,0 +1,139 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — QUANTITY CONTROL COMPONENT LIBRARY (quantity.css)
+   Consolidates product detail quantity pickers, cart item quantity adjustment
+   steppers, plus/minus buttons, and spin-button-less number inputs.
+   Supports BEM syntax (.qty-control, .qty-control__btn, etc.) with alias mapping
+   for 100% backward compatibility.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BASE QUANTITY CONTROL WRAPPER (.qty-control)
+   -------------------------------------------------------------------------- */
+.qty-control,
+.quantity-selector,
+.cart-qty,
+.item-quantity {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid var(--border-primary, var(--color-border));
+  border-radius: var(--radius-md, 8px);
+  background: var(--surface-primary, var(--color-surface));
+  height: 40px;
+  overflow: hidden;
+  user-select: none;
+  transition: border-color var(--duration-fast, 150ms) var(--ease-default, cubic-bezier(0.4, 0, 0.2, 1)),
+              box-shadow var(--duration-fast, 150ms) var(--ease-default, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.qty-control:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(26, 58, 58, 0.15);
+}
+
+/* Modifiers */
+.qty-control--sm {
+  height: 32px;
+}
+
+.qty-control--lg {
+  height: 48px;
+}
+
+/* Admin Scoped Dark Theme */
+[data-theme="admin"] .qty-control,
+[data-theme="admin"] .quantity-selector {
+  background: #0f0721;
+  border-color: var(--admin-border, #2c1a4d);
+}
+
+[data-theme="admin"] .qty-control:focus-within {
+  border-color: var(--admin-accent, #7c3aed);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   2. INCREMENT / DECREMENT STEPPER BUTTONS
+   -------------------------------------------------------------------------- */
+.qty-control__btn,
+.qty-btn {
+  width: 36px;
+  height: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-primary, var(--color-text-primary));
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-md, 16px);
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--duration-fast, 150ms),
+              color var(--duration-fast, 150ms);
+}
+
+.qty-control__btn:hover,
+.qty-btn:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.qty-control__btn:active,
+.qty-btn:active {
+  background: var(--color-primary-light);
+}
+
+.qty-control__btn:disabled,
+.qty-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: transparent;
+}
+
+[data-theme="admin"] .qty-control__btn,
+[data-theme="admin"] .qty-btn {
+  color: var(--admin-text-main, #f3f0ff);
+}
+
+[data-theme="admin"] .qty-control__btn:hover,
+[data-theme="admin"] .qty-btn:hover {
+  background: rgba(124, 58, 237, 0.2);
+  color: var(--color-surface);
+}
+
+/* --------------------------------------------------------------------------
+   3. QUANTITY INPUT FIELD
+   -------------------------------------------------------------------------- */
+.qty-control__input,
+.qty-input {
+  width: 44px;
+  height: 100%;
+  text-align: center;
+  border: none;
+  background: transparent;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 14px);
+  font-weight: 700;
+  color: var(--text-primary, var(--color-text-primary));
+  padding: 0;
+  margin: 0;
+  -moz-appearance: textfield;
+}
+
+.qty-control__input::-webkit-outer-spin-button,
+.qty-control__input::-webkit-inner-spin-button,
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.qty-control__input:focus,
+.qty-input:focus {
+  outline: none;
+}
+
+[data-theme="admin"] .qty-control__input,
+[data-theme="admin"] .qty-input {
+  color: var(--admin-text-main, #f3f0ff);
+}

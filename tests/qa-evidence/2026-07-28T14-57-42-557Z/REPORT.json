@@ -1,0 +1,794 @@
+{
+  "runId": "2026-07-28T14-57-42-557Z",
+  "generatedAt": "2026-07-28T14:57:51.689Z",
+  "decision": "NO-GO",
+  "risk": "High",
+  "summary": {
+    "totalChecks": 61,
+    "passed": 51,
+    "failed": 10,
+    "issues": 8,
+    "criticalIssues": 2,
+    "highIssues": 2
+  },
+  "evidenceDir": "tests/qa-evidence/2026-07-28T14-57-42-557Z",
+  "results": [
+    {
+      "area": "Setup",
+      "name": "QA fixtures created",
+      "status": "PASS",
+      "details": {
+        "note": "category=2 product=2"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:43.578Z"
+    },
+    {
+      "area": "Homepage",
+      "name": "Homepage loads",
+      "status": "PASS",
+      "details": {
+        "url": "/",
+        "status": 200,
+        "ms": 152,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/Homepage_Homepage_loads.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:43.739Z"
+    },
+    {
+      "area": "Accessibility",
+      "name": "Homepage skip link + H1",
+      "status": "PASS",
+      "details": {
+        "url": "/",
+        "status": 200,
+        "ms": 55,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/Accessibility_Homepage_skip_link___H1.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:43.799Z"
+    },
+    {
+      "area": "Accessibility",
+      "name": "Single H1 on homepage",
+      "status": "PASS",
+      "details": {
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/Accessibility_Homepage_skip_link___H1.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:43.799Z"
+    },
+    {
+      "area": "Navigation",
+      "name": "Shop nav destination",
+      "status": "PASS",
+      "details": {
+        "url": "/shop",
+        "status": 200,
+        "ms": 57,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/Navigation_Shop_nav_destination.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:43.860Z"
+    },
+    {
+      "area": "Navigation",
+      "name": "About page",
+      "status": "PASS",
+      "details": {
+        "url": "/pages/about-us",
+        "status": 200,
+        "ms": 39,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/Navigation_About_page.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:43.904Z"
+    },
+    {
+      "area": "Navigation",
+      "name": "Contact page",
+      "status": "PASS",
+      "details": {
+        "url": "/pages/contact",
+        "status": 200,
+        "ms": 44,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/Navigation_Contact_page.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:43.954Z"
+    },
+    {
+      "area": "Navigation",
+      "name": "Legacy .html redirect",
+      "status": "PASS",
+      "details": {
+        "url": "/pages/about-us.html",
+        "status": 200,
+        "ms": 41,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/Navigation_Legacy_.html_redirect.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:44.000Z"
+    },
+    {
+      "area": "Navigation",
+      "name": "Megamenu deep links",
+      "status": "FAIL",
+      "details": {
+        "note": "linkMode=placeholder — cards resolve to /shop"
+      },
+      "severity": "Medium",
+      "at": "2026-07-28T14:57:44.001Z"
+    },
+    {
+      "area": "Search",
+      "name": "Live search API (short query rejected gracefully)",
+      "status": "PASS",
+      "details": {
+        "url": "/shop/api/search?q=a",
+        "status": 200,
+        "ms": 20,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/Search_Live_search_API__short_query_rejected_gracefully.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:44.024Z"
+    },
+    {
+      "area": "Search",
+      "name": "Live search API with query",
+      "status": "PASS",
+      "details": {
+        "url": "/shop/api/search?q=QA",
+        "status": 200,
+        "ms": 25,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/Search_Live_search_API_with_query.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:44.051Z"
+    },
+    {
+      "area": "Categories",
+      "name": "Category page by slug",
+      "status": "PASS",
+      "details": {
+        "url": "/shop/category/qa-category-1785250663546",
+        "status": 200,
+        "ms": 49,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/Categories_Category_page_by_slug.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:44.105Z"
+    },
+    {
+      "area": "Product Page",
+      "name": "Product detail",
+      "status": "PASS",
+      "details": {
+        "url": "/shop/product/qa-product-1785250663566",
+        "status": 200,
+        "ms": 63,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/Product_Page_Product_detail.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:44.172Z"
+    },
+    {
+      "area": "SEO",
+      "name": "robots.txt",
+      "status": "PASS",
+      "details": {
+        "url": "/robots.txt",
+        "status": 200,
+        "ms": 13,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/SEO_robots.txt.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:44.189Z"
+    },
+    {
+      "area": "SEO",
+      "name": "sitemap index",
+      "status": "PASS",
+      "details": {
+        "url": "/sitemap.xml",
+        "status": 200,
+        "ms": 12,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/SEO_sitemap_index.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:44.203Z"
+    },
+    {
+      "area": "SEO",
+      "name": "sitemap products",
+      "status": "PASS",
+      "details": {
+        "url": "/sitemap-products.xml",
+        "status": 200,
+        "ms": 21,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/SEO_sitemap_products.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:44.226Z"
+    },
+    {
+      "area": "SEO",
+      "name": "sitemap categories",
+      "status": "PASS",
+      "details": {
+        "url": "/sitemap-categories.xml",
+        "status": 200,
+        "ms": 16,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/SEO_sitemap_categories.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:44.245Z"
+    },
+    {
+      "area": "SEO",
+      "name": "Homepage canonical/OG",
+      "status": "PASS",
+      "details": {
+        "url": "/",
+        "status": 200,
+        "ms": 50,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/SEO_Homepage_canonical_OG.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:44.299Z"
+    },
+    {
+      "area": "SEO",
+      "name": "OG image present",
+      "status": "PASS",
+      "details": {
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/SEO_Homepage_canonical_OG.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:44.300Z"
+    },
+    {
+      "area": "Add to Cart",
+      "name": "Add product to cart",
+      "status": "FAIL",
+      "details": {
+        "status": 400,
+        "note": "{\"success\":false,\"message\":\"Unknown column 'price' in 'field list'\"}"
+      },
+      "severity": "Critical",
+      "at": "2026-07-28T14:57:44.400Z"
+    },
+    {
+      "area": "Register",
+      "name": "Customer registration",
+      "status": "PASS",
+      "details": {
+        "status": 302,
+        "location": "/"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:46.279Z"
+    },
+    {
+      "area": "Login",
+      "name": "Customer login",
+      "status": "PASS",
+      "details": {
+        "status": 302,
+        "location": "/"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:48.100Z"
+    },
+    {
+      "area": "Profile",
+      "name": "Profile page (auth agent)",
+      "status": "PASS",
+      "details": {
+        "url": "/account/profile",
+        "status": 302,
+        "ms": 13,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/Profile_Profile_page__auth_agent.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:48.116Z"
+    },
+    {
+      "area": "Profile",
+      "name": "Authenticated profile",
+      "status": "PASS",
+      "details": {
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/account_profile.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:49.408Z"
+    },
+    {
+      "area": "Profile",
+      "name": "Profile update",
+      "status": "PASS",
+      "details": {
+        "status": 302
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:49.492Z"
+    },
+    {
+      "area": "Orders",
+      "name": "Customer orders page",
+      "status": "PASS",
+      "details": {
+        "status": 200,
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/account_orders.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:49.527Z"
+    },
+    {
+      "area": "Forgot Password",
+      "name": "Forgot password submit",
+      "status": "PASS",
+      "details": {
+        "status": 200
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:49.623Z"
+    },
+    {
+      "area": "Forgot Password",
+      "name": "SMTP configured for email delivery",
+      "status": "FAIL",
+      "details": {
+        "note": "SMTP_HOST unset — token created but email not sent in prod"
+      },
+      "severity": "High",
+      "at": "2026-07-28T14:57:49.623Z"
+    },
+    {
+      "area": "Forgot Password",
+      "name": "Reset token persisted",
+      "status": "PASS",
+      "details": {},
+      "severity": null,
+      "at": "2026-07-28T14:57:49.628Z"
+    },
+    {
+      "area": "Forgot Password",
+      "name": "Reset page handles invalid token",
+      "status": "PASS",
+      "details": {
+        "status": 400
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:49.660Z"
+    },
+    {
+      "area": "Contact Form",
+      "name": "Contact page submission",
+      "status": "PASS",
+      "details": {
+        "status": 303,
+        "location": "/pages/thank-you"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:49.722Z"
+    },
+    {
+      "area": "Enquiry",
+      "name": "Enquiry modal JSON submit",
+      "status": "PASS",
+      "details": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Thank you — your enquiry has been received.",
+          "redirect": "/pages/thank-you"
+        }
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:49.777Z"
+    },
+    {
+      "area": "Enquiry",
+      "name": "medral-global.js modal ID alignment",
+      "status": "FAIL",
+      "details": {
+        "note": "openEnquiryModal targets #enquiry-modal; DOM uses #emModal"
+      },
+      "severity": "Medium",
+      "at": "2026-07-28T14:57:49.778Z"
+    },
+    {
+      "area": "Admin Login",
+      "name": "Admin login",
+      "status": "PASS",
+      "details": {
+        "status": 302,
+        "location": "/admin/dashboard"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:50.715Z"
+    },
+    {
+      "area": "Admin Dashboard",
+      "name": "Dashboard loads",
+      "status": "PASS",
+      "details": {
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/admin_dashboard.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:50.763Z"
+    },
+    {
+      "area": "Product CRUD",
+      "name": "Admin categories list",
+      "status": "PASS",
+      "details": {
+        "status": 200
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:50.787Z"
+    },
+    {
+      "area": "Product CRUD",
+      "name": "Admin create category",
+      "status": "PASS",
+      "details": {
+        "status": 302,
+        "location": "/admin/categories?success=Category%20created%20successfully."
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:50.832Z"
+    },
+    {
+      "area": "Product CRUD",
+      "name": "Admin products list",
+      "status": "PASS",
+      "details": {
+        "status": 200
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:50.862Z"
+    },
+    {
+      "area": "Product CRUD",
+      "name": "Admin product create form",
+      "status": "PASS",
+      "details": {
+        "status": 200
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:50.889Z"
+    },
+    {
+      "area": "Product CRUD",
+      "name": "Admin create product + image upload",
+      "status": "FAIL",
+      "details": {
+        "status": 403
+      },
+      "severity": "High",
+      "at": "2026-07-28T14:57:50.911Z"
+    },
+    {
+      "area": "Image Upload",
+      "name": "Reject spoofed PHP-as-PNG",
+      "status": "PASS",
+      "details": {
+        "status": 403
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:50.953Z"
+    },
+    {
+      "area": "Inventory",
+      "name": "Update stock_quantity via product edit",
+      "status": "FAIL",
+      "details": {
+        "status": 403
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:50.998Z"
+    },
+    {
+      "area": "Order CRUD",
+      "name": "Admin orders list",
+      "status": "PASS",
+      "details": {
+        "status": 200
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:51.039Z"
+    },
+    {
+      "area": "Order CRUD",
+      "name": "Admin order detail",
+      "status": "FAIL",
+      "details": {
+        "note": "no orders in DB"
+      },
+      "severity": "High",
+      "at": "2026-07-28T14:57:51.041Z"
+    },
+    {
+      "area": "Security",
+      "name": "Admin dashboard requires auth",
+      "status": "PASS",
+      "details": {
+        "status": 302,
+        "location": "/admin/login"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:51.055Z"
+    },
+    {
+      "area": "Security",
+      "name": "Customer profile requires auth",
+      "status": "PASS",
+      "details": {
+        "status": 302
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:51.069Z"
+    },
+    {
+      "area": "Security",
+      "name": "CSRF rejects invalid token on login",
+      "status": "PASS",
+      "details": {
+        "status": 403
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:51.132Z"
+    },
+    {
+      "area": "Security",
+      "name": "Public /health is minimal",
+      "status": "PASS",
+      "details": {
+        "body": {
+          "status": "ok"
+        }
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:51.146Z"
+    },
+    {
+      "area": "Security",
+      "name": "Search query not reflected raw as HTML script",
+      "status": "PASS",
+      "details": {
+        "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/security_search_xss.html"
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:51.199Z"
+    },
+    {
+      "area": "Responsive Design",
+      "name": "viewport meta on /",
+      "status": "PASS",
+      "details": {
+        "status": 200
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:51.264Z"
+    },
+    {
+      "area": "Responsive Design",
+      "name": "viewport meta on /shop",
+      "status": "PASS",
+      "details": {
+        "status": 200
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:51.314Z"
+    },
+    {
+      "area": "Responsive Design",
+      "name": "viewport meta on /cart",
+      "status": "PASS",
+      "details": {
+        "status": 200
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:51.365Z"
+    },
+    {
+      "area": "Responsive Design",
+      "name": "viewport meta on /account/login",
+      "status": "PASS",
+      "details": {
+        "status": 200
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:51.400Z"
+    },
+    {
+      "area": "Responsive Design",
+      "name": "viewport meta on /pages/contact",
+      "status": "PASS",
+      "details": {
+        "status": 200
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:51.438Z"
+    },
+    {
+      "area": "Performance",
+      "name": "TTFB-ish /",
+      "status": "PASS",
+      "details": {
+        "ms": 49,
+        "status": 200
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:51.488Z"
+    },
+    {
+      "area": "Performance",
+      "name": "TTFB-ish /shop",
+      "status": "PASS",
+      "details": {
+        "ms": 46,
+        "status": 200
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:51.534Z"
+    },
+    {
+      "area": "Performance",
+      "name": "TTFB-ish /shop/product/qa-product-1785250663566",
+      "status": "PASS",
+      "details": {
+        "ms": 40,
+        "status": 200
+      },
+      "severity": null,
+      "at": "2026-07-28T14:57:51.575Z"
+    },
+    {
+      "area": "Commerce",
+      "name": "Catalog has real published products (non-QA)",
+      "status": "FAIL",
+      "details": {
+        "note": "Only QA fixture product exists"
+      },
+      "severity": "Critical",
+      "at": "2026-07-28T14:57:51.577Z"
+    },
+    {
+      "area": "Accessibility",
+      "name": "Skip link on shop",
+      "status": "FAIL",
+      "details": {},
+      "severity": "Medium",
+      "at": "2026-07-28T14:57:51.620Z"
+    },
+    {
+      "area": "SEO",
+      "name": "Privacy policy matches live tracking stack",
+      "status": "FAIL",
+      "details": {
+        "note": "Policy mentions analytics/ads tooling"
+      },
+      "severity": "Medium",
+      "at": "2026-07-28T14:57:51.660Z"
+    },
+    {
+      "area": "Cleanup",
+      "name": "QA fixtures cleaned",
+      "status": "PASS",
+      "details": {},
+      "severity": null,
+      "at": "2026-07-28T14:57:51.689Z"
+    }
+  ],
+  "issues": [
+    {
+      "area": "Navigation",
+      "title": "Megamenu product/category cards are placeholders",
+      "severity": "Medium",
+      "steps": [
+        "Open homepage or shop",
+        "Hover Products megamenu",
+        "Click a featured product/category card"
+      ],
+      "rootCause": "config/megamenu.js has linkMode: 'placeholder'",
+      "fix": "Set linkMode to 'live' and wire real /shop/product/:slug and /shop/category/:slug URLs",
+      "evidence": "config/megamenu.js"
+    },
+    {
+      "area": "Add to Cart",
+      "title": "Add to cart API failed",
+      "severity": "Critical",
+      "steps": [
+        "GET /shop/product/qa-product-1785250663566",
+        "POST /cart/add with productId, quantity, X-CSRF-Token"
+      ],
+      "rootCause": "HTTP 400: {\"success\":false,\"message\":\"Unknown column 'price' in 'field list'\"}",
+      "fix": "Fix cartController.addToCart and CSRF acceptance for JSON clients",
+      "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/commerce_add_to_cart.json"
+    },
+    {
+      "area": "Forgot Password",
+      "title": "SMTP not configured — reset emails will not send",
+      "severity": "High",
+      "steps": [
+        "POST /account/forgot-password with valid email",
+        "Check mailbox / SMTP env"
+      ],
+      "rootCause": "SMTP_HOST (and related) environment variables are empty",
+      "fix": "Configure SMTP_* in production .env before go-live; verify reset email arrives",
+      "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/auth_forgot_post.json"
+    },
+    {
+      "area": "Enquiry",
+      "title": "medral-global.js targets non-existent #enquiry-modal",
+      "severity": "Medium",
+      "steps": [
+        "Open homepage",
+        "Note footer defines #emModal / #emOverlay",
+        "Inspect assets/js/medral-global.js openEnquiryModal"
+      ],
+      "rootCause": "medral-global.js looks up #enquiry-modal which does not exist. Footer inline script currently redefines openEnquiryModal after load, masking the bug. Removing/reordering scripts would break enquiry CTAs.",
+      "fix": "Update medral-global.js to use #emModal/#emOverlay (or remove duplicate helpers and keep a single source of truth)",
+      "evidence": "assets/js/medral-global.js"
+    },
+    {
+      "area": "Image Upload",
+      "title": "Admin product create with image failed",
+      "severity": "High",
+      "steps": [
+        "Login as admin",
+        "GET /admin/products/create",
+        "POST multipart with PNG images[]"
+      ],
+      "rootCause": "HTTP 403",
+      "fix": "Inspect upload middleware and adminProductController.handleCreate",
+      "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/admin_product_create_post.json"
+    },
+    {
+      "area": "Commerce",
+      "title": "No real published products in catalog",
+      "severity": "Critical",
+      "steps": [
+        "Query products WHERE status=published",
+        "Open /shop without QA fixtures"
+      ],
+      "rootCause": "Database has zero (or only temporary QA) published products and no active categories for storefront merchandising",
+      "fix": "Create and publish real categories/products via admin before production launch",
+      "evidence": "DB query during QA run"
+    },
+    {
+      "area": "Accessibility",
+      "title": "Skip link missing on shop (and likely other non-home pages)",
+      "severity": "Medium",
+      "steps": [
+        "Open /shop",
+        "Look for Skip to main content link"
+      ],
+      "rootCause": "Skip link implemented on homepage only, not shared layout partial",
+      "fix": "Move skip link into shared header/layout used by all storefront pages",
+      "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/a11y_shop_skip.html"
+    },
+    {
+      "area": "SEO",
+      "title": "Privacy policy claims tracking not present in markup",
+      "severity": "Medium",
+      "steps": [
+        "Open /pages/privacy-policy",
+        "Search for Google Analytics / advertising claims",
+        "Compare to live <head> scripts"
+      ],
+      "rootCause": "Legal copy leftover from prior stack; pages only have empty Google-tag comments",
+      "fix": "Update privacy policy to match actual tracking (or add intended tags)",
+      "evidence": "tests/qa-evidence/2026-07-28T14-57-42-557Z/privacy_policy.html"
+    }
+  ],
+  "notes": [
+    "Screenshots are HTML/JSON evidence captures (no headed browser MCP available in this environment).",
+    "Visual responsive screenshots require manual browser pass at 375/768/1280 widths.",
+    "QA admin fixture deactivated after run; customer account left for inspection: qa.buyer.1785250662558@example.com"
+  ]
+}

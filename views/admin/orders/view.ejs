@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order #<%= order.order_number %> | Medral Health Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/assets/css/admin-base.css" rel="stylesheet" />
+    <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+  </head>
+  <body data-theme="admin">
+    <%- include('../partials/sidebar') %>
+
+    <div class="admin-wrapper">
+      <%- include('../partials/header', { pageTitle: 'Order Inspector' }) %>
+
+      <main class="admin-content">
+        <div class="page-actions-bar">
+          <div>
+            <a href="/admin/orders" class="back-link">&larr; Back to Orders List</a>
+            <h1 class="admin-page-title">Order #<%= order.order_number %></h1>
+          </div>
+          <div class="table-summary-count">
+            Placed on: <strong><%= new Date(order.created_at).toLocaleString('en-IN') %></strong>
+          </div>
+        </div>
+
+        <% if (typeof success !== 'undefined' && success) { %>
+          <div class="alert alert-success"><%= success %></div>
+        <% } %>
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="alert alert-danger"><%= error %></div>
+        <% } %>
+
+        <div class="grid-2">
+          <div class="left-col">
+            <!-- Line Items Card -->
+            <div class="card">
+              <h2 class="card-title">Order Line Items</h2>
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Product Title</th>
+                    <th>SKU</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th class="text-right">Line Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (order.items) { %>
+                    <% order.items.forEach(item => { %>
+                      <tr>
+                        <td><strong class="product-title"><%= item.product_name %></strong></td>
+                        <td><code class="product-sku-code"><%= item.sku %></code></td>
+                        <td>₹<%= parseFloat(item.unit_price).toFixed(2) %></td>
+                        <td><strong><%= item.quantity %></strong></td>
+                        <td class="text-right"><strong class="product-price">₹<%= parseFloat(item.total_price).toFixed(2) %></strong></td>
+                      </tr>
+                    <% }); %>
+                  <% } %>
+                </tbody>
+              </table>
+
+              <div class="order-summary-total">
+                <span>Grand Total:</span>
+                <span class="product-price">₹<%= parseFloat(order.grand_total).toFixed(2) %></span>
+              </div>
+            </div>
+
+            <!-- Shipping Address Card -->
+            <div class="card">
+              <h2 class="card-title">Shipping & Contact Details</h2>
+              <div class="order-details-info">
+                <p><strong>Customer Name:</strong> <%= order.shipping_name %></p>
+                <p><strong>Email Address:</strong> <%= order.shipping_email %></p>
+                <p><strong>Phone Number:</strong> <%= order.shipping_phone %></p>
+                <p><strong>Street Address:</strong> <%= order.shipping_address %></p>
+                <p><strong>City / State / PIN:</strong> <%= order.shipping_city %>, <%= order.shipping_state %> - <%= order.shipping_pincode %></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="right-col">
+            <!-- Order Status Management Card -->
+            <div class="card">
+              <h2 class="card-title">Order Status</h2>
+              <form action="/admin/orders/update-status/<%= order.id %>" method="POST">
+                <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
+                <label for="order_status" class="form-label">Fulfillment Status</label>
+                <select id="order_status" name="order_status" class="form-select">
+                  <option value="pending" <%= order.order_status === 'pending' ? 'selected' : '' %>>Pending</option>
+                  <option value="processing" <%= order.order_status === 'processing' ? 'selected' : '' %>>Processing</option>
+                  <option value="shipped" <%= order.order_status === 'shipped' ? 'selected' : '' %>>Shipped</option>
+                  <option value="delivered" <%= order.order_status === 'delivered' ? 'selected' : '' %>>Delivered</option>
+                  <option value="cancelled" <%= order.order_status === 'cancelled' ? 'selected' : '' %>>Cancelled</option>
+                </select>
+                <button type="submit" class="btn-update">Update Order Status</button>
+              </form>
+            </div>
+
+            <!-- Payment Status Management Card -->
+            <div class="card">
+              <h2 class="card-title">Payment Status</h2>
+              <form action="/admin/orders/update-payment-status/<%= order.id %>" method="POST">
+                <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
+                <div class="payment-method-info">
+                  Payment Method: <strong class="text-inverse"><%= order.payment_method.toUpperCase() %></strong>
+                </div>
+                <label for="payment_status" class="form-label">Payment Status</label>
+                <select id="payment_status" name="payment_status" class="form-select">
+                  <option value="pending" <%= order.payment_status === 'pending' ? 'selected' : '' %>>Pending</option>
+                  <option value="paid" <%= order.payment_status === 'paid' ? 'selected' : '' %>>Paid</option>
+                  <option value="failed" <%= order.payment_status === 'failed' ? 'selected' : '' %>>Failed</option>
+                </select>
+                <button type="submit" class="btn-update">Update Payment Status</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <%- include('../partials/footer') %>
+    </div>
+  </body>
+</html>
+

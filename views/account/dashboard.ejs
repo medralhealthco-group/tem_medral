@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('../partials/head-seo') %>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/assets/css/storefront.bundle.css?v=<%= assetVersion %>" rel="stylesheet" type="text/css" media="all" />
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+
+    <main class="account-container">
+      <div class="account-banner">
+        <div>
+          <h1 class="account-welcome">Welcome, <%= user.first_name %> <%= user.last_name %>!</h1>
+          <p class="account-sub">Customer Account Dashboard & Settings</p>
+        </div>
+        <div style="display:flex; gap:10px;">
+          <a href="/account/profile">Edit Profile</a>
+          <form action="/account/logout" method="POST" style="display:inline; margin:0;">
+            <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>" />
+            <button type="submit">Logout</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">&#128722;</div>
+          <div>
+            <div class="stat-val"><%= stats.totalOrders %></div>
+            <div class="stat-label">Total Orders Placed</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">&#9251;</div>
+          <div>
+            <div class="stat-val"><%= stats.pendingOrders %></div>
+            <div class="stat-label">Active Orders</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">&#10003;</div>
+          <div>
+            <div class="stat-val"><%= stats.deliveredOrders %></div>
+            <div class="stat-label">Delivered Orders</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Recent Orders Card -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Recent Orders</h2>
+            <a href="/account/orders" >View All Orders &rarr;</a>
+          </div>
+
+          <div style="overflow-x: auto;">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Order #</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (recentOrders && recentOrders.length > 0) { %>
+                  <% recentOrders.forEach(ord => { %>
+                    <tr>
+                      <td>
+                        <a href="/checkout/success/<%= ord.order_number %>" >
+                          <%= ord.order_number %>
+                        </a>
+                      </td>
+                      <td ><%= new Date(ord.created_at).toLocaleDateString('en-IN') %></td>
+                      <td>
+                        <span class="badge status-<%= ord.order_status %>"><%= ord.order_status.toUpperCase() %></span>
+                      </td>
+                      <td><strong >₹<%= parseFloat(ord.grand_total).toFixed(2) %></strong></td>
+                    </tr>
+                  <% }); %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="4" >
+                      No orders placed yet. <a href="/shop" >Explore Shop Catalog</a>
+                    </td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Quick Links Card -->
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div class="card" style="padding:24px;">
+            <h2 class="card-title" >Quick Actions</h2>
+            <a href="/account/orders" class="action-link">My Order History &rarr;</a>
+            <a href="/account/profile" class="action-link">Profile & Security Settings &rarr;</a>
+            <a href="/shop" class="action-link" >Browse Shop &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>

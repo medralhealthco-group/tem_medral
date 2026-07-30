@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('../partials/head-seo') %>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/assets/css/storefront.bundle.css?v=<%= assetVersion %>" rel="stylesheet" type="text/css" media="all" />
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+
+    <main class="auth-container" id="main-content" role="main" aria-label="Customer Login">
+      <div class="auth-card">
+        <div class="auth-header">
+          <h1 class="auth-title">Welcome Back</h1>
+          <p class="auth-subtitle">Sign in to your Medral Health account</p>
+        </div>
+
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="auth-alert auth-alert--danger" role="alert" aria-live="assertive">
+            <%= error %>
+          </div>
+        <% } %>
+
+        <% if (typeof success !== 'undefined' && success) { %>
+          <div class="auth-alert auth-alert--success" role="status" aria-live="polite">
+            <%= success %>
+          </div>
+        <% } %>
+
+        <form action="/account/login" method="POST">
+          <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
+          <div class="auth-form-group">
+            <label for="email" class="auth-label">Email Address <span aria-hidden="true">*</span></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="auth-input"
+              value="<%= typeof email !== 'undefined' ? email : '' %>"
+              placeholder="name@example.com"
+              required
+              aria-required="true"
+              autofocus
+            />
+          </div>
+
+          <div class="auth-form-group">
+            <div class="auth-label-row">
+              <label for="password" class="auth-label">Password <span aria-hidden="true">*</span></label>
+              <a href="/account/forgot-password" class="auth-forgot-link">Forgot password?</a>
+            </div>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="auth-input"
+              placeholder="Enter your password"
+              required
+              aria-required="true"
+            />
+          </div>
+
+          <button type="submit" class="auth-btn" aria-label="Sign in to your account">Sign In</button>
+        </form>
+
+        <div class="auth-footer-link">
+          Don't have an account? <a href="/account/register">Create one here</a>
+        </div>
+      </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>

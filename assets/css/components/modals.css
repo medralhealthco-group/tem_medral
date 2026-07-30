@@ -1,0 +1,201 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — MODAL & DRAWER COMPONENT LIBRARY (modals.css)
+   Consolidates storefront modals, slide-over cart drawers, overlays,
+   dialog headers, body content, and action footers.
+   Supports BEM syntax (.modal, .drawer, .overlay, etc.) with alias mapping
+   for 100% backward compatibility.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BACKDROP OVERLAY (.overlay)
+   -------------------------------------------------------------------------- */
+.overlay,
+.modal-overlay,
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(13, 6, 26, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: var(--z-modal, 1000);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--duration-normal, 250ms) var(--ease-default, cubic-bezier(0.4, 0, 0.2, 1)),
+              visibility var(--duration-normal, 250ms) var(--ease-default, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.overlay.is-open,
+.overlay.active,
+.modal-overlay.is-open,
+.modal-overlay.active,
+.drawer-overlay.is-open,
+.drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --------------------------------------------------------------------------
+   2. CENTERING MODAL DIALOG (.modal)
+   -------------------------------------------------------------------------- */
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: calc(var(--z-modal, 1000) + 10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4, 16px);
+  pointer-events: none;
+}
+
+.modal,
+.modal-content {
+  background: var(--surface-primary, var(--color-surface));
+  border-radius: var(--radius-xl, 16px);
+  box-shadow: var(--shadow-xl, 0 20px 40px rgba(0, 0, 0, 0.2));
+  width: 100%;
+  max-width: 540px;
+  max-height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  pointer-events: auto;
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform var(--duration-normal, 250ms) var(--ease-default, cubic-bezier(0.4, 0, 0.2, 1)),
+              opacity var(--duration-normal, 250ms) var(--ease-default, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.modal.is-open,
+.modal.active,
+.modal-content.is-open,
+.modal-content.active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Dark Theme Scoped Modal */
+[data-theme="admin"] .modal,
+[data-theme="admin"] .modal-content {
+  background: var(--admin-card-bg, #180d2e);
+  border: 1px solid var(--admin-border, #2c1a4d);
+  color: var(--admin-text-main, #f3f0ff);
+}
+
+/* --------------------------------------------------------------------------
+   3. SLIDE-OVER DRAWER (.drawer / .cart-drawer)
+   -------------------------------------------------------------------------- */
+.drawer,
+.drawer-cart,
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface-primary, var(--color-surface));
+  box-shadow: var(--shadow-xl, 0 20px 40px rgba(0, 0, 0, 0.2));
+  z-index: calc(var(--z-modal, 1000) + 10);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform var(--duration-normal, 250ms) var(--ease-default, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.drawer.is-open,
+.drawer.active,
+.drawer-cart.is-open,
+.drawer-cart.active,
+.cart-drawer.is-open,
+.cart-drawer.active {
+  transform: translateX(0);
+}
+
+/* --------------------------------------------------------------------------
+   4. MODAL & DRAWER SUB-COMPONENTS
+   -------------------------------------------------------------------------- */
+.modal__header,
+.drawer__header {
+  padding: var(--space-5, 20px) var(--space-6, 24px);
+  border-bottom: 1px solid var(--border-primary, var(--color-border));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4, 16px);
+}
+
+[data-theme="admin"] .modal__header,
+[data-theme="admin"] .drawer__header {
+  border-bottom-color: var(--admin-border, #2c1a4d);
+}
+
+.modal__title,
+.drawer__title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: var(--text-xl, 20px);
+  font-weight: 700;
+  color: var(--text-primary, var(--color-text-primary));
+  margin: 0;
+}
+
+[data-theme="admin"] .modal__title,
+[data-theme="admin"] .drawer__title {
+  color: var(--text-inverse, var(--color-surface));
+}
+
+.modal__close,
+.drawer__close {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, #666058);
+  font-size: var(--text-xl, 20px);
+  cursor: pointer;
+  padding: var(--space-1, 4px);
+  border-radius: var(--radius-sm, 6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--duration-fast, 150ms), background-color var(--duration-fast, 150ms);
+}
+
+.modal__close:hover,
+.drawer__close:hover {
+  color: var(--text-primary, var(--color-text-primary));
+  background: var(--neutral-100, #f8f6f4);
+}
+
+[data-theme="admin"] .modal__close:hover,
+[data-theme="admin"] .drawer__close:hover {
+  color: var(--color-surface);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modal__body,
+.drawer__body {
+  padding: var(--space-6, 24px);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal__footer,
+.drawer__footer {
+  padding: var(--space-5, 20px) var(--space-6, 24px);
+  border-top: 1px solid var(--border-primary, var(--color-border));
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3, 12px);
+  background: var(--surface-secondary, var(--color-bg));
+}
+
+[data-theme="admin"] .modal__footer,
+[data-theme="admin"] .drawer__footer {
+  border-top-color: var(--admin-border, #2c1a4d);
+  background: #140829;
+}

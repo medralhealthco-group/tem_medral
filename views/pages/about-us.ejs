@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%- include('../partials/head-seo') %>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="/assets/css/fonts.css" rel="stylesheet">
+  <link href="/assets/css/storefront.bundle.css?v=<%= assetVersion %>" rel="stylesheet" type="text/css" media="all" />
+</head>
+
+<body>
+  <%- include('../partials/header') %>
+
+  <main id="MainContent">
+    <!-- ── 1. HERO BANNER ── -->
+    <section class="about-hero" style="background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1920&q=80');">
+      <div class="about-hero-content">
+        <h1 class="about-hero-title">About Us</h1>
+      </div>
+    </section>
+
+    <!-- ── 2. SECTION 1: OUR STORY ── -->
+    <section class="about-split-row">
+      <div class="about-split-card--red">
+        <span class="about-eyebrow about-eyebrow--light">OUR STORY</span>
+        <h2 class="about-heading about-heading--light">The Journey Behind Medral Health</h2>
+        <p class="about-paragraph about-paragraph--light">
+          Medral Health was founded with a clear purpose — to bridge the gap between scientific innovation and real-world wellness solutions. What started as a vision to deliver high-quality nutraceutical products has evolved into a trusted CDMO partner for wellness brands across global markets.
+        </p>
+        <p class="about-paragraph about-paragraph--light">
+          Driven by a strong belief in preventive healthcare, we focus on creating formulations that are not only effective, but also safe, compliant, and sustainable for long-term consumer use.
+        </p>
+      </div>
+      <div class="about-split-media">
+        <img
+          src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&w=1200&q=80"
+          alt="The Journey Behind Medral Health"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </section>
+
+    <!-- ── 3. SECTION 2: OUR PHILOSOPHY ── -->
+    <section class="about-split-row about-split-row--reverse">
+      <div class="about-split-media">
+        <img
+          src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=1200&q=80"
+          alt="We Believe in Healthcare, Not Sickcare"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="about-split-card--white">
+        <span class="about-eyebrow about-eyebrow--red">OUR PHILOSOPHY</span>
+        <h2 class="about-heading about-heading--dark">We Believe in Healthcare, Not Sickcare</h2>
+        <p class="about-paragraph about-paragraph--dark">
+          At Medral Health, we believe true healthcare begins with prevention. Our philosophy is rooted in empowering individuals and communities through better nutrition, science-backed supplementation, and responsible manufacturing practices.
+        </p>
+        <p class="about-paragraph about-paragraph--dark">
+          We don't just create products — we build wellness ecosystems that support healthier lifestyles.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── 4. SECTION 3: OUR VALUES ── -->
+    <section class="about-values-section">
+      <div class="about-values-container">
+        <div class="about-values-header">
+          <span class="about-eyebrow about-eyebrow--red">OUR VALUES</span>
+          <h2 class="about-heading about-heading--dark">What Drives Everything We Do</h2>
+        </div>
+        <div class="about-values-grid">
+          <!-- Card 1 -->
+          <div class="about-value-card">
+            <div class="about-value-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80"
+                alt="Partnership"
+                loading="lazy"
+              />
+            </div>
+            <div class="about-value-body">
+              <h3 class="about-value-title">Partnership</h3>
+              <p class="about-value-desc">
+                We grow with our partners and treat every brand as a long-term relationship.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="about-value-card">
+            <div class="about-value-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80"
+                alt="Scientific Excellence"
+                loading="lazy"
+              />
+            </div>
+            <div class="about-value-body">
+              <h3 class="about-value-title">Scientific Excellence</h3>
+              <p class="about-value-desc">
+                Every formulation is guided by research, data, and continuous learning.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="about-value-card">
+            <div class="about-value-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80"
+                alt="Responsibility"
+                loading="lazy"
+              />
+            </div>
+            <div class="about-value-body">
+              <h3 class="about-value-title">Responsibility</h3>
+              <p class="about-value-desc">
+                We prioritize safety, compliance, and sustainability in all our processes.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="about-value-card">
+            <div class="about-value-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80"
+                alt="Integrity"
+                loading="lazy"
+              />
+            </div>
+            <div class="about-value-body">
+              <h3 class="about-value-title">Integrity</h3>
+              <p class="about-value-desc">
+                We operate with transparency, honesty, and ethical business practices.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 5. SECTION 4: OUR PEOPLE ── -->
+    <section class="about-split-row">
+      <div class="about-split-card--red">
+        <span class="about-eyebrow about-eyebrow--light">OUR PEOPLE</span>
+        <h2 class="about-heading about-heading--light">The Minds Behind the Science</h2>
+        <p class="about-paragraph about-paragraph--light">
+          Medral Health is powered by a team of scientists, nutrition experts, quality professionals, and industry specialists who share a common passion for innovation and impact.
+        </p>
+        <p class="about-paragraph about-paragraph--light">
+          Our culture encourages collaboration, curiosity, and continuous improvement — enabling us to stay ahead in an ever-evolving nutraceutical landscape.
+        </p>
+      </div>
+      <div class="about-dual-media">
+        <img
+          src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80"
+          alt="Scientist analyzing research"
+          loading="lazy"
+          decoding="async"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+          alt="Medral Health Team Collaboration"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# This file is not served by the app.
+# Live robots.txt is generated at GET /robots.txt (see routes/seo.js).
+# Sitemap: /sitemap.xml
+User-agent: *
+Disallow: /admin/
+Disallow: /cart
+Disallow: /checkout
+Disallow: /account/
+Disallow: /pages/thank-you
+
+Sitemap: https://www.medralhealth.com/sitemap.xml

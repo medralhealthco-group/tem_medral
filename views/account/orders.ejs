@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('../partials/head-seo') %>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/assets/css/storefront.bundle.css?v=<%= assetVersion %>" rel="stylesheet" type="text/css" media="all" />
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+
+    <main class="account-container">
+      <div class="account-header">
+        <div>
+          <h1 class="account-welcome">Welcome back, <%= user.firstName %>!</h1>
+          <p class="account-email"><%= user.email %></p>
+        </div>
+        <form action="/account/logout" method="POST" style="display:inline; margin:0;">
+          <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>" />
+          <button type="submit">Sign Out</button>
+        </form>
+      </div>
+
+      <div class="orders-card">
+        <h2 class="orders-card-title">Order History</h2>
+
+        <div style="overflow-x: auto;">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>Order Number</th>
+                <th>Date</th>
+                <th>Payment</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (orders && orders.length > 0) { %>
+                <% orders.forEach(ord => { %>
+                  <tr>
+                    <td><strong ><%= ord.order_number %></strong></td>
+                    <td ><%= new Date(ord.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
+                    <td ><%= ord.payment_method %></td>
+                    <td>
+                      <span class="badge-status status-<%= ord.order_status %>">
+                        <%= ord.order_status.toUpperCase() %>
+                      </span>
+                    </td>
+                    <td><strong >₹<%= parseFloat(ord.grand_total).toFixed(2) %></strong></td>
+                    <td style="text-align: right;">
+                      <a href="/checkout/success/<%= ord.order_number %>" class="btn-view-receipt">Receipt &rarr;</a>
+                    </td>
+                  </tr>
+                <% }); %>
+              <% } else { %>
+                <tr>
+                  <td colspan="6" >
+                    You have not placed any orders yet. <a href="/shop" >Explore our shop</a> to make your first purchase.
+                  </td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>

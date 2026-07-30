@@ -1,0 +1,25 @@
+<%
+/**
+ * Announcement ticker. Messages come from config.navigation.header.announcementMessages.
+ * The list is repeated so the marquee can loop without a visible seam; the duplicate
+ * copies are hidden from assistive tech.
+ */
+const announcements = (config.navigation.header && config.navigation.header.announcementMessages) || [];
+const MARQUEE_LOOPS = 3;
+%>
+<% if (announcements.length) { %>
+<div id="section-topbar" class="announcement-bar">
+  <div class="topbar-marquee-container" role="region" aria-label="Announcements">
+    <div class="topbar-marquee">
+      <% for (let loop = 0; loop < MARQUEE_LOOPS; loop++) { %>
+        <div class="topbar-marquee__track" <%- loop > 0 ? 'aria-hidden="true"' : '' %>>
+          <% announcements.forEach(function (message) { %>
+            <span class="marquee-item"><%= message %></span>
+            <span class="marquee-divider" aria-hidden="true"></span>
+          <% }); %>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+<% } %>

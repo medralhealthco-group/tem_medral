@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <%- include('../partials/head-seo') %>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="/assets/css/fonts.css" rel="stylesheet" />
+  <link href="/assets/css/storefront.bundle.css?v=<%= assetVersion %>" rel="stylesheet" type="text/css" media="all" />
+  <link href="/assets/css/product-listing.css" rel="stylesheet" type="text/css" />
+  <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+</head>
+<body>
+  <%- include('../partials/header') %>
+  
+  <main id="MainContent">
+    <section class="page-hero">
+      <h1 class="page-hero__title">Softgel Capsules</h1>
+    </section>
+
+    <section class="product-listing-section">
+      <div class="product-grid">
+        <!-- Omega-3 Softgels -->
+        <div class="product-grid-card">
+          <img src="https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?w=400&h=400&fit=crop" alt="Omega-3 Softgels" class="product-grid-card__image" onerror="this.src='https://placehold.co/400x400/eeeeee/999999?text=Product+Image';">
+          <h2 class="product-grid-card__title">Omega-3 Softgels</h2>
+          <a href="#" class="product-grid-card__btn" onclick="openEnquiryModal(); return false;">More Details</a>
+        </div>
+        
+        <!-- Vitamin E Softgels -->
+        <div class="product-grid-card">
+          <img src="https://images.unsplash.com/photo-1575224300306-1b8da36134ec?w=400&h=400&fit=crop" alt="Vitamin E Softgels" class="product-grid-card__image" onerror="this.src='https://placehold.co/400x400/eeeeee/999999?text=Product+Image';">
+          <h2 class="product-grid-card__title">Vitamin E Softgels</h2>
+          <a href="#" class="product-grid-card__btn" onclick="openEnquiryModal(); return false;">More Details</a>
+        </div>
+
+        <!-- CoQ10 Softgels -->
+        <div class="product-grid-card">
+          <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=400&fit=crop" alt="CoQ10 Softgels" class="product-grid-card__image" onerror="this.src='https://placehold.co/400x400/eeeeee/999999?text=Product+Image';">
+          <h2 class="product-grid-card__title">CoQ10 Softgels</h2>
+          <a href="#" class="product-grid-card__btn" onclick="openEnquiryModal(); return false;">More Details</a>
+        </div>
+
+        <!-- Evening Primrose Oil Softgels -->
+        <div class="product-grid-card">
+          <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?w=400&h=400&fit=crop" alt="Evening Primrose Oil Softgels" class="product-grid-card__image" onerror="this.src='https://placehold.co/400x400/eeeeee/999999?text=Product+Image';">
+          <h2 class="product-grid-card__title">Evening Primrose Oil Softgels</h2>
+          <a href="#" class="product-grid-card__btn" onclick="openEnquiryModal(); return false;">More Details</a>
+        </div>
+
+        <!-- Astaxanthin Softgels -->
+        <div class="product-grid-card">
+          <img src="https://images.unsplash.com/photo-1581452441951-893bd579893d?w=400&h=400&fit=crop" alt="Astaxanthin Softgels" class="product-grid-card__image" onerror="this.src='https://placehold.co/400x400/eeeeee/999999?text=Product+Image';">
+          <h2 class="product-grid-card__title">Astaxanthin Softgels</h2>
+          <a href="#" class="product-grid-card__btn" onclick="openEnquiryModal(); return false;">More Details</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <%- include('../partials/footer') %>
+  
+</body>
+</html>

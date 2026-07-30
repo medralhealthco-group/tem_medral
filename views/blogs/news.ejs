@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%- include('../partials/head-seo') %>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="/assets/css/fonts.css" rel="stylesheet">
+  <link href="/assets/css/storefront.bundle.css?v=<%= assetVersion %>" rel="stylesheet" type="text/css" media="all" />
+
+  <style nonce="<%= cspNonce %>">
+    .medral-blog-comingsoon {
+      padding: 90px 24px 120px 24px;
+      background-color: #f8fafc;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mbc-card {
+      max-width: 840px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 64px 48px;
+      box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.07);
+      text-align: center;
+      border: 1px solid #e2e8f0;
+    }
+    .mbc-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background-color: rgba(200, 16, 46, 0.08);
+      color: #c8102e;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .mbc-title {
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 20px;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+    .mbc-text {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #475569;
+      margin-bottom: 40px;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .mbc-topics {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+    .mbc-topic-tag {
+      background-color: #f1f5f9;
+      color: #334155;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .mbc-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #c8102e;
+      color: #ffffff;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background-color 0.25s ease, transform 0.25s ease;
+      box-shadow: 0 10px 25px -5px rgba(200, 16, 46, 0.3);
+    }
+    .mbc-btn:hover {
+      background-color: #a00c24;
+      transform: translateY(-2px);
+      color: #ffffff;
+    }
+    @media (max-width: 768px) {
+      .mbc-card {
+        padding: 40px 24px;
+      }
+      .mbc-title {
+        font-size: 2rem;
+      }
+      .mbc-text {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <%- include('../partials/header') %>
+
+  <main id="MainContent">
+    <section class="medral-blog-comingsoon">
+      <div class="mbc-card">
+        <span class="mbc-badge">MEDRAL INSIGHTS &amp; PUBLICATIONS</span>
+        <h1 class="mbc-title">New Official Brand Articles Coming Soon</h1>
+        <p class="mbc-text">
+          We are preparing exclusive, research-backed insights on CDMO manufacturing, formulation science, sports nutrition trends, and quality compliance from Medral Health experts.
+        </p>
+
+        <div class="mbc-topics">
+          <span class="mbc-topic-tag">🔬 Formulation Science</span>
+          <span class="mbc-topic-tag">🏭 CDMO Manufacturing</span>
+          <span class="mbc-topic-tag">🌿 Botanical &amp; Nutraceuticals</span>
+          <span class="mbc-topic-tag">⚡ Sports Nutrition</span>
+          <span class="mbc-topic-tag">✅ Quality &amp; Compliance</span>
+        </div>
+
+        <div>
+          <a href="/pages/contact" class="mbc-btn">
+            INQUIRE FOR CDMO SOLUTIONS
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

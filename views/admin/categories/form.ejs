@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= isEdit ? 'Edit Category' : 'Add Category' %> | Medral Health Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/assets/css/admin-base.css" rel="stylesheet" />
+    <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+  </head>
+  <body data-theme="admin">
+    <%- include('../partials/sidebar') %>
+
+    <div class="admin-wrapper">
+      <%- include('../partials/header', { pageTitle: isEdit ? 'Edit Category' : 'Add Category' }) %>
+
+      <main class="admin-content">
+        <div class="form-card">
+          <h1 class="form-card-title"><%= isEdit ? 'Edit Category' : 'Create New Category' %></h1>
+
+          <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert alert-danger"><%= error %></div>
+          <% } %>
+
+          <form action="<%= isEdit ? '/admin/categories/edit/' + category.id : '/admin/categories/create' %>" method="POST">
+            <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
+            <div class="form-group">
+              <label for="name" class="form-label">Category Name *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-input"
+                value="<%= category ? category.name : '' %>"
+                placeholder="e.g., Protein Powders"
+                required
+                autofocus
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="slug" class="form-label">URL Slug (Optional - Auto-generated if left blank)</label>
+              <input
+                type="text"
+                id="slug"
+                name="slug"
+                class="form-input"
+                value="<%= category ? category.slug : '' %>"
+                placeholder="e.g., protein-powders"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="description" class="form-label">Description</label>
+              <textarea
+                id="description"
+                name="description"
+                class="form-textarea"
+                placeholder="Brief summary of category products..."
+              ><%= category ? category.description : '' %></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="image_url" class="form-label">Category Image URL (Optional)</label>
+              <input
+                type="text"
+                id="image_url"
+                name="image_url"
+                class="form-input"
+                value="<%= category ? category.image_url : '' %>"
+                placeholder="/assets/images/categories/protein.jpg"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="display_order" class="form-label">Display Order</label>
+              <input
+                type="number"
+                id="display_order"
+                name="display_order"
+                class="form-input"
+                value="<%= category && category.display_order !== undefined ? category.display_order : 0 %>"
+                min="0"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-checkbox-label">
+                <input
+                  type="checkbox"
+                  name="is_active"
+                  value="1"
+                  <%= !category || category.is_active ? 'checked' : '' %>
+                />
+                <span>Active (Visible in catalog)</span>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-submit"><%= isEdit ? 'Save Changes' : 'Create Category' %></button>
+              <a href="/admin/categories" class="btn-cancel">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </main>
+
+      <%- include('../partials/footer') %>
+    </div>
+  </body>
+</html>

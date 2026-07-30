@@ -1,0 +1,34 @@
+<%#
+  Shared SEO head tags. Expects `seo` from getSeoMetadata().
+  Include after charset/viewport. Does not change layout/UI.
+%>
+<% if (typeof seo !== 'undefined' && seo) { %>
+<title><%= seo.title %></title>
+<meta name="description" content="<%= seo.description %>" />
+<% if (seo.robots) { %>
+<meta name="robots" content="<%= seo.robots %>" />
+<% } %>
+<% if (seo.canonicalUrl) { %>
+<link rel="canonical" href="<%= seo.canonicalUrl %>" />
+<meta property="og:title" content="<%= seo.ogTitle %>" />
+<meta property="og:description" content="<%= seo.ogDescription %>" />
+<meta property="og:url" content="<%= seo.ogUrl %>" />
+<meta property="og:image" content="<%= seo.ogImage %>" />
+<meta property="og:type" content="<%= seo.ogType %>" />
+<meta property="og:site_name" content="<%= seo.ogSiteName %>" />
+<meta name="twitter:card" content="<%= seo.twitterCard %>" />
+<meta name="twitter:title" content="<%= seo.twitterTitle %>" />
+<meta name="twitter:description" content="<%= seo.twitterDescription %>" />
+<meta name="twitter:image" content="<%= seo.twitterImage %>" />
+<% if (seo.twitterSite) { %>
+<meta name="twitter:site" content="<%= seo.twitterSite %>" />
+<% } %>
+<% } %>
+<% } else { %>
+<title>Medral Health Co</title>
+<meta name="description" content="India's Premier B2B Nutraceutical Contract Manufacturer." />
+<% } %>
+<% if (typeof config !== 'undefined' && config.seo && config.seo.googleSiteVerification) { %>
+<meta name="google-site-verification" content="<%= config.seo.googleSiteVerification %>" />
+<% } %>
+<link rel="icon" href="<%= typeof config !== 'undefined' && config.theme && config.theme.favicon ? config.theme.favicon : '/assets/images/faviconn.png' %>" type="image/png" />

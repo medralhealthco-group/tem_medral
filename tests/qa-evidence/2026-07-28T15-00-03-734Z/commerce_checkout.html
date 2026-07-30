@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+
+<title>Checkout | Medral Health Co</title>
+<meta name="description" content="Complete your order securely." />
+
+<meta name="robots" content="noindex, nofollow" />
+
+
+<link rel="canonical" href="http://127.0.0.1:59150/checkout" />
+<meta property="og:title" content="Checkout | Medral Health Co" />
+<meta property="og:description" content="Complete your order securely." />
+<meta property="og:url" content="http://127.0.0.1:59150/checkout" />
+<meta property="og:image" content="http://127.0.0.1:59150/assets/images/medrallogo.png" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Medral Health Co" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Checkout | Medral Health Co" />
+<meta name="twitter:description" content="Complete your order securely." />
+<meta name="twitter:image" content="http://127.0.0.1:59150/assets/images/medrallogo.png" />
+
+<meta name="twitter:site" content="@medral" />
+
+
+
+
+<meta name="google-site-verification" content="afTM3X0JHnJYzMqLtELLQkfFMFZakqwSNHVM-GEpRjs" />
+
+<link rel="icon" href="/assets/images/faviconn.png" type="image/png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/assets/css/storefront.bundle.css?v=1.0.0" rel="stylesheet" type="text/css" media="all" />
+  </head>
+  <body>
+    
+<meta name="csrf-token" content="743b31edd518550e30db969ecf6c3360ea1c1d2d4259b4cf20470d385ca71332" />
+<script type="application/ld+json" nonce="DSHZ33+svx6pJEEnYDUx4A==">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Medral Health Co",
+  "url": "http://127.0.0.1:59150",
+  "logo": "http://127.0.0.1:59150/assets/images/medrallogo.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91 88473 56318",
+    "contactType": "sales",
+    "email": "sales@medralhealth.com"
+  }
+}
+</script>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" class="header-icon-sprite" aria-hidden="true" focusable="false">
+  <symbol id="ico-search" viewBox="0 0 24 24">
+    <circle cx="11" cy="11" r="8"/>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  </symbol>
+  <symbol id="ico-user" viewBox="0 0 24 24">
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+    <circle cx="12" cy="7" r="4"/>
+  </symbol>
+  <symbol id="ico-shopping-bag" viewBox="0 0 24 24">
+    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+    <line x1="3" y1="6" x2="21" y2="6"/>
+    <path d="M16 10a4 4 0 0 1-8 0"/>
+  </symbol>
+  <symbol id="ico-close" viewBox="0 0 24 24">
+    <line x1="18" y1="6" x2="6" y2="18"/>
+    <line x1="6" y1="6" x2="18" y2="18"/>
+  </symbol>
+  <symbol id="ico-chevron-right" viewBox="0 0 24 24">
+    <polyline points="9 18 15 12 9 6"/>
+  </symbol>
+  <symbol id="ico-arrow-right" viewBox="0 0 24 24">
+    <line x1="5" y1="12" x2="19" y2="12"/>
+    <polyline points="12 5 19 12 12 19"/>
+  </symbol>
+</svg>
+
+
+
+
+  <header id="section-header" class="site-header site-header--minimal">
+    <div class="site-nav site-nav--minimal">
+      <a href="/" class="nav-logo" aria-label="Medral Health — Home">
+        <img src="/assets/images/medrallogo.png" alt="Medral Health" width="220" height="68">
+      </a>
+      <a href="/cart" class="utility-icon js-cart-toggle" aria-label="Cart" data-cart-toggle>
+        <svg aria-hidden="true"><use href="#ico-shopping-bag"/></svg>
+        <span class="utility-badge js-cart-badge-count" id="cartCountBadge" aria-live="polite" style="display: none;">0</span>
+      </a>
+    </div>
+  </header>
+
+
+
+
+    <section class="page-hero">
+      <h1 class="page-hero__title">Checkout Order</h1>
+    </section>
+
+    <div class="checkout-layout">
+      <main class="checkout-main" id="main-content" role="main" aria-label="Checkout">
+        <div class="form-card">
+          <h2 class="form-card-title">1. Shipping & Contact Information</h2>
+
+          
+
+          <form action="/checkout" method="POST" id="checkoutForm">
+            <input type="hidden" name="_csrf" value="743b31edd518550e30db969ecf6c3360ea1c1d2d4259b4cf20470d385ca71332">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="name" class="form-label">Full Name <span aria-hidden="true">*</span></label>
+                <input type="text" id="name" name="name" class="form-input" value="" required aria-required="true" placeholder="John Doe" />
+              </div>
+              <div class="form-group">
+                <label for="phone" class="form-label">Phone Number <span aria-hidden="true">*</span></label>
+                <input type="tel" id="phone" name="phone" class="form-input" value="" required aria-required="true" placeholder="+91 98765 43210" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address <span aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" class="form-input" value="" required aria-required="true" placeholder="john@example.com" />
+            </div>
+
+            <div class="form-group">
+              <label for="address" class="form-label">Street Address <span aria-hidden="true">*</span></label>
+              <input type="text" id="address" name="address" class="form-input" value="" required aria-required="true" placeholder="Flat / House No., Colony / Street" />
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="city" class="form-label">City / Town <span aria-hidden="true">*</span></label>
+                <input type="text" id="city" name="city" class="form-input" value="" required aria-required="true" placeholder="Mumbai" />
+              </div>
+              <div class="form-group">
+                <label for="state" class="form-label">State <span aria-hidden="true">*</span></label>
+                <input type="text" id="state" name="state" class="form-input" value="" required aria-required="true" placeholder="Maharashtra" />
+              </div>
+            </div>
+
+            <div class="form-group" style="max-width: 50%;">
+              <label for="pincode" class="form-label">PIN Code <span aria-hidden="true">*</span></label>
+              <input type="text" id="pincode" name="pincode" class="form-input" value="" required aria-required="true" placeholder="400001" />
+            </div>
+
+            <h2 class="form-card-title" style="margin-top: 36px;">2. Payment Method</h2>
+
+            <label class="payment-option">
+              <input type="radio" name="payment_method" value="cod" checked />
+              <div>
+                <strong >Cash on Delivery (COD)</strong>
+                <p >Pay with cash upon delivery at your doorstep.</p>
+              </div>
+            </label>
+
+            <label class="payment-option">
+              <input type="radio" name="payment_method" value="bank_transfer"  />
+              <div>
+                <strong >Direct Bank Transfer</strong>
+                <p >Make payment directly into our bank account.</p>
+              </div>
+            </label>
+          </form>
+        </div>
+      </main>
+
+      <!-- Sidebar Order Summary -->
+      <aside class="checkout-sidebar">
+        <div class="summary-card">
+          <h3 class="form-card-title" >Order Summary</h3>
+          <div class="summary-item-list">
+            
+              
+                <div class="summary-item">
+                  <img src="/assets/images/medrallogo.png" alt="" aria-hidden="true" class="summary-item-img" onerror="this.src='/assets/images/Medral_Logo.png';" />
+                  <div class="summary-item-info">
+                    <div class="summary-item-title">QA Test Product</div>
+                    <div class="summary-item-qty">Qty: 2 &times; ₹499.00</div>
+                  </div>
+                  <div class="summary-item-price">₹998.00</div>
+                </div>
+              
+            
+          </div>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong>₹998.00</strong>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span >FREE</span>
+          </div>
+          <div class="summary-row total-row">
+            <span>Grand Total</span>
+            <strong >₹998.00</strong>
+          </div>
+
+          <button type="submit" form="checkoutForm" class="btn-place-order" aria-label="Submit order and confirm placement">Place Order Now &rarr;</button>
+        </div>
+      </aside>
+    </div>
+
+    <div id="section-footer">
+
+<footer class="nf-footer" role="contentinfo" aria-label="Site Footer">
+
+  <!-- ═══ TOP BAND ═══ -->
+  <div class="nf-top">
+    <div class="nf-brand">
+      <a href="/" class="nf-logo">
+        <img
+          src="/assets/images/medrallogo.png"
+          alt="Medral Health"
+          style="height: 70px;width:auto;display:block;filter:brightness(0) invert(1);"
+          loading="lazy"
+        >
+      </a>
+      <p class="nf-tagline">India&#39;s Premier B2B Nutraceutical Contract Manufacturer.</p>
+    </div>
+    <div class="nf-social">
+      
+        <a href="https://www.instagram.com/medral" class="nf-social__link" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg><use href="#ico-instagram"/></svg>
+        </a>
+      
+        <a href="https://www.facebook.com/medral" class="nf-social__link" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg><use href="#ico-facebook"/></svg>
+        </a>
+      
+        <a href="https://www.youtube.com/@medral5105" class="nf-social__link" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg><use href="#ico-youtube"/></svg>
+        </a>
+      
+    </div>
+  </div>
+
+  <div class="nf-divider"></div>
+
+  <!-- ═══ MAIN GRID ═══ -->
+  <div class="nf-grid">
+
+    <div class="nf-col nf-col--offices">
+      <div class="nf-col__label">Offices</div>
+      
+        <div class="nf-office">
+          <div class="nf-office__name">Manufacturing Unit 1</div>
+          <div class="nf-office__addr" style="white-space: pre-line;">Plot No. D-173, Industrial Area 8B
+Mohali – 160071, Punjab, India</div>
+        </div>
+      
+        <div class="nf-office">
+          <div class="nf-office__name">Manufacturing Unit 2</div>
+          <div class="nf-office__addr" style="white-space: pre-line;">Plot No. 45, Mega Food Park, Near South City
+Ludhiana – 141008, Punjab, India</div>
+        </div>
+      
+        <div class="nf-office">
+          <div class="nf-office__name">Corporate Office</div>
+          <div class="nf-office__addr" style="white-space: pre-line;">First Floor 169, Spaze Platinum Tower, Sector 47,
+Sohna Road, Gurugram, Haryana: 122018</div>
+        </div>
+      
+    </div>
+
+    <div class="nf-col">
+      <div class="nf-col__label">Contact</div>
+      
+      <div class="nf-contact-group">
+        <div class="nf-contact-group__title">Call Our Sales Experts</div>
+        <div class="nf-phones-grid">
+          
+            <a href="tel:+916284483160" class="nf-contact-group__item">+91 62844 83160</a>
+          
+            <a href="tel:+919814633670" class="nf-contact-group__item">+91 98146 33670</a>
+          
+            <a href="tel:+917889202281" class="nf-contact-group__item">+91 78892 02281</a>
+          
+            <a href="tel:+918847356318" class="nf-contact-group__item">+91 88473 56318</a>
+          
+            <a href="tel:+916284012516" class="nf-contact-group__item">+91 62840 12516</a>
+          
+            <a href="tel:+916274794761" class="nf-contact-group__item">+91 62747 94761</a>
+          
+        </div>
+      </div>
+      
+      <div class="nf-contact-group">
+        <div class="nf-contact-group__title">Email</div>
+        
+          <a href="mailto:sales@medralhealth.com" class="nf-contact-group__item nf-email-item">sales@medralhealth.com</a>
+        
+          <a href="mailto:ceo@medral.com" class="nf-contact-group__item nf-email-item">ceo@medral.com</a>
+        
+          <a href="mailto:finance@medral.com" class="nf-contact-group__item nf-email-item">finance@medral.com</a>
+        
+      </div>
+    </div>
+
+    <div class="nf-col">
+      <div class="nf-col__label">Quick Links</div>
+      
+        <a href="/pages/certifications.html" class="nf-nav-link" target="_self" >Certifications</a>
+      
+        <a href="/pages/contact.html" class="nf-nav-link" target="_self" >Contact</a>
+      
+        <a href="/pages/about-us.html" class="nf-nav-link" target="_self" >About Us</a>
+      
+    </div>
+
+    <div class="nf-col">
+      <div class="nf-col__label">Company</div>
+      
+        <a href="/blogs/news.html" class="nf-nav-link" target="_self" >Blogs</a>
+      
+        <a href="/pages/privacy-policy.html" class="nf-nav-link" target="_self" >Privacy Policy</a>
+      
+        <a href="/pages/terms-and-conditions.html" class="nf-nav-link" target="_self" >Terms and Conditions</a>
+      
+        <a href="/pages/faqs.html" class="nf-nav-link" target="_self" >FAQs</a>
+      
+    </div>
+
+  </div>
+
+  <!-- ═══ CERT STRIP + DOWNLOAD BUTTONS ═══ -->
+  <div class="nf-divider"></div>
+  <div class="nf-certs-row">
+
+    <div class="nf-certs">
+      
+        <span class="nf-cert-tag">ISO 9001</span>
+      
+        <span class="nf-cert-tag">GMP</span>
+      
+        <span class="nf-cert-tag">FSSAI</span>
+      
+        <span class="nf-cert-tag">HACCP</span>
+      
+        <span class="nf-cert-tag">NSF</span>
+      
+    </div>
+
+    <!-- Buttons: row 1 = handbook + brochure, row 2 = catalogue -->
+    <div class="nf-download-btns">
+      <!-- ROW 1 -->
+      <div class="nf-download-row1">
+        
+          
+            <a href="/assets/Customer_Process_and_Policy_Handbook_F.pdf" class="nf-dl-btn nf-dl-btn--solid" target="_blank" rel="noopener" download>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Handbook
+            </a>
+          
+            <a href="/assets/Medral-Catalogue.pdf" class="nf-dl-btn nf-dl-btn--outline" target="_blank" rel="noopener" download>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Brochure
+            </a>
+          
+        
+      </div>
+
+      <!-- ROW 2 -->
+      
+        <div class="nf-download-row2">
+          
+            <a href="/assets/JARS_CATALOGUE.pdf" class="nf-dl-btn nf-dl-btn--outline" target="_blank" rel="noopener" download>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              Jars Catalog
+            </a>
+          
+        </div>
+      
+    </div>
+  </div>
+
+  <!-- ═══ BOTTOM BAR ═══ -->
+  <div class="nf-divider"></div>
+  <div class="nf-bottom">
+    <span class="nf-copyright">© 2026 Medral Health. All Rights Reserved.</span>
+    <div class="nf-policy-links">
+      <link href="/assets/css/layout/footer.css" rel="stylesheet" />
+      
+        <a href="/pages/privacy-policy.html" class="nf-policy-link" target="_self" >Privacy Policy</a>
+      
+        <a href="/pages/terms-and-conditions.html" class="nf-policy-link" target="_self" >Terms and Conditions</a>
+      
+    </div>
+  </div>
+
+</footer>
+
+</div>
+
+<!-- Mini Cart Side Overlay Drawer Component -->
+<div id="miniCartOverlay" class="mini-cart-overlay" onclick="toggleCartDrawer(false)" aria-hidden="true"></div>
+
+<aside id="miniCartDrawer" class="mini-cart-drawer" role="dialog" aria-modal="true" aria-label="Shopping cart" aria-hidden="true">
+  <div class="mini-cart-header">
+    <h3 class="mini-cart-header-title">
+      Shopping Cart (<span id="miniCartHeaderCount">0</span>)
+    </h3>
+    <button type="button" class="mini-cart-close-btn" onclick="toggleCartDrawer(false)" aria-label="Close cart">&times;</button>
+  </div>
+
+  <div id="miniCartItemsContainer" class="mini-cart-body">
+    <!-- Populated dynamically via assets/js/cart.js -->
+    <div class="mini-cart-empty">Loading cart...</div>
+  </div>
+
+  <div class="mini-cart-footer">
+    <div class="mini-cart-subtotal-row">
+      <span>Subtotal:</span>
+      <strong id="miniCartSubtotal">₹0.00</strong>
+    </div>
+    <div class="mini-cart-footer-actions">
+      <a href="/cart" class="btn-drawer-cart" onclick="toggleCartDrawer(false)">View Cart</a>
+      <a href="/checkout" class="btn-drawer-cart" onclick="toggleCartDrawer(false)">Checkout</a>
+    </div>
+  </div>
+</aside>
+
+<script src="/assets/js/cart.js?v=1.0.0" type="text/javascript" nonce="DSHZ33+svx6pJEEnYDUx4A=="></script>
+<script src="/assets/js/medral-global.js" type="text/javascript" nonce="DSHZ33+svx6pJEEnYDUx4A=="></script>
+
+<div id="section-enquiry-modal">
+
+<!-- ═══ MODAL OVERLAY ═══ -->
+<div class="em-overlay" id="emOverlay" onclick="closeEnquiryModal()" aria-hidden="true"></div>
+
+<!-- ═══ MODAL BOX ═══ -->
+<div class="em-modal" id="emModal" role="dialog" aria-modal="true" aria-label="Quick Enquiry Form">
+  <div class="em-modal__inner">
+
+    <!-- Close -->
+    <button class="em-close" onclick="closeEnquiryModal()" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <!-- Left: form -->
+    <div class="em-left">
+      <div class="em-eyebrow">Quick Enquiry</div>
+      <h2 class="em-heading">Get a Free Quote</h2>
+      <p class="em-sub">Fill in the form and our team will send you a personalised quote within 24 hours.</p>
+
+      <!-- Success state (shown after submit) -->
+      <div class="em-success" id="emSuccess" style="display:none;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-success-text)" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Redirecting you to confirmation page…</span>
+      </div>
+
+      <!-- Error state -->
+      <div class="em-error" id="emError" style="display:none;">
+        Something went wrong. Please try again or call us directly.
+      </div>
+
+      <!-- Form — uses fetch POST, NOT a native HTML form submit -->
+      <div class="em-form" id="emForm" role="form" aria-label="Quick Enquiry Form">
+        <div id="emFormMessage" role="alert" aria-live="assertive" style="display:none;"></div>
+        <div style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+          <label for="emWebsite">Website</label>
+          <input type="text" id="emWebsite" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+        <div class="em-grid">
+          <div class="em-field">
+            <label for="emName">Full Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="emName" placeholder="Your full name" required aria-required="true" />
+          </div>
+          <div class="em-field">
+            <label for="emPhone">Mobile / WhatsApp <span aria-hidden="true">*</span></label>
+            <input type="tel" id="emPhone" placeholder="+91 XXXXX XXXXX" required aria-required="true" aria-describedby="emPhoneHint" />
+            <small id="emPhoneHint" >Include country code (+91)</small>
+          </div>
+        </div>
+        <div class="em-field">
+          <label for="emEmail">Email Address <span aria-hidden="true">*</span></label>
+          <input type="email" id="emEmail" placeholder="you@company.com" required aria-required="true" />
+        </div>
+        <div class="em-field">
+          <label for="emCompany">Company / Brand</label>
+          <input type="text" id="emCompany" placeholder="Your brand or company name" />
+        </div>
+        <div class="em-field">
+          <label for="emService">Service Required</label>
+          <select id="emService" aria-label="Select a service">
+            <option value="">— Select a service —</option>
+            <option value="Capsules">Capsules</option>
+            <option value="Gummies">Gummies</option>
+            <option value="Effervescent Tablets">Effervescent Tablets</option>
+            <option value="Shots">Shots</option>
+            <option value="Softgel Capsules">Softgel Capsules</option>
+            <option value="Sachets">Sachets</option>
+            <option value="General Enquiry">General Enquiry</option>
+          </select>
+        </div>
+        <div class="em-field">
+          <label for="emMessage">Your Requirement</label>
+          <textarea id="emMessage" rows="3" placeholder="Describe your product idea, quantity, packaging needs…"></textarea>
+        </div>
+        <button class="em-submit" id="emSubmit" type="button" onclick="emHandleSubmit()" aria-label="Send enquiry form">
+          <span id="emSubmitLabel">Send Enquiry</span>
+          <span id="emSubmitSpinner" style="display:none;" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="animation:em-spin 0.8s linear infinite;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Right: contact info panel -->
+    <div class="em-right">
+      <div class="em-right__label">Contact Our Sales Experts</div>
+      <div class="em-phones">
+        
+          <a href="tel:+916284483160" class="em-phone">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.57 3.18C1.52 2.1 2.42 1 3.5 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.92a16 16 0 0 0 6 6z"/></svg>
+            +91 62844 83160
+          </a>
+        
+          <a href="tel:+919814633670" class="em-phone">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.57 3.18C1.52 2.1 2.42 1 3.5 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.92a16 16 0 0 0 6 6z"/></svg>
+            +91 98146 33670
+          </a>
+        
+          <a href="tel:+917889202281" class="em-phone">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.57 3.18C1.52 2.1 2.42 1 3.5 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.92a16 16 0 0 0 6 6z"/></svg>
+            +91 78892 02281
+          </a>
+        
+      </div>
+
+      <div class="em-right__divider"></div>
+
+      <a href="mailto:sales@medralhealth.com" class="em-email">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        sales@medralhealth.com
+      </a>
+
+      <div class="em-right__divider"></div>
+
+      <div class="em-right__label">Working Hours</div>
+      <div class="em-hours">Mon – Sat  ·  9:00 AM – 6:00 PM IST</div>
+      <div class="em-hours-note">24/7 available on WhatsApp for urgent queries</div>
+
+      <div class="em-right__divider"></div>
+
+      <div class="em-certs">
+        <div class="em-cert">ISO</div>
+        <div class="em-cert">GMP</div>
+        <div class="em-cert">HACCP</div>
+        <div class="em-cert">FSSAI</div>
+        <div class="em-cert">WHO</div>
+        <div class="em-cert">FDA</div>
+      </div>
+      <div class="em-cert-note">Certified by 8+ global bodies</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ STYLES ═══ -->
+
+
+<!-- ═══ JAVASCRIPT ═══ -->
+<script nonce="DSHZ33+svx6pJEEnYDUx4A==">
+/* ── Open / Close ── */
+function openEnquiryModal() {
+  document.getElementById('emOverlay').classList.add('is-open');
+  document.getElementById('emModal').classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeEnquiryModal() {
+  document.getElementById('emOverlay').classList.remove('is-open');
+  document.getElementById('emModal').classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeEnquiryModal();
+});
+
+/* ── Submit via fetch to native Express /contact ── */
+function emHandleSubmit() {
+  var name    = document.getElementById('emName').value.trim();
+  var phone   = document.getElementById('emPhone').value.trim();
+  var email   = document.getElementById('emEmail').value.trim();
+  var company = document.getElementById('emCompany').value.trim();
+  var service = document.getElementById('emService').value;
+  var message = document.getElementById('emMessage').value.trim();
+  var honeypot = document.getElementById('emWebsite') ? document.getElementById('emWebsite').value.trim() : '';
+
+  if (!name || !phone || !email) {
+    document.getElementById('emError').style.display = 'block';
+    document.getElementById('emError').textContent = 'Please fill in Name, Mobile and Email before submitting.';
+    return;
+  }
+  document.getElementById('emError').style.display = 'none';
+
+  var csrfMeta = document.querySelector('meta[name="csrf-token"]');
+  var csrf = csrfMeta ? csrfMeta.getAttribute('content') : '';
+
+  var btn     = document.getElementById('emSubmit');
+  var label   = document.getElementById('emSubmitLabel');
+  var spinner = document.getElementById('emSubmitSpinner');
+  btn.disabled = true;
+  label.style.display   = 'none';
+  spinner.style.display = 'inline-flex';
+
+  fetch('/contact', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'X-CSRF-Token': csrf
+    },
+    body: JSON.stringify({
+      source: 'enquiry_modal',
+      website: honeypot,
+      name: name,
+      phone: phone,
+      email: email,
+      company: company,
+      service: service,
+      message: message
+    })
+  })
+  .then(function(res) {
+    return res.json().then(function(data) {
+      if (!res.ok || !data.success) {
+        throw new Error((data && data.message) || 'Network error');
+      }
+      return data;
+    });
+  })
+  .then(function(data) {
+    document.getElementById('emForm').style.display    = 'none';
+    document.getElementById('emSuccess').style.display = 'flex';
+    setTimeout(function() {
+      window.location.href = data.redirect || '/pages/thank-you';
+    }, 600);
+  })
+  .catch(function(err) {
+    btn.disabled = false;
+    label.style.display   = 'inline';
+    spinner.style.display = 'none';
+    document.getElementById('emError').style.display = 'block';
+    document.getElementById('emError').textContent = err.message || 'Something went wrong. Please try again or call us directly.';
+  });
+}
+</script>
+
+</div>
+
+  </body>
+</html>

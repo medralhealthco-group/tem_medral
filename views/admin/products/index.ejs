@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= typeof seo !== 'undefined' ? seo.title : 'Product Management | Medral Health Admin' %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/assets/css/admin-base.css" rel="stylesheet" />
+    <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+  </head>
+  <body data-theme="admin">
+    <%- include('../partials/sidebar') %>
+
+    <div class="admin-wrapper">
+      <%- include('../partials/header', { pageTitle: 'Product Catalog Management' }) %>
+
+      <main class="admin-content">
+        <div class="page-actions-bar">
+          <h1 class="admin-page-title">Store Products</h1>
+          <a href="/admin/products/create" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Add Product</span>
+          </a>
+        </div>
+
+        <% if (typeof success !== 'undefined' && success) { %>
+          <div class="alert alert-success"><%= success %></div>
+        <% } %>
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="alert alert-danger"><%= error %></div>
+        <% } %>
+
+        <div class="table-card">
+          <div class="table-card-header">
+            <form action="/admin/products" method="GET" class="filter-form">
+              <input
+                type="text"
+                name="search"
+                class="search-input"
+                placeholder="Search products by title or SKU..."
+                value="<%= typeof pagination !== 'undefined' ? pagination.search : '' %>"
+              />
+              <select name="category_id" class="select-input">
+                <option value="">All Categories</option>
+                <% if (categories && categories.length > 0) { %>
+                  <% categories.forEach(cat => { %>
+                    <option value="<%= cat.id %>" <%= pagination.categoryId == cat.id ? 'selected' : '' %>>
+                      <%= cat.name %>
+                    </option>
+                  <% }); %>
+                <% } %>
+              </select>
+              <select name="status" class="select-input">
+                <option value="">All Statuses</option>
+                <option value="published" <%= pagination.status === 'published' ? 'selected' : '' %>>Published</option>
+                <option value="draft" <%= pagination.status === 'draft' ? 'selected' : '' %>>Draft</option>
+              </select>
+              <button type="submit" class="search-btn">Filter</button>
+            </form>
+            <div class="table-summary-count">
+              Total: <strong><%= pagination.totalCount %></strong> Products
+            </div>
+          </div>
+
+          <div class="admin-table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th class="col-w-50">Img</th>
+                  <th>Title & SKU</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th class="col-w-80">Stock</th>
+                  <th class="col-w-100">Status</th>
+                  <th class="text-right col-w-160">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (products && products.length > 0) { %>
+                  <% products.forEach(prod => { %>
+                    <tr>
+                      <td>
+                        <img
+                          src="<%= prod.primary_image || '/assets/images/placeholder.png' %>"
+                          alt="<%= prod.title %>"
+                          class="prod-thumb"
+                          onerror="this.src='/assets/images/Medral_Logo.png';"
+                        />
+                      </td>
+                      <td>
+                        <strong class="product-title"><%= prod.title %></strong>
+                        <% if (prod.is_featured) { %>
+                          <span class="badge badge-featured">Featured</span>
+                        <% } %>
+                        <div class="product-sku-info">
+                          SKU: <code class="product-sku-code"><%= prod.sku %></code> | Brand: <%= prod.brand %>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge badge-category"><%= prod.category_name || 'Uncategorized' %></span>
+                        <% if (prod.subcategory_name) { %>
+                          <div class="product-subcat-info">
+                            <%= prod.subcategory_name %>
+                          </div>
+                        <% } %>
+                      </td>
+                      <td>
+                        <strong class="product-price">₹<%= parseFloat(prod.price).toFixed(2) %></strong>
+                        <% if (prod.sale_price) { %>
+                          <div class="product-sale-price">
+                            ₹<%= parseFloat(prod.sale_price).toFixed(2) %>
+                          </div>
+                        <% } %>
+                      </td>
+                      <td>
+                        <span class="stock-qty <%= prod.stock_quantity > 0 ? 'in-stock' : 'out-of-stock' %>">
+                          <%= prod.stock_quantity %>
+                        </span>
+                      </td>
+                      <td>
+                        <form action="/admin/products/toggle-status/<%= prod.id %>" method="POST" class="inline-form">
+                          <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
+                          <button type="submit" class="badge <%= prod.status === 'published' ? 'badge-published' : 'badge-draft' %>" title="Click to toggle status">
+                            <%= prod.status.toUpperCase() %>
+                          </button>
+                        </form>
+                      </td>
+                      <td class="text-right">
+                        <div class="action-btns text-right">
+                          <a href="/admin/products/edit/<%= prod.id %>" class="btn-sm btn-edit">Edit</a>
+                          <form action="/admin/products/delete/<%= prod.id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete product \'<%= prod.title %>\'?');" class="inline-form">
+                            <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
+                            <button type="submit" class="btn-sm btn-delete">Delete</button>
+                          </form>
+                        </div>
+                      </td>
+                    </tr>
+                  <% }); %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="7" class="table-empty">
+                      No products found. Click <strong>Add Product</strong> above to create your first catalog item.
+                    </td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+
+          <% if (pagination.totalPages > 1) { %>
+            <div class="pagination-container">
+              <div>
+                Showing Page <strong><%= pagination.page %></strong> of <strong><%= pagination.totalPages %></strong>
+              </div>
+              <div class="pagination-links">
+                <% for(let i = 1; i <= pagination.totalPages; i++) { %>
+                  <a href="/admin/products?page=<%= i %>&search=<%= encodeURIComponent(pagination.search) %>&category_id=<%= pagination.categoryId || '' %>&status=<%= pagination.status || '' %>" class="page-link <%= pagination.page === i ? 'active' : '' %>">
+                    <%= i %>
+                  </a>
+                <% } %>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      </main>
+
+      <%- include('../partials/footer') %>
+    </div>
+  </body>
+</html>
+

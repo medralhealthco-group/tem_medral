@@ -1,0 +1,112 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — ALERT COMPONENT LIBRARY (alerts.css)
+   Phase 3 Component Polish: 14px Radius, Inter Font Family, Soft Tones,
+   and Clean Icon Alignment.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BASE ALERT (.alert)
+   -------------------------------------------------------------------------- */
+.alert {
+  padding: var(--space-4, 16px) var(--space-5, 20px);
+  border-radius: var(--radius-input, var(--radius-md, 14px));
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--font-size-small, 14px);
+  font-weight: 500;
+  line-height: var(--leading-normal, 1.5);
+  margin-bottom: var(--space-6, 24px);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3, 12px);
+  border: 1px solid transparent;
+  position: relative;
+  box-shadow: var(--shadow-xs);
+}
+
+/* Alert Sub-elements */
+.alert__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+}
+
+.alert__content {
+  flex: 1;
+}
+
+.alert__title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: var(--font-size-body, 16px);
+  font-weight: 600;
+  margin-bottom: var(--space-1, 4px);
+}
+
+.alert__text {
+  font-size: var(--font-size-small, 14px);
+  font-weight: 400;
+}
+
+/* --------------------------------------------------------------------------
+   2. ALERT VARIANTS
+   -------------------------------------------------------------------------- */
+
+/* Success Variant */
+.alert--success,
+.alert-success {
+  background: var(--feedback-success-bg, #F0FDF4);
+  color: var(--feedback-success-text, var(--color-success));
+  border-color: var(--feedback-success-border, #86EFAC);
+}
+
+/* Danger / Error Variant */
+.alert--danger,
+.alert-danger,
+.auth-alert--danger {
+  background: var(--feedback-error-bg, #FEF2F2);
+  color: var(--feedback-error-text, var(--color-danger));
+  border-color: var(--feedback-error-border, #FCA5A5);
+}
+
+/* Warning Variant */
+.alert--warning,
+.alert-warning {
+  background: var(--feedback-warning-bg, #FFFBEB);
+  color: var(--feedback-warning-text, #D97706);
+  border-color: var(--feedback-warning-border, #FDE68A);
+}
+
+/* Info Variant */
+.alert--info,
+.alert-info {
+  background: var(--blue-50, #EFF6FF);
+  color: var(--brand-secondary, var(--color-secondary));
+  border-color: var(--blue-200, #BFDBFE);
+}
+
+/* --------------------------------------------------------------------------
+   3. BACKWARD COMPATIBILITY ALIAS MAPPINGS
+   -------------------------------------------------------------------------- */
+
+/* Storefront Auth Alert Wrapper */
+.auth-alert {
+  padding: 14px 20px;
+  border-radius: var(--radius-input, 14px);
+  font-size: var(--font-size-small, 14px);
+  margin-bottom: var(--space-5, 24px);
+  border: 1px solid transparent;
+}
+
+/* Admin Login Alert */
+.admin-alert {
+  padding: 14px 20px;
+  border-radius: var(--radius-input, 14px);
+  font-size: 14px;
+  margin-bottom: 24px;
+  background: var(--feedback-error-bg, #FEF2F2);
+  color: var(--feedback-error-text, var(--color-danger));
+  border: 1px solid var(--feedback-error-border, #FCA5A5);
+}

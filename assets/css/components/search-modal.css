@@ -1,0 +1,265 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — HEADER SEARCH MODAL (search-modal.css)
+   Sheet that drops from the top of the viewport with an input and a
+   predictive results region fed by /shop/api/search.
+   ========================================================================== */
+
+.search-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-modal[hidden] {
+  display: none;
+}
+
+.search-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transition: opacity 0.26s ease;
+}
+
+.search-modal.is-open .search-modal__backdrop {
+  opacity: 1;
+}
+
+.search-modal__panel {
+  position: relative;
+  width: 100%;
+  max-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.5);
+  transform: translateY(-100%);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.search-modal.is-open .search-modal__panel {
+  transform: translateY(0);
+}
+
+.search-modal .unstyled-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── INPUT ROW ── */
+.search-modal__form {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 22px clamp(20px, 5vw, 56px);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.search-modal__icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+
+.search-modal__input {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 0;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: clamp(18px, 2.4vw, 26px);
+  font-weight: 450;
+  color: var(--color-text-primary);
+}
+
+.search-modal__input::placeholder {
+  color: var(--color-text-muted, #9a9a9a);
+}
+
+.search-modal__input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  background: var(--color-surface-warm);
+  border: none;
+  border-radius: 50%;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.search-modal__close svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+
+.search-modal__close:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+/* ── BODY ── */
+.search-modal__body {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 22px clamp(20px, 5vw, 56px) 32px;
+}
+
+.search-modal__label {
+  margin: 0 0 12px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-text-muted, #9a9a9a);
+}
+
+/* ── SUGGESTION CHIPS ── */
+.search-modal__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.search-modal__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 17px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  font-size: 14px;
+  font-weight: 450;
+  color: var(--color-text-secondary, #4c4c4c);
+  text-decoration: none;
+  transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
+}
+
+.search-modal__chip:hover,
+.search-modal__chip:focus-visible {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+/* ── RESULTS ── */
+.search-modal__results[hidden] {
+  display: none;
+}
+
+.search-results {
+  display: grid;
+  gap: 6px;
+}
+
+.search-result__link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.16s ease;
+}
+
+.search-result__link:hover,
+.search-result__link:focus-visible {
+  background: var(--color-surface-warm);
+}
+
+.search-result__image {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: var(--color-surface-warm);
+}
+
+.search-result__text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.search-result__title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.search-result__meta {
+  font-size: 13px;
+  color: var(--color-text-muted, #9a9a9a);
+}
+
+.search-result__price {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.search-modal__empty {
+  margin: 0;
+  padding: 8px 0;
+  font-size: 15px;
+  color: var(--color-text-secondary, #4c4c4c);
+}
+
+.search-modal__all {
+  display: inline-flex;
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.search-modal__all:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 1100px) {
+  .search-modal__panel {
+    max-height: 100vh;
+    height: 100%;
+    border-radius: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .search-modal__panel,
+  .search-modal__backdrop {
+    transition-duration: 0.01ms;
+  }
+}

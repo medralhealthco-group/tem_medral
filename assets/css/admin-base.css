@@ -1,0 +1,23 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — ADMIN BASE STYLESHEET (admin-base.css)
+   Concatenates Admin Shell Architecture modules and shared tokens.
+   ========================================================================== */
+
+@import "tokens-v3.css";
+@import "reset.css";
+
+/* Admin Shell Architecture */
+@import "admin/admin-layout.css";
+@import "admin/admin-sidebar.css";
+@import "admin/admin-header.css";
+
+/* Shared Component Library */
+@import "components/buttons.css";
+@import "components/cards.css";
+@import "components/forms.css";
+@import "components/alerts.css";
+@import "components/badges.css";
+@import "components/tables.css";
+@import "components/modals.css";
+@import "components/toasts.css";
+

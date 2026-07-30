@@ -1,0 +1,4 @@
+{
+  "status": 403,
+  "snippet": "CSRF token validation failed. Please return to the previous page, refresh, and resubmit."
+}

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('../partials/head-seo') %>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/assets/css/storefront.bundle.css?v=<%= assetVersion %>" rel="stylesheet" type="text/css" media="all" />
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+
+    <section class="page-hero">
+      <h1 class="page-hero__title">Shopping Cart</h1>
+    </section>
+
+    <% if (cart && cart.items && cart.items.length > 0) { %>
+      <div class="cart-layout">
+        <main class="cart-main">
+          <div class="cart-card">
+            <div style="overflow-x: auto;">
+              <table class="cart-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th style="width: 130px;">Quantity</th>
+                    <th>Total</th>
+                    <th style="width: 50px;"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% cart.items.forEach(item => { %>
+                    <tr>
+                      <td>
+                        <div class="cart-prod-cell">
+                          <img src="<%= item.primaryImage %>" alt="<%= item.title %>" class="cart-prod-thumb" onerror="this.src='/assets/images/Medral_Logo.png';" />
+                          <div>
+                            <h3 class="cart-prod-title">
+                              <a href="/shop/product/<%= item.slug %>"><%= item.title %></a>
+                            </h3>
+                            <div >SKU: <%= item.sku %></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <strong >₹<%= parseFloat(item.price).toFixed(2) %></strong>
+                      </td>
+                      <td>
+                        <div class="cart-qty-box">
+                          <button type="button" class="cart-qty-dec" data-item-id="<%= item.id %>" data-qty="<%= item.quantity %>" aria-label="Decrease quantity">-</button>
+                          <span><%= item.quantity %></span>
+                          <button type="button" class="cart-qty-inc" data-item-id="<%= item.id %>" data-qty="<%= item.quantity %>" aria-label="Increase quantity">+</button>
+                        </div>
+                      </td>
+                      <td>
+                        <strong >₹<%= parseFloat(item.lineTotal).toFixed(2) %></strong>
+                      </td>
+                      <td>
+                        <button type="button" class="cart-del-btn" data-item-id="<%= item.id %>" title="Remove item" aria-label="Remove item">&times;</button>
+                      </td>
+                    </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            </div>
+            <div >
+              <a href="/shop" >&larr; Continue Shopping</a>
+              <button type="button" class="cart-clear-btn">Clear Shopping Cart</button>
+            </div>
+          </div>
+        </main>
+
+        <aside class="cart-sidebar">
+          <div class="summary-card">
+            <h3 class="summary-title">Order Summary</h3>
+            <div class="summary-row">
+              <span>Items Subtotal</span>
+              <strong>₹<%= parseFloat(cart.subtotal).toFixed(2) %></strong>
+            </div>
+            <div class="summary-row">
+              <span>Estimated Shipping</span>
+              <span >Calculated at checkout</span>
+            </div>
+            <div class="summary-row total-row">
+              <span>Grand Total</span>
+              <strong>₹<%= parseFloat(cart.subtotal).toFixed(2) %></strong>
+            </div>
+
+            <a href="/checkout" class="btn-checkout">Proceed to Checkout &rarr;</a>
+          </div>
+        </aside>
+      </div>
+    <% } else { %>
+      <div class="cart-empty-wrapper">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 16px;">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <h2 >Your Shopping Cart is Empty</h2>
+        <p >Explore our catalog to add premium nutrition products to your cart.</p>
+        <a href="/shop" >Explore Shop Catalog</a>
+      </div>
+    <% } %>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>

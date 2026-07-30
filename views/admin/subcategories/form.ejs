@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= isEdit ? 'Edit Subcategory' : 'Add Subcategory' %> | Medral Health Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/assets/css/admin-base.css" rel="stylesheet" />
+    <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+  </head>
+  <body data-theme="admin">
+    <%- include('../partials/sidebar') %>
+
+    <div class="admin-wrapper">
+      <%- include('../partials/header', { pageTitle: isEdit ? 'Edit Subcategory' : 'Add Subcategory' }) %>
+
+      <main class="admin-content">
+        <div class="form-card">
+          <h1 class="form-card-title"><%= isEdit ? 'Edit Subcategory' : 'Create New Subcategory' %></h1>
+
+          <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert alert-danger"><%= error %></div>
+          <% } %>
+
+          <form action="<%= isEdit ? '/admin/subcategories/edit/' + subcategory.id : '/admin/subcategories/create' %>" method="POST">
+            <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
+            <div class="form-group">
+              <label for="category_id" class="form-label">Parent Category *</label>
+              <select id="category_id" name="category_id" class="form-select" required>
+                <option value="">-- Select Parent Category --</option>
+                <% if (categories && categories.length > 0) { %>
+                  <% categories.forEach(cat => { %>
+                    <option value="<%= cat.id %>" <%= subcategory && subcategory.category_id == cat.id ? 'selected' : '' %>>
+                      <%= cat.name %>
+                    </option>
+                  <% }); %>
+                <% } %>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="name" class="form-label">Subcategory Name *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-input"
+                value="<%= subcategory ? subcategory.name : '' %>"
+                placeholder="e.g., Whey Isolate"
+                required
+                autofocus
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="slug" class="form-label">URL Slug (Optional - Auto-generated if left blank)</label>
+              <input
+                type="text"
+                id="slug"
+                name="slug"
+                class="form-input"
+                value="<%= subcategory ? subcategory.slug : '' %>"
+                placeholder="e.g., whey-isolate"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="description" class="form-label">Description</label>
+              <textarea
+                id="description"
+                name="description"
+                class="form-textarea"
+                placeholder="Brief summary of subcategory items..."
+              ><%= subcategory ? subcategory.description : '' %></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="display_order" class="form-label">Display Order</label>
+              <input
+                type="number"
+                id="display_order"
+                name="display_order"
+                class="form-input"
+                value="<%= subcategory && subcategory.display_order !== undefined ? subcategory.display_order : 0 %>"
+                min="0"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-checkbox-label">
+                <input
+                  type="checkbox"
+                  name="is_active"
+                  value="1"
+                  <%= !subcategory || subcategory.is_active ? 'checked' : '' %>
+                />
+                <span>Active (Visible in catalog)</span>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-submit"><%= isEdit ? 'Save Changes' : 'Create Subcategory' %></button>
+              <a href="/admin/subcategories" class="btn-cancel">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </main>
+
+      <%- include('../partials/footer') %>
+    </div>
+  </body>
+</html>

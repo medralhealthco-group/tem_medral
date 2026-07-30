@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('../partials/head-seo') %>
+    <script type="application/ld+json" nonce="<%= cspNonce %>">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "<%= typeof seo !== 'undefined' && seo.siteOrigin ? seo.siteOrigin : '' %>" },
+        { "@type": "ListItem", "position": 2, "name": "Shop", "item": "<%= typeof seo !== 'undefined' && seo.siteOrigin ? seo.siteOrigin + '/shop' : '' %>" },
+        { "@type": "ListItem", "position": 3, "name": "<%= selectedCategory ? selectedCategory.name : 'Category' %>", "item": "<%= typeof seo !== 'undefined' ? seo.canonicalUrl : '' %>" }
+      ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/assets/css/storefront.bundle.css?v=<%= assetVersion %>" rel="stylesheet" type="text/css" media="all" />
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+
+    <section class="page-hero">
+      <h1 class="page-hero__title"><%= selectedCategory ? selectedCategory.name : 'Category Shop' %></h1>
+      <p class="page-hero__subtitle"><%= selectedCategory && selectedCategory.description ? selectedCategory.description : 'Explore premium formulations in this category.' %></p>
+    </section>
+
+    <div class="shop-layout">
+      <!-- Filter Sidebar -->
+      <aside class="shop-sidebar">
+        <div class="filter-group">
+          <h3 class="filter-title">Categories</h3>
+          <ul class="filter-list">
+            <li class="filter-item">
+              <a href="/shop" class="filter-link">
+                <span>All Categories</span>
+              </a>
+            </li>
+            <% if (categories && categories.length > 0) { %>
+              <% categories.forEach(cat => { %>
+                <li class="filter-item">
+                  <a href="/shop/category/<%= cat.slug %>" class="filter-link <%= selectedCategory && selectedCategory.id == cat.id ? 'active' : '' %>">
+                    <span><%= cat.name %></span>
+                  </a>
+                </li>
+              <% }); %>
+            <% } %>
+          </ul>
+        </div>
+
+        <!-- Price Range Filter Box -->
+        <div class="filter-group filter-group--bordered">
+          <h3 class="filter-title">Price Range (₹)</h3>
+          <form action="/shop/category/<%= selectedCategory.slug %>" method="GET">
+            <% if (pagination.search) { %><input type="hidden" name="search" value="<%= pagination.search %>" /><% } %>
+            <% if (pagination.sort) { %><input type="hidden" name="sort" value="<%= pagination.sort %>" /><% } %>
+            <% if (pagination.subcategoryId) { %><input type="hidden" name="subcategory_id" value="<%= pagination.subcategoryId %>" /><% } %>
+
+            <div class="price-range-inputs">
+              <input
+                type="number"
+                name="min_price"
+                placeholder="Min"
+                value="<%= pagination.minPrice || '' %>"
+                class="price-input"
+              />
+              <span class="price-range-sep">-</span>
+              <input
+                type="number"
+                name="max_price"
+                placeholder="Max"
+                value="<%= pagination.maxPrice || '' %>"
+                class="price-input"
+              />
+            </div>
+
+            <button type="submit" class="btn-price-filter">
+              Apply Price Filter
+            </button>
+          </form>
+
+          <div class="price-pills-wrap">
+            <a href="/shop/category/<%= selectedCategory.slug %>?max_price=500" class="subcat-pill subcat-pill--sm <%= pagination.maxPrice == 500 ? 'active' : '' %>">Under ₹500</a>
+            <a href="/shop/category/<%= selectedCategory.slug %>?min_price=500&max_price=1500" class="subcat-pill subcat-pill--sm <%= pagination.minPrice == 500 && pagination.maxPrice == 1500 ? 'active' : '' %>">₹500 - ₹1500</a>
+            <a href="/shop/category/<%= selectedCategory.slug %>?min_price=1500" class="subcat-pill subcat-pill--sm <%= pagination.minPrice == 1500 ? 'active' : '' %>">Above ₹1500</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Catalog Content -->
+      <main class="shop-main" id="main-content" role="main" aria-label="Category Catalog">
+        <!-- Subcategory Pills Filter -->
+        <% if (subcategories && subcategories.length > 0) { %>
+          <div class="subcat-pills">
+            <a href="/shop/category/<%= selectedCategory.slug %>" class="subcat-pill <%= !pagination.subcategoryId ? 'active' : '' %>">
+              All Subcategories
+            </a>
+            <% subcategories.forEach(sub => { %>
+              <a href="/shop/category/<%= selectedCategory.slug %>?subcategory_id=<%= sub.id %>" class="subcat-pill <%= pagination.subcategoryId == sub.id ? 'active' : '' %>">
+                <%= sub.name %>
+              </a>
+            <% }); %>
+          </div>
+        <% } %>
+
+        <div class="shop-toolbar">
+          <form action="/shop/category/<%= selectedCategory.slug %>" method="GET" class="shop-search-form">
+            <% if (pagination.subcategoryId) { %>
+              <input type="hidden" name="subcategory_id" value="<%= pagination.subcategoryId %>" />
+            <% } %>
+            <input
+              type="text"
+              name="search"
+              class="shop-search-input"
+              placeholder="Search in <%= selectedCategory.name %>..."
+              value="<%= pagination.search %>"
+            />
+            <button type="submit" class="shop-search-btn">Search</button>
+          </form>
+
+          <form action="/shop/category/<%= selectedCategory.slug %>" method="GET" class="shop-sort-form">
+            <% if (pagination.search) { %>
+              <input type="hidden" name="search" value="<%= pagination.search %>" />
+            <% } %>
+            <% if (pagination.subcategoryId) { %>
+              <input type="hidden" name="subcategory_id" value="<%= pagination.subcategoryId %>" />
+            <% } %>
+            <label for="sortSelect" class="shop-sort-label">Sort By:</label>
+            <select id="sortSelect" name="sort" class="shop-sort-select" onchange="this.form.submit()">
+              <option value="newest" <%= pagination.sort === 'newest' ? 'selected' : '' %>>Newest First</option>
+              <option value="price_asc" <%= pagination.sort === 'price_asc' ? 'selected' : '' %>>Price: Low to High</option>
+              <option value="price_desc" <%= pagination.sort === 'price_desc' ? 'selected' : '' %>>Price: High to Low</option>
+              <option value="title" <%= pagination.sort === 'title' ? 'selected' : '' %>>Name: A to Z</option>
+            </select>
+          </form>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div class="products-grid">
+          <% if (products && products.length > 0) { %>
+            <% products.forEach(prod => { %>
+              <div class="product-card">
+                <% if (prod.is_featured) { %>
+                  <span class="product-badge">Featured</span>
+                <% } %>
+                <a href="/shop/product/<%= prod.slug %>" class="product-image-wrap">
+                  <img
+                    src="<%= prod.primary_image || '/assets/images/Medral_Logo.png' %>"
+                    alt="<%= prod.title %>"
+                    loading="lazy"
+                    decoding="async"
+                    onerror="this.src='/assets/images/Medral_Logo.png';"
+                  />
+                </a>
+                <div class="product-info">
+                  <div class="product-cat"><%= prod.category_name %></div>
+                  <h3 class="product-title">
+                    <a href="/shop/product/<%= prod.slug %>"><%= prod.title %></a>
+                  </h3>
+                  <% if (prod.short_description) { %>
+                    <p class="product-summary"><%= prod.short_description %></p>
+                  <% } %>
+                  <div class="product-price-row">
+                    <div>
+                      <span class="product-price">₹<%= parseFloat(prod.price).toFixed(2) %></span>
+                      <% if (prod.sale_price) { %>
+                        <span class="product-old-price">₹<%= parseFloat(prod.sale_price).toFixed(2) %></span>
+                      <% } %>
+                    </div>
+                    <div class="product-actions-group">
+                      <button type="button" onclick="addToCart('<%= prod.id %>', 1)" class="btn-add-cart-sm" title="Add to Cart">+ Add</button>
+                      <a href="/shop/product/<%= prod.slug %>" class="btn-view-product">View</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% }); %>
+          <% } else { %>
+            <div class="catalog-empty-card">
+              <h3 class="catalog-empty-title">No Products Found in <%= selectedCategory.name %></h3>
+              <p class="catalog-empty-text">No products currently matched your filter criteria.</p>
+              <a href="/shop/category/<%= selectedCategory.slug %>" class="catalog-empty-reset">Reset Filters</a>
+            </div>
+          <% } %>
+        </div>
+
+        <!-- Pagination -->
+        <% if (pagination.totalPages > 1) { %>
+          <div class="pagination-wrap">
+            <% for(let i = 1; i <= pagination.totalPages; i++) { %>
+              <a
+                href="/shop/category/<%= selectedCategory.slug %>?page=<%= i %>&search=<%= encodeURIComponent(pagination.search) %>&sort=<%= pagination.sort %>&subcategory_id=<%= pagination.subcategoryId || '' %>"
+                class="page-btn <%= pagination.page === i ? 'active' : '' %>"
+              >
+                <%= i %>
+              </a>
+            <% } %>
+          </div>
+        <% } %>
+      </main>
+    </div>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>

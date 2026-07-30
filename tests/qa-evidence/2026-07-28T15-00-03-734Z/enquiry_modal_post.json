@@ -1,0 +1,5 @@
+{
+  "success": true,
+  "message": "Thank you — your enquiry has been received.",
+  "redirect": "/pages/thank-you"
+}

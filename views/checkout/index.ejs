@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('../partials/head-seo') %>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/assets/css/storefront.bundle.css?v=<%= assetVersion %>" rel="stylesheet" type="text/css" media="all" />
+  </head>
+  <body>
+    <%- include('../partials/header', { headerVariant: 'minimal' }) %>
+
+    <section class="page-hero">
+      <h1 class="page-hero__title">Checkout Order</h1>
+    </section>
+
+    <div class="checkout-layout">
+      <main class="checkout-main" id="main-content" role="main" aria-label="Checkout">
+        <div class="form-card">
+          <h2 class="form-card-title">1. Shipping & Contact Information</h2>
+
+          <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert-danger" role="alert" aria-live="assertive"><%= error %></div>
+          <% } %>
+
+          <form action="/checkout" method="POST" id="checkoutForm">
+            <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="name" class="form-label">Full Name <span aria-hidden="true">*</span></label>
+                <input type="text" id="name" name="name" class="form-input" value="<%= formData.name %>" required aria-required="true" placeholder="John Doe" />
+              </div>
+              <div class="form-group">
+                <label for="phone" class="form-label">Phone Number <span aria-hidden="true">*</span></label>
+                <input type="tel" id="phone" name="phone" class="form-input" value="<%= formData.phone %>" required aria-required="true" placeholder="+91 98765 43210" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address <span aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" class="form-input" value="<%= formData.email %>" required aria-required="true" placeholder="john@example.com" />
+            </div>
+
+            <div class="form-group">
+              <label for="address" class="form-label">Street Address <span aria-hidden="true">*</span></label>
+              <input type="text" id="address" name="address" class="form-input" value="<%= formData.address %>" required aria-required="true" placeholder="Flat / House No., Colony / Street" />
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="city" class="form-label">City / Town <span aria-hidden="true">*</span></label>
+                <input type="text" id="city" name="city" class="form-input" value="<%= formData.city %>" required aria-required="true" placeholder="Mumbai" />
+              </div>
+              <div class="form-group">
+                <label for="state" class="form-label">State <span aria-hidden="true">*</span></label>
+                <input type="text" id="state" name="state" class="form-input" value="<%= formData.state %>" required aria-required="true" placeholder="Maharashtra" />
+              </div>
+            </div>
+
+            <div class="form-group" style="max-width: 50%;">
+              <label for="pincode" class="form-label">PIN Code <span aria-hidden="true">*</span></label>
+              <input type="text" id="pincode" name="pincode" class="form-input" value="<%= formData.pincode %>" required aria-required="true" placeholder="400001" />
+            </div>
+
+            <h2 class="form-card-title" style="margin-top: 36px;">2. Payment Method</h2>
+
+            <label class="payment-option">
+              <input type="radio" name="payment_method" value="cod" <%= formData.payment_method === 'cod' ? 'checked' : '' %> />
+              <div>
+                <strong >Cash on Delivery (COD)</strong>
+                <p >Pay with cash upon delivery at your doorstep.</p>
+              </div>
+            </label>
+
+            <label class="payment-option">
+              <input type="radio" name="payment_method" value="bank_transfer" <%= formData.payment_method === 'bank_transfer' ? 'checked' : '' %> />
+              <div>
+                <strong >Direct Bank Transfer</strong>
+                <p >Make payment directly into our bank account.</p>
+              </div>
+            </label>
+          </form>
+        </div>
+      </main>
+
+      <!-- Sidebar Order Summary -->
+      <aside class="checkout-sidebar">
+        <div class="summary-card">
+          <h3 class="form-card-title" >Order Summary</h3>
+          <div class="summary-item-list">
+            <% if (cart && cart.items) { %>
+              <% cart.items.forEach(item => { %>
+                <div class="summary-item">
+                  <img src="<%= item.primaryImage %>" alt="" aria-hidden="true" class="summary-item-img" onerror="this.src='/assets/images/Medral_Logo.png';" />
+                  <div class="summary-item-info">
+                    <div class="summary-item-title"><%= item.title %></div>
+                    <div class="summary-item-qty">Qty: <%= item.quantity %> &times; ₹<%= parseFloat(item.price).toFixed(2) %></div>
+                  </div>
+                  <div class="summary-item-price">₹<%= parseFloat(item.lineTotal).toFixed(2) %></div>
+                </div>
+              <% }); %>
+            <% } %>
+          </div>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong>₹<%= parseFloat(cart.subtotal).toFixed(2) %></strong>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span >FREE</span>
+          </div>
+          <div class="summary-row total-row">
+            <span>Grand Total</span>
+            <strong >₹<%= parseFloat(cart.subtotal).toFixed(2) %></strong>
+          </div>
+
+          <button type="submit" form="checkoutForm" class="btn-place-order" aria-label="Submit order and confirm placement">Place Order Now &rarr;</button>
+        </div>
+      </aside>
+    </div>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>

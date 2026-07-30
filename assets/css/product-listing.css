@@ -1,0 +1,110 @@
+/* Product Listing Section */
+.product-listing-section {
+  padding: 60px 20px 80px; /* 60px top, 80px bottom */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .product-listing-section {
+    padding-top: 80px;
+  }
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+@media (min-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.product-grid-card {
+  background: var(--color-surface, var(--color-surface));
+  border: 1px solid var(--color-border, #E8E4DF);
+  border-radius: var(--radius-card, 16px);
+  box-shadow: var(--shadow-xs);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all var(--duration-normal, 200ms) var(--ease-spring);
+  height: 100%;
+}
+
+.product-grid-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-muted);
+}
+
+.product-grid-card__image {
+  width: 100%;
+  max-width: 260px;
+  aspect-ratio: 1;
+  object-fit: contain;
+  margin-bottom: 24px;
+}
+
+.product-grid-card__title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-weight: 600;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 24px;
+  letter-spacing: 0.05em;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.product-grid-card__btn {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 12px 32px;
+  border-radius: 50px; /* Pill shape */
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.product-grid-card__btn:hover {
+  background-color: var(--color-primary-hover);
+  color: var(--color-surface);
+}
+
+/* Page Hero Banner */
+.page-hero {
+  background-color: var(--color-primary);
+  background-image: var(--gradient-primary);
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--color-surface);
+}
+
+.page-hero__title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 48px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0;
+}

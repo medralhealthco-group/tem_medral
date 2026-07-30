@@ -1,0 +1,120 @@
+/* ═══════════════════════════════════════════════════════════════════
+   WHAT MAKES US BETTER SECTION (HOMEPAGE)
+   ═══════════════════════════════════════════════════════════════════ */
+.wmub-section {
+  padding: 40px 24px 80px 24px;
+  background-color: #f8fafc;
+}
+
+.wmub-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.wmub-card {
+  background-color: #c8102e;
+  border-radius: 28px;
+  padding: 56px 48px;
+  color: #ffffff;
+  box-shadow: 0 20px 50px -10px rgba(200, 16, 46, 0.25);
+}
+
+.wmub-title {
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 40px;
+  letter-spacing: -0.01em;
+  font-family: inherit;
+}
+
+.wmub-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.wmub-item {
+  background-color: rgba(150, 10, 32, 0.55);
+  border-radius: 18px;
+  padding: 32px 30px;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.wmub-item:hover {
+  background-color: rgba(130, 8, 28, 0.75);
+  transform: translateY(-2px);
+}
+
+.wmub-icon {
+  color: #ffffff;
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wmub-content {
+  flex: 1;
+}
+
+.wmub-item-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.wmub-item-text {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.wmub-readmore {
+  color: #ffffff;
+  text-decoration: underline;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.wmub-readmore:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 991px) {
+  .wmub-section {
+    padding: 24px 16px 56px 16px;
+  }
+
+  .wmub-card {
+    padding: 36px 24px;
+    border-radius: 20px;
+  }
+
+  .wmub-title {
+    font-size: 1.85rem;
+    margin-bottom: 28px;
+  }
+
+  .wmub-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .wmub-item {
+    padding: 24px 20px;
+    gap: 16px;
+  }
+
+  .wmub-item-title {
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,123 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — BADGE COMPONENT LIBRARY (badges.css)
+   Phase 3 Component Polish: 999px Pill Radius, Inter Typography, Vibrant
+   Soft Tones, and Clean Accessibility Contrast.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BASE BADGE (.badge)
+   -------------------------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1, 4px);
+  padding: 5px 12px;
+  border-radius: var(--radius-badge, var(--radius-pill, 999px));
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--font-size-caption, 12px);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide, 0.02em);
+  text-transform: capitalize;
+  white-space: nowrap;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   2. BADGE VARIANTS
+   -------------------------------------------------------------------------- */
+
+/* Success / Published / Delivered / Paid */
+.badge--success,
+.badge-success,
+.badge-published,
+.status-delivered,
+.pay-paid {
+  background: var(--feedback-success-bg, #F0FDF4);
+  color: var(--feedback-success, var(--color-success));
+  border-color: var(--feedback-success-border, #86EFAC);
+}
+
+/* Warning / Draft / Pending */
+.badge--warning,
+.badge-draft,
+.status-pending,
+.pay-pending {
+  background: var(--feedback-warning-bg, #FFFBEB);
+  color: var(--feedback-warning, #D97706);
+  border-color: var(--feedback-warning-border, #FDE68A);
+}
+
+/* Info / Processing */
+.badge--info,
+.status-processing {
+  background: var(--blue-50, #EFF6FF);
+  color: var(--brand-secondary, var(--color-secondary));
+  border-color: var(--blue-200, #BFDBFE);
+}
+
+/* Shipped / Primary */
+.badge--purple,
+.status-shipped {
+  background: var(--teal-50, #F0FDFA);
+  color: var(--brand-primary, var(--color-primary));
+  border-color: var(--teal-200, #99F6E4);
+}
+
+/* Danger / Cancelled / Failed */
+.badge--danger,
+.status-cancelled,
+.pay-failed {
+  background: var(--feedback-error-bg, #FEF2F2);
+  color: var(--feedback-error, var(--color-danger));
+  border-color: var(--feedback-error-border, #FCA5A5);
+}
+
+/* Accent / Category / Parent Tag / Featured */
+.badge--accent,
+.badge-category,
+.badge-parent {
+  background: var(--teal-50, #F0FDFA);
+  color: var(--brand-primary, var(--color-primary));
+  border-color: var(--teal-200, #99F6E4);
+}
+
+.badge-featured {
+  background: #FFFBEB;
+  color: #D97706;
+  border-color: #FDE68A;
+}
+
+.badge-secondary {
+  background: var(--color-bg);
+  color: var(--color-text-secondary);
+  border-color: var(--color-border);
+}
+
+/* --------------------------------------------------------------------------
+   3. STOCK QUANTITY INDICATORS
+   -------------------------------------------------------------------------- */
+.stock-qty {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: var(--radius-badge, 999px);
+  font-size: var(--font-size-caption, 12px);
+  font-weight: 600;
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.stock-qty.in-stock {
+  background: #F0FDF4;
+  color: var(--color-success);
+  border: 1px solid #86EFAC;
+}
+
+.stock-qty.out-of-stock {
+  background: #FEF2F2;
+  color: var(--color-danger);
+  border: 1px solid #FCA5A5;
+}

@@ -1,0 +1,66 @@
+<%
+/**
+ * Site header.
+ *
+ * Variants (pass via include options):
+ *   'full'    — default. Announcement bar, navigation, mega menu, drawer, search.
+ *   'minimal' — checkout. Logo and cart only, so nothing competes with the purchase flow.
+ *
+ * Pass the variant as the second argument to include(), e.g. { headerVariant: 'minimal' }.
+ */
+const variant = typeof headerVariant !== 'undefined' ? headerVariant : 'full';
+const isMinimal = variant === 'minimal';
+const siteOrigin = (typeof seo !== 'undefined' && seo.siteOrigin)
+  ? seo.siteOrigin
+  : ((typeof seo !== 'undefined' && seo.canonicalUrl)
+    ? `${seo.canonicalUrl.split('/')[0]}//${seo.canonicalUrl.split('/')[2]}`
+    : config.site.website);
+%>
+<meta name="csrf-token" content="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>" />
+<script type="application/ld+json" nonce="<%= cspNonce %>">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "<%= config.site.companyName %>",
+  "url": "<%= siteOrigin %>",
+  "logo": "<%= siteOrigin %><%= config.theme.logo %>",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "<%= config.contacts.primaryPhone %>",
+    "contactType": "sales",
+    "email": "<%= config.contacts.primaryEmail %>"
+  }
+}
+</script>
+
+<%- include('./header/_icons') %>
+
+<% if (isMinimal) { %>
+
+  <header id="section-header" class="site-header site-header--minimal">
+    <div class="site-nav site-nav--minimal">
+      <a href="/" class="nav-logo" aria-label="<%= config.site.name %> — Home">
+        <img src="<%= config.theme.logo %>" alt="<%= config.site.name %>" width="220" height="68">
+      </a>
+      <a href="/cart" class="utility-icon js-cart-toggle" aria-label="Cart" data-cart-toggle>
+        <svg aria-hidden="true"><use href="#ico-shopping-bag"/></svg>
+        <span class="utility-badge js-cart-badge-count" id="cartCountBadge" aria-live="polite" style="display: none;">0</span>
+      </a>
+    </div>
+  </header>
+
+<% } else { %>
+
+  <%- include('./header/_announcement') %>
+
+  <header id="section-header" class="site-header" data-header>
+    <%- include('./header/_desktop-nav') %>
+    <%- include('./header/_megamenu') %>
+  </header>
+
+  <%- include('./header/_drawer') %>
+  <%- include('./header/_search') %>
+
+  <script src="/assets/js/header.js" defer nonce="<%= cspNonce %>"></script>
+
+<% } %>

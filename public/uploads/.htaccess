@@ -1,0 +1,16 @@
+# Prevent directory listing and script execution in the uploads folder.
+# Hostinger/Apache: blocks common web-shell extensions even if a spoofed file lands here.
+Options -Indexes
+
+<IfModule mod_authz_core.c>
+  <FilesMatch "(?i)\.(php|phtml|php3|php4|php5|phar|cgi|pl|py|jsp|asp|aspx|shtml|sh|bash|exe|dll)$">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+
+<IfModule !mod_authz_core.c>
+  <FilesMatch "(?i)\.(php|phtml|php3|php4|php5|phar|cgi|pl|py|jsp|asp|aspx|shtml|sh|bash|exe|dll)$">
+    Order allow,deny
+    Deny from all
+  </FilesMatch>
+</IfModule>

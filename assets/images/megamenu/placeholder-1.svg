@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" width="420" height="420" role="img" aria-label="Product image placeholder">
+  <rect width="420" height="420" fill="#FDE7ED"/>
+  <g transform="rotate(-38 210 210)" opacity="0.55">
+    <rect x="150" y="120" width="120" height="180" rx="60" fill="#FFFFFF"/>
+    <path d="M150 210h120v30a60 60 0 0 1-60 60 60 60 0 0 1-60-60z" fill="#D31145" opacity="0.45"/>
+    <rect x="150" y="120" width="120" height="180" rx="60" fill="none" stroke="#D31145" stroke-opacity="0.35" stroke-width="3"/>
+  </g>
+</svg>

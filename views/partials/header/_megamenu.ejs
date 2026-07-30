@@ -1,0 +1,108 @@
+<%
+/**
+ * Mega menu panel. Renders the view model from services/megamenuService with no
+ * knowledge of where the data came from.
+ *
+ * Only the first tab and its first group are marked active on the server so the menu
+ * is fully usable before JavaScript runs; header.js takes over from there.
+ */
+const megamenu = config.megamenu || { enabled: false, tabs: [] };
+%>
+<% if (megamenu.enabled && megamenu.tabs.length) { %>
+<div class="megamenu" id="megamenu" hidden>
+  <div class="megamenu__panel" role="region" aria-label="Shop navigation">
+
+    <div class="megamenu__tabs" role="tablist" aria-label="Browse products by">
+      <% megamenu.tabs.forEach(function (tab, tabIndex) { %>
+        <button
+          type="button"
+          role="tab"
+          id="megamenu-tab-<%= tab.id %>"
+          class="megamenu__tab<%= tabIndex === 0 ? ' is-active' : '' %>"
+          data-megamenu-tab="<%= tab.id %>"
+          aria-selected="<%= tabIndex === 0 ? 'true' : 'false' %>"
+          aria-controls="megamenu-panel-<%= tab.id %>"
+          tabindex="<%= tabIndex === 0 ? '0' : '-1' %>"
+        ><%= tab.label %></button>
+      <% }); %>
+    </div>
+
+    <% megamenu.tabs.forEach(function (tab, tabIndex) { %>
+      <div
+        class="megamenu__tabpanel<%= tabIndex === 0 ? ' is-active' : '' %>"
+        id="megamenu-panel-<%= tab.id %>"
+        role="tabpanel"
+        aria-labelledby="megamenu-tab-<%= tab.id %>"
+        data-megamenu-panel="<%= tab.id %>"
+        <%- tabIndex === 0 ? '' : 'hidden' %>
+      >
+        <div class="megamenu__layout">
+
+          <div class="megamenu__rail" role="tablist" aria-orientation="vertical" aria-label="<%= tab.label %> categories">
+            <% tab.groups.forEach(function (group, groupIndex) { %>
+              <button
+                type="button"
+                role="tab"
+                id="megamenu-grouptab-<%= group.id %>"
+                class="megamenu__rail-item<%= groupIndex === 0 ? ' is-active' : '' %>"
+                data-megamenu-group="<%= group.id %>"
+                aria-selected="<%= groupIndex === 0 ? 'true' : 'false' %>"
+                aria-controls="megamenu-grid-<%= group.id %>"
+                tabindex="<%= groupIndex === 0 ? '0' : '-1' %>"
+              >
+                <span class="megamenu__rail-label"><%= group.label %></span>
+                <svg class="megamenu__rail-chevron" aria-hidden="true"><use href="#ico-chevron-right"/></svg>
+              </button>
+            <% }); %>
+          </div>
+
+          <div class="megamenu__groups">
+            <% tab.groups.forEach(function (group, groupIndex) { %>
+              <div
+                class="megamenu__group<%= groupIndex === 0 ? ' is-active' : '' %>"
+                id="megamenu-grid-<%= group.id %>"
+                role="tabpanel"
+                aria-labelledby="megamenu-grouptab-<%= group.id %>"
+                data-megamenu-grid="<%= group.id %>"
+                <%- groupIndex === 0 ? '' : 'hidden' %>
+              >
+                <ul class="megamenu__grid unstyled-list">
+                  <% group.products.forEach(function (product) { %>
+                    <li class="megamenu__card">
+                      <a class="megamenu__card-link" href="<%= product.url %>">
+                        <span class="megamenu__card-media">
+                          <img
+                            src="<%= product.image %>"
+                            alt="<%= product.imageAlt %>"
+                            loading="lazy"
+                            decoding="async"
+                            width="200"
+                            height="200"
+                            data-fallback-src="<%= megamenu.fallbackImage %>"
+                          >
+                        </span>
+                        <span class="megamenu__card-title"><%= product.name %></span>
+                        <span class="megamenu__card-explore" aria-hidden="true">Explore</span>
+                      </a>
+                    </li>
+                  <% }); %>
+                </ul>
+
+                <div class="megamenu__actions">
+                  <a class="megamenu__view-all" href="<%= group.url %>">
+                    <%= megamenu.viewAll.label %>
+                    <svg aria-hidden="true"><use href="#ico-arrow-right"/></svg>
+                  </a>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+
+        </div>
+      </div>
+    <% }); %>
+
+  </div>
+</div>
+<div class="megamenu-scrim" data-megamenu-scrim hidden></div>
+<% } %>

@@ -1,0 +1,137 @@
+<%
+/**
+ * Mobile navigation drawer.
+ *
+ * Built from the same config as the desktop bar, so the two can never drift. "Shop All"
+ * expands into the mega menu tabs as nested accordions; account moves here from the top bar.
+ */
+const header = config.navigation.header || {};
+const menu = header.menu || [];
+const megamenu = config.megamenu || { enabled: false, tabs: [] };
+const megamenuEnabled = Boolean(megamenu.enabled && megamenu.tabs.length);
+const isAuthenticated = Boolean(locals.currentUser);
+%>
+<div class="nav-drawer-overlay" id="navOverlay" data-drawer-close hidden></div>
+
+<div
+  class="nav-drawer"
+  id="navDrawer"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Navigation menu"
+  hidden
+>
+  <div class="nav-drawer__head">
+    <a href="/" class="nav-drawer__logo" aria-label="<%= config.site.name %> — Home">
+      <img src="<%= config.theme.logo %>" alt="<%= config.site.name %>" width="160" height="48">
+    </a>
+    <button type="button" class="nav-drawer__close" aria-label="Close menu" data-drawer-close>
+      <svg aria-hidden="true"><use href="#ico-close"/></svg>
+    </button>
+  </div>
+
+  <nav class="nav-drawer__body" aria-label="Mobile navigation">
+    <ul class="nav-drawer__list unstyled-list">
+      <% menu.forEach(function (item) { %>
+        <%
+          const hasMegamenu = item.type === 'megamenu' && megamenuEnabled;
+          const hasChildren = item.type === 'dropdown' && item.children && item.children.length;
+          const panelId = `drawer-panel-${item.id}`;
+        %>
+        <li class="nav-drawer__item">
+          <% if (hasMegamenu || hasChildren) { %>
+            <div class="nav-drawer__row">
+              <a href="<%= item.url %>" class="nav-drawer__link nav-drawer__link--parent"><%= item.title %></a>
+              <button
+                type="button"
+                class="nav-drawer__expand"
+                aria-expanded="false"
+                aria-controls="<%= panelId %>"
+                aria-label="Toggle <%= item.title %> submenu"
+                data-accordion-toggle
+              >
+                <span class="nav-drawer__expand-icon" aria-hidden="true"></span>
+              </button>
+            </div>
+
+            <div class="nav-drawer__panel" id="<%= panelId %>" data-accordion-panel hidden>
+              <% if (hasMegamenu) { %>
+                <% megamenu.tabs.forEach(function (tab) { %>
+                  <div class="nav-drawer__section">
+                    <p class="nav-drawer__section-title"><%= tab.label %></p>
+                    <ul class="nav-drawer__sublist unstyled-list">
+                      <% tab.groups.forEach(function (group) { %>
+                        <li>
+                          <div class="nav-drawer__row nav-drawer__row--nested">
+                            <a href="<%= group.url %>" class="nav-drawer__sublink"><%= group.label %></a>
+                            <button
+                              type="button"
+                              class="nav-drawer__expand nav-drawer__expand--sm"
+                              aria-expanded="false"
+                              aria-controls="drawer-group-<%= group.id %>"
+                              aria-label="Toggle <%= group.label %> products"
+                              data-accordion-toggle
+                            >
+                              <span class="nav-drawer__expand-icon" aria-hidden="true"></span>
+                            </button>
+                          </div>
+
+                          <div class="nav-drawer__panel" id="drawer-group-<%= group.id %>" data-accordion-panel hidden>
+                            <ul class="nav-drawer__carousel unstyled-list">
+                              <% group.products.forEach(function (product) { %>
+                                <li class="nav-drawer__card">
+                                  <a href="<%= product.url %>" class="nav-drawer__card-link">
+                                    <img
+                                      src="<%= product.image %>"
+                                      alt="<%= product.imageAlt %>"
+                                      loading="lazy"
+                                      decoding="async"
+                                      width="120"
+                                      height="120"
+                                      data-fallback-src="<%= megamenu.fallbackImage %>"
+                                    >
+                                    <span class="nav-drawer__card-title"><%= product.name %></span>
+                                  </a>
+                                </li>
+                              <% }); %>
+                            </ul>
+                            <a href="<%= group.url %>" class="nav-drawer__view-all">
+                              <%= megamenu.viewAll.label %>
+                              <svg aria-hidden="true"><use href="#ico-arrow-right"/></svg>
+                            </a>
+                          </div>
+                        </li>
+                      <% }); %>
+                    </ul>
+                  </div>
+                <% }); %>
+              <% } else { %>
+                <ul class="nav-drawer__sublist unstyled-list">
+                  <% item.children.forEach(function (child) { %>
+                    <li><a href="<%= child.url %>" class="nav-drawer__sublink"><%= child.title %></a></li>
+                  <% }); %>
+                </ul>
+              <% } %>
+            </div>
+          <% } else { %>
+            <a href="<%= item.url %>" class="nav-drawer__link"<%- item.isActive ? ' aria-current="page"' : '' %>>
+              <span><%= item.title %></span>
+              <svg class="nav-drawer__link-arrow" aria-hidden="true"><use href="#ico-arrow-right"/></svg>
+            </a>
+          <% } %>
+        </li>
+      <% }); %>
+    </ul>
+  </nav>
+
+  <div class="nav-drawer__foot">
+    <a href="<%= isAuthenticated ? '/account/dashboard' : '/account/login' %>" class="nav-drawer__cta">
+      <svg aria-hidden="true"><use href="#ico-user"/></svg>
+      <%= isAuthenticated ? 'My Account' : 'Login / Register' %>
+    </a>
+    <div class="nav-drawer__contact">
+      <a href="tel:<%= config.contacts.primaryPhoneRaw %>"><%= config.contacts.primaryPhone %></a>
+      <a href="mailto:<%= config.contacts.primaryEmail %>"><%= config.contacts.primaryEmail %></a>
+    </div>
+  </div>
+</div>

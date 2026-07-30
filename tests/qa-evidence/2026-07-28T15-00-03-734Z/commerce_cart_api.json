@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "cart": {
+    "cartId": 22,
+    "items": [
+      {
+        "id": 1,
+        "productId": 3,
+        "title": "QA Test Product",
+        "slug": "qa-product-1785250804570",
+        "sku": "QA-SKU-1785250804570",
+        "price": 499,
+        "originalPrice": 499,
+        "salePrice": null,
+        "primaryImage": "/assets/images/medrallogo.png",
+        "quantity": 2,
+        "stockQuantity": 25,
+        "status": "published",
+        "lineTotal": 998
+      }
+    ],
+    "subtotal": 998,
+    "totalItems": 2
+  }
+}

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= typeof seo !== 'undefined' ? seo.title : 'Admin Dashboard | Medral Health Co' %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/assets/css/admin-base.css" rel="stylesheet" />
+    <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+  </head>
+  <body data-theme="admin">
+    <%- include('partials/sidebar') %>
+
+    <div class="admin-wrapper">
+      <%- include('partials/header') %>
+
+      <main class="admin-content">
+        <div class="admin-page-header">
+          <h1 class="admin-page-title">Store Overview</h1>
+          <p class="admin-page-subtitle">Welcome back, <%= currentAdmin ? currentAdmin.fullName : 'Admin' %>. System overview & stats.</p>
+        </div>
+
+        <div class="admin-welcome-card">
+          <h2 class="admin-welcome-title">Medral Health Store Administration</h2>
+          <p class="admin-welcome-text">
+            Your e-commerce backend system foundation is active and secure. Use the catalog management modules in future phases to publish products, build category hierarchies, and manage customer orders.
+          </p>
+        </div>
+
+        <!-- Statistics Placeholder Cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              </svg>
+            </div>
+            <div class="stat-data">
+              <span class="stat-value"><%= stats.totalProducts %></span>
+              <span class="stat-label">Total Products</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <div class="stat-data">
+              <span class="stat-value"><%= stats.totalCategories %></span>
+              <span class="stat-label">Categories</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+              </svg>
+            </div>
+            <div class="stat-data">
+              <span class="stat-value"><%= stats.totalSubcategories %></span>
+              <span class="stat-label">Subcategories</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="stat-data">
+              <span class="stat-value"><%= stats.totalCustomers %></span>
+              <span class="stat-label">Registered Customers</span>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <%- include('partials/footer') %>
+    </div>
+  </body>
+</html>

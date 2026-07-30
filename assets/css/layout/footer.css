@@ -1,0 +1,351 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — FOOTER LAYOUT STYLESHEET (footer.css)
+   Phase 9 Header & Footer Refinement: Dark Gray Surface (var(--color-text-primary)),
+   Healthcare Teal Brand Accents (var(--color-primary)), Outfit Section Headings, Inter Links,
+   16px Office Card Containers, and 999px Pill Certificate Tags.
+   ========================================================================== */
+
+/* ── SHELL ── */
+.nf-footer {
+  background: var(--surface-inverse, var(--color-text-primary));
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  border-top: 1px solid var(--border-primary, var(--color-border));
+}
+
+/* ── TOP BAND ── */
+.nf-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 48px var(--space-8, 56px) 36px;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.nf-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nf-logo {
+  display: inline-block;
+}
+
+.nf-tagline {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--font-size-small, 14px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+/* ── SOCIAL ── */
+.nf-social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nf-social__link {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-button, 999px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all var(--duration-fast, 150ms) var(--ease-spring);
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.nf-social__link svg {
+  width: 18px;
+  height: 18px;
+}
+
+.nf-social__link:hover {
+  background: var(--brand-primary, var(--color-primary));
+  border-color: var(--brand-primary, var(--color-primary));
+  color: var(--color-surface);
+  transform: translateY(-1px);
+}
+
+/* ── DIVIDER ── */
+.nf-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 0 var(--space-8, 56px);
+}
+
+/* ── MAIN GRID ── */
+.nf-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1.2fr 1fr 1fr;
+  gap: 32px;
+  padding: 48px var(--space-8, 56px);
+}
+
+.nf-col {
+  padding-right: 24px;
+}
+
+.nf-col__label {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--brand-primary, var(--color-primary));
+  margin-bottom: 20px;
+}
+
+/* ── OFFICES ── */
+.nf-office {
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-card, 16px);
+  padding: 16px;
+}
+
+.nf-office__name {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-surface);
+  margin-bottom: 6px;
+}
+
+.nf-office__addr {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+/* ── CONTACT ── */
+.nf-contact-group {
+  margin-bottom: 20px;
+}
+
+.nf-contact-group__title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-weight: 600;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 8px;
+}
+
+.nf-phones-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 12px;
+}
+
+.nf-contact-group__item {
+  display: block;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  margin-bottom: 6px;
+  transition: color var(--duration-fast, 150ms);
+  white-space: nowrap;
+}
+
+.nf-contact-group__item:hover {
+  color: #99F6E4;
+}
+
+.nf-email-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+/* ── NAV LINKS ── */
+.nf-nav-link {
+  display: block;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  margin-bottom: 12px;
+  transition: color var(--duration-fast, 150ms);
+}
+
+.nf-nav-link:hover {
+  color: var(--color-surface);
+}
+
+/* ── CERT ROW ── */
+.nf-certs-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 24px var(--space-8, 56px);
+}
+
+.nf-certs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nf-cert-tag {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-surface);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-button, 999px);
+  padding: 6px 16px;
+  transition: all var(--duration-fast, 150ms);
+}
+
+.nf-cert-tag:hover {
+  border-color: var(--brand-primary, var(--color-primary));
+  background: var(--brand-primary, var(--color-primary));
+  color: var(--color-surface);
+}
+
+/* ── DOWNLOAD BUTTONS ── */
+.nf-download-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.nf-download-row1 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nf-download-row2 {
+  display: flex;
+}
+
+.nf-download-row2 .nf-dl-btn {
+  flex: 1;
+  justify-content: center;
+}
+
+.nf-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 10px 22px;
+  border-radius: var(--radius-button, 999px);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all var(--duration-fast, 150ms) var(--ease-spring);
+}
+
+.nf-dl-btn--solid {
+  background: var(--brand-primary, var(--color-primary));
+  color: var(--color-surface);
+  border: 1px solid var(--brand-primary, var(--color-primary));
+  box-shadow: var(--shadow-sm);
+}
+
+.nf-dl-btn--solid:hover {
+  background: var(--brand-primary-hover, var(--color-primary-hover));
+  border-color: var(--brand-primary-hover, var(--color-primary-hover));
+  transform: translateY(-1px);
+}
+
+.nf-dl-btn--outline {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.nf-dl-btn--outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: var(--color-surface);
+}
+
+.nf-dl-btn svg {
+  flex-shrink: 0;
+}
+
+/* ── BOTTOM BAR ── */
+.nf-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px var(--space-8, 56px) 36px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.nf-copyright {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.nf-policy-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.nf-policy-link {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  transition: color var(--duration-fast, 150ms);
+}
+
+.nf-policy-link:hover {
+  color: var(--color-surface);
+}
+
+/* ── RESPONSIVE TABLET BREAKPOINT (<= 960px) ── */
+@media (max-width: 960px) {
+  .nf-top,
+  .nf-grid,
+  .nf-certs-row,
+  .nf-bottom {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .nf-divider {
+    margin: 0 20px;
+  }
+  .nf-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .nf-phones-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .nf-grid {
+    grid-template-columns: 1fr;
+  }
+}

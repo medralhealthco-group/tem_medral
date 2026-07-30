@@ -1,0 +1,134 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — RECEIPT / SUCCESS STYLESHEET (receipt-layout.css)
+   Phase 6 Checkout UX: Clean Confirmation Layout, Outfit/Inter Typography,
+   Status Badges, Healthcare Teal Accents, and 999px Pill Actions.
+   ========================================================================== */
+
+.receipt-container {
+  max-width: 880px;
+  margin: var(--space-9, 56px) auto;
+  padding: 0 var(--space-6, 32px);
+}
+
+.receipt-card {
+  background: var(--surface-card, var(--color-surface));
+  border: 1px solid var(--border-primary, var(--color-border));
+  border-radius: var(--radius-card, 16px);
+  padding: var(--space-8, 48px);
+  box-shadow: var(--shadow-sm);
+}
+
+.receipt-header {
+  text-align: center;
+  margin-bottom: var(--space-8, 36px);
+  padding-bottom: var(--space-6, 28px);
+  border-bottom: 1px solid var(--border-primary, var(--color-border));
+}
+
+.check-icon-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--feedback-success-bg, #F0FDF4);
+  color: var(--feedback-success, var(--color-success));
+  border: 1px solid var(--feedback-success-border, #86EFAC);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-4, 18px);
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.receipt-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: var(--font-size-h2, 32px);
+  font-weight: 700;
+  color: var(--text-primary, var(--color-text-primary));
+  margin-bottom: var(--space-2, 8px);
+}
+
+.receipt-sub {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--font-size-body, 16px);
+  color: var(--text-secondary, var(--color-text-secondary));
+}
+
+.receipt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6, 24px);
+  margin-bottom: var(--space-8, 36px);
+}
+
+@media (max-width: 600px) {
+  .receipt-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.receipt-box {
+  background: var(--surface-primary, var(--color-bg));
+  border: 1px solid var(--border-primary, var(--color-border));
+  border-radius: var(--radius-card, 16px);
+  padding: var(--space-5, 24px);
+}
+
+.receipt-box-title {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--font-size-caption, 12px);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary, var(--color-text-secondary));
+  margin-bottom: var(--space-2, 10px);
+}
+
+.receipt-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--space-6, 28px);
+}
+
+.receipt-table th {
+  background: var(--surface-primary, var(--color-bg));
+  padding: var(--space-3, 14px) var(--space-4, 18px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--font-size-caption, 12px);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary, var(--color-text-secondary));
+  text-align: left;
+  border-bottom: 1px solid var(--border-primary, var(--color-border));
+}
+
+.receipt-table td {
+  padding: var(--space-4, 16px) var(--space-4, 18px);
+  border-bottom: 1px solid var(--border-primary, var(--color-border));
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--font-size-small, 14px);
+  color: var(--text-primary, var(--color-text-primary));
+}
+
+.badge-status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--radius-button, 999px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--font-size-caption, 12px);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-pending {
+  background: var(--feedback-warning-bg, #FEF3C7);
+  color: var(--feedback-warning, #D97706);
+  border: 1px solid var(--feedback-warning-border, #FCD34D);
+}
+
+.receipt-actions {
+  display: flex;
+  gap: var(--space-3, 14px);
+  justify-content: center;
+  margin-top: var(--space-8, 36px);
+}

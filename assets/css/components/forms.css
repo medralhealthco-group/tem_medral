@@ -1,0 +1,430 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — FORM COMPONENT LIBRARY (forms.css)
+   Consolidated Form System: 12px Input Radius, Subtle Focus Ring (Deep Evergreen),
+   Inter Font Family, Soft Borders, and Smooth Transitions.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. FORM GROUP WRAPPER
+   -------------------------------------------------------------------------- */
+.form-group {
+  margin-bottom: var(--space-5, 24px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------------------------------------------------
+   2. FORM LABELS
+   -------------------------------------------------------------------------- */
+.form-label {
+  display: block;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--type-caption, 12px);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.02em);
+  color: var(--color-text-primary, #1A1A1A);
+  margin-bottom: var(--space-2, 8px);
+}
+
+[data-theme="admin"] .form-label {
+  color: var(--admin-text-muted, #a497c6);
+}
+
+/* --------------------------------------------------------------------------
+   3. FORM INPUTS & CONTROL ELEMENTS
+   -------------------------------------------------------------------------- */
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 12px 18px;
+  background: var(--color-surface, var(--color-surface));
+  border: 1.5px solid var(--color-border, #E8E4DF);
+  border-radius: var(--radius-input, 12px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--type-small, 14px);
+  color: var(--color-text-primary, #1A1A1A);
+  box-sizing: border-box;
+  appearance: none;
+  transition: all var(--duration-fast, 150ms) var(--ease-default, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--color-text-muted, #9B9590);
+  opacity: 0.8;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--color-primary, #1A3A3A);
+  box-shadow: 0 0 0 4px rgba(26, 58, 58, 0.12);
+  outline: none;
+  background: var(--color-surface);
+}
+
+.form-input:disabled,
+.form-select:disabled,
+.form-textarea:disabled {
+  background: var(--color-surface-warm, #F5F2EE);
+  color: var(--color-text-muted, #9B9590);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Admin Input Theme Overrides */
+[data-theme="admin"] .form-input,
+[data-theme="admin"] .form-select,
+[data-theme="admin"] .form-textarea {
+  background: #0f0721;
+  border-color: var(--admin-border, #2c1a4d);
+  color: var(--color-text-inverse, var(--color-surface));
+}
+
+[data-theme="admin"] .form-input:focus,
+[data-theme="admin"] .form-select:focus,
+[data-theme="admin"] .form-textarea:focus {
+  border-color: var(--color-primary, #1A3A3A);
+  box-shadow: 0 0 0 4px rgba(26, 58, 58, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   4. SPECIALIZED CONTROL TYPES
+   -------------------------------------------------------------------------- */
+
+/* Select Dropdown with Custom Caret */
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231A1A1A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  background-size: 16px;
+  padding-right: 44px;
+  cursor: pointer;
+}
+
+[data-theme="admin"] .form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a497c6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+/* Textarea Field */
+.form-textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: var(--leading-normal, 1.5);
+}
+
+/* Checkbox & Radio Labels */
+.form-checkbox-label,
+.form-radio-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 10px);
+  font-size: var(--type-small, 14px);
+  font-weight: 500;
+  color: var(--color-text-primary, #1A1A1A);
+  cursor: pointer;
+  user-select: none;
+}
+
+[data-theme="admin"] .form-checkbox-label,
+[data-theme="admin"] .form-radio-label {
+  color: var(--admin-text-main, #f3f0ff);
+}
+
+/* --------------------------------------------------------------------------
+   5. RESPONSIVE FORM GRID
+   -------------------------------------------------------------------------- */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5, 24px);
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. HINTS & VALIDATION ERROR STATES
+   -------------------------------------------------------------------------- */
+.form-hint {
+  font-size: var(--type-caption, 12px);
+  color: var(--color-text-secondary, #6B6560);
+  margin-top: var(--space-1, 6px);
+}
+
+[data-theme="admin"] .form-hint {
+  color: var(--admin-text-muted, #a497c6);
+}
+
+.form-error {
+  font-size: var(--type-caption, 12px);
+  color: var(--color-danger, #C44B3D);
+  margin-top: var(--space-1, 6px);
+  font-weight: 600;
+}
+
+/* Input Error State Modifier */
+.form-input.is-invalid,
+.form-select.is-invalid,
+.form-textarea.is-invalid {
+  border-color: var(--color-danger, #C44B3D) !important;
+  box-shadow: 0 0 0 4px rgba(196, 75, 61, 0.15) !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. BACKWARD COMPATIBILITY ALIAS MAPPINGS
+   -------------------------------------------------------------------------- */
+
+/* Storefront Auth Forms */
+.auth-form-group {
+  margin-bottom: var(--space-5, 24px);
+}
+
+.auth-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-primary, #1A1A1A);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 12px 18px;
+  border: 1.5px solid var(--color-border, #E8E4DF);
+  border-radius: var(--radius-input, 12px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 14px;
+  color: var(--color-text-primary, #1A1A1A);
+  box-sizing: border-box;
+  transition: all var(--duration-fast, 150ms);
+}
+
+.auth-input:focus {
+  border-color: var(--color-primary, #1A3A3A);
+  box-shadow: 0 0 0 4px rgba(26, 58, 58, 0.12);
+  outline: none;
+}
+
+.auth-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 560px) {
+  .auth-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Filter Bar & Search Inputs */
+.filter-form,
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 220px;
+  padding: 10px 18px;
+  background: var(--color-surface, var(--color-surface));
+  border: 1.5px solid var(--color-border, #E8E4DF);
+  border-radius: var(--radius-input, 12px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--type-small, 14px);
+  color: var(--color-text-primary, #1A1A1A);
+  box-sizing: border-box;
+  transition: all var(--duration-fast, 150ms);
+}
+
+.search-input:focus {
+  border-color: var(--color-primary, #1A3A3A);
+  box-shadow: 0 0 0 4px rgba(26, 58, 58, 0.12);
+  outline: none;
+}
+
+.select-input {
+  min-width: 140px;
+  padding: 10px 38px 10px 18px;
+  background-color: var(--color-surface, var(--color-surface));
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231A1A1A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 14px;
+  border: 1.5px solid var(--color-border, #E8E4DF);
+  border-radius: var(--radius-input, 12px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--type-small, 14px);
+  color: var(--color-text-primary, #1A1A1A);
+  cursor: pointer;
+  box-sizing: border-box;
+  appearance: none;
+  transition: all var(--duration-fast, 150ms);
+}
+
+.select-input:focus {
+  border-color: var(--color-primary, #1A3A3A);
+  box-shadow: 0 0 0 4px rgba(26, 58, 58, 0.12);
+  outline: none;
+}
+
+.search-btn {
+  padding: 10px 22px;
+  height: 42px;
+  border-radius: var(--radius-button, 999px);
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border: none;
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: var(--type-small, 14px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms);
+}
+
+.search-btn:hover {
+  background: var(--color-primary-hover);
+}
+
+/* Form Actions Bar & Layout Helpers */
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 16px);
+  margin-top: var(--space-7, 32px);
+  padding-top: var(--space-5, 24px);
+  border-top: 1px solid var(--color-border, #E8E4DF);
+}
+
+.form-align-end {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 12px;
+}
+
+.form-group-spaced {
+  margin-top: var(--space-3, 12px);
+}
+
+.form-textarea-lg {
+  min-height: 140px;
+}
+
+/* File Upload Controls */
+input[type="file"].form-input {
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+input[type="file"].form-input::file-selector-button {
+  background: var(--color-primary, #1A3A3A);
+  color: var(--color-surface);
+  border: none;
+  border-radius: var(--radius-button, 999px);
+  padding: 6px 16px;
+  margin-right: 12px;
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: var(--type-caption, 12px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms);
+}
+
+input[type="file"].form-input::file-selector-button:hover {
+  background: var(--color-primary-hover, #142E2E);
+}
+
+/* Gallery Grid Preview Manager */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: var(--space-3, 12px);
+  margin-top: var(--space-2, 8px);
+}
+
+.gallery-item {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border-radius: var(--radius-input, 12px);
+  overflow: hidden;
+  border: 1px solid var(--color-border, #E8E4DF);
+  background: var(--color-surface, var(--color-surface));
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-del-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(196, 75, 61, 0.9);
+  color: var(--color-surface);
+  border: none;
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms);
+}
+
+.gallery-del-btn:hover {
+  background: var(--color-danger, #C44B3D);
+  transform: scale(1.1);
+}
+
+/* Admin Login Form Controls */
+.admin-group {
+  margin-bottom: 20px;
+}
+
+.admin-label {
+  display: block;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-primary, #1A1A1A);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.admin-input {
+  width: 100%;
+  padding: 13px 18px;
+  background: var(--color-surface, var(--color-surface));
+  border: 1.5px solid var(--color-border, #E8E4DF);
+  border-radius: var(--radius-input, 12px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 15px;
+  color: var(--color-text-primary, #1A1A1A);
+  box-sizing: border-box;
+  transition: all var(--duration-fast, 150ms);
+}
+
+.admin-input:focus {
+  border-color: var(--color-primary, #1A3A3A);
+  box-shadow: 0 0 0 4px rgba(26, 58, 58, 0.12);
+  outline: none;
+}

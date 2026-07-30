@@ -1,0 +1,26 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — TOPBAR LAYOUT STYLESHEET (topbar.css)
+   Replaces legacy topbar with top announcement marquee bar.
+   ========================================================================== */
+
+#section-topbar {
+  background: #1a1a1a;
+  color: var(--color-surface);
+  font-family: var(--font-ui, 'Instrument Sans', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  height: 40px;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  max-height: 40px;
+  z-index: 201;
+}
+
+#section-topbar.is-hidden {
+  max-height: 0;
+  opacity: 0;
+  border-bottom: none;
+}

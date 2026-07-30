@@ -1,0 +1,133 @@
+<%
+/**
+ * Primary header bar: menu (left), centered logo, utilities (right).
+ *
+ * Items render from config.navigation.header.menu by `type`, so adding or reordering
+ * navigation is a config change only. On mobile the hamburger takes the left slot and
+ * the account icon moves into the drawer, giving the ☰ / logo / search / cart layout.
+ */
+const header = config.navigation.header || {};
+const menu = header.menu || [];
+const utilities = header.utilities || [];
+const isAuthenticated = Boolean(locals.currentUser);
+const megamenuEnabled = Boolean(config.megamenu && config.megamenu.enabled && config.megamenu.tabs.length);
+
+function utilityHref(utility) {
+  if (isAuthenticated && utility.authenticatedUrl) return utility.authenticatedUrl;
+  return utility.url;
+}
+%>
+<nav class="site-nav" aria-label="Main navigation">
+
+  <div class="nav-left">
+    <button
+      type="button"
+      class="nav-hamburger"
+      id="navHamburger"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="navDrawer"
+      data-drawer-toggle
+    >
+      <span class="nav-hamburger__bar"></span>
+      <span class="nav-hamburger__bar"></span>
+      <span class="nav-hamburger__bar"></span>
+    </button>
+
+    <ul class="nav-menu unstyled-list">
+      <% menu.forEach(function (item) { %>
+        <%
+          const isMegamenu = item.type === 'megamenu' && megamenuEnabled;
+          const isDropdown = item.type === 'dropdown' && item.children && item.children.length;
+          const itemClasses = [
+            'nav-item',
+            isMegamenu ? 'has-megamenu' : '',
+            isDropdown ? 'has-dropdown' : '',
+            item.isActive ? 'is-active' : ''
+          ].filter(Boolean).join(' ');
+        %>
+        <li class="<%= itemClasses %>"<%- isDropdown ? ' data-nav-dropdown' : '' %>>
+          <a
+            href="<%= item.url %>"
+            class="nav-item__link"
+            <%- item.isActive ? 'aria-current="page"' : '' %>
+            <% if (isMegamenu) { %>
+              data-megamenu-trigger
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="megamenu"
+            <% } else if (isDropdown) { %>
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="nav-dropdown-<%= item.id %>"
+            <% } %>
+          >
+            <span><%= item.title %></span>
+            <% if (isMegamenu || isDropdown) { %>
+              <span class="nav-item__caret" aria-hidden="true"></span>
+            <% } %>
+          </a>
+
+          <% if (isDropdown) { %>
+            <div class="nav-dropdown" id="nav-dropdown-<%= item.id %>">
+              <ul class="unstyled-list">
+                <% item.children.forEach(function (child) { %>
+                  <li>
+                    <a href="<%= child.url %>" class="nav-dropdown__link"<%- child.isActive ? ' aria-current="page"' : '' %>><%= child.title %></a>
+                  </li>
+                <% }); %>
+              </ul>
+            </div>
+          <% } %>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+
+  <div class="nav-center">
+    <a href="/" class="nav-logo" aria-label="<%= config.site.name %> — Home">
+      <img src="<%= config.theme.logo %>" alt="<%= config.site.name %>" width="220" height="68">
+    </a>
+  </div>
+
+  <div class="nav-right">
+    <ul class="nav-utilities unstyled-list">
+      <% utilities.forEach(function (utility) { %>
+        <li>
+          <% if (utility.action === 'toggle-search') { %>
+            <button
+              type="button"
+              class="utility-icon"
+              id="searchToggleBtn"
+              aria-label="<%= utility.label %>"
+              aria-expanded="false"
+              aria-controls="searchModal"
+              data-search-toggle
+            >
+              <svg aria-hidden="true"><use href="#ico-<%= utility.icon %>"/></svg>
+            </button>
+          <% } else if (utility.id === 'cart') { %>
+            <a
+              href="<%= utilityHref(utility) %>"
+              class="utility-icon js-cart-toggle<%= utility.mobileBar === false ? ' utility-icon--desktop' : '' %>"
+              aria-label="<%= utility.label %>"
+              data-cart-toggle
+            >
+              <svg aria-hidden="true"><use href="#ico-<%= utility.icon %>"/></svg>
+              <span class="utility-badge js-cart-badge-count" id="cartCountBadge" aria-live="polite" style="display: none;">0</span>
+            </a>
+          <% } else { %>
+            <a
+              href="<%= utilityHref(utility) %>"
+              class="utility-icon<%= utility.mobileBar === false ? ' utility-icon--desktop' : '' %>"
+              aria-label="<%= utility.label %>"
+            >
+              <svg aria-hidden="true"><use href="#ico-<%= utility.icon %>"/></svg>
+            </a>
+          <% } %>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+
+</nav>

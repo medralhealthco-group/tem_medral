@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" width="420" height="420" role="img" aria-label="Product image placeholder">
+  <rect width="420" height="420" fill="#FCF4F0"/>
+  <g opacity="0.6">
+    <circle cx="210" cy="210" r="86" fill="#FFFFFF"/>
+    <circle cx="210" cy="210" r="86" fill="none" stroke="#D31145" stroke-opacity="0.3" stroke-width="3"/>
+    <circle cx="181" cy="192" r="17" fill="#D31145" opacity="0.35"/>
+    <circle cx="235" cy="205" r="13" fill="#D31145" opacity="0.25"/>
+    <circle cx="199" cy="238" r="11" fill="#D31145" opacity="0.28"/>
+  </g>
+</svg>

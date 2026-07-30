@@ -1,0 +1,225 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — CHECKOUT LAYOUT STYLESHEET (checkout-layout.css)
+   Phase 6 Checkout UX: Reduced Clutter, Secure Payment Card Selection,
+   Structured Order Summaries, Outfit/Inter Typography, and Pill Actions.
+   ========================================================================== */
+
+.checkout-layout {
+  max-width: 1240px;
+  margin: var(--space-8, 48px) auto;
+  padding: 0 var(--space-6, 32px);
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: var(--space-8, 36px);
+}
+
+@media (max-width: 900px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+    padding: 0 var(--space-4, 20px);
+  }
+}
+
+.form-card {
+  background: var(--surface-card, var(--color-surface));
+  border: 1px solid var(--border-primary, var(--color-border));
+  border-radius: var(--radius-card, 16px);
+  padding: var(--space-8, 36px);
+  box-shadow: var(--shadow-xs);
+}
+
+.form-card-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: var(--font-size-h3, 22px);
+  font-weight: 600;
+  color: var(--text-primary, var(--color-text-primary));
+  margin-bottom: var(--space-6, 24px);
+  padding-bottom: var(--space-3, 14px);
+  border-bottom: 2px solid var(--border-primary, var(--color-border));
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4, 18px);
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--font-size-small, 14px);
+  font-weight: 600;
+  color: var(--text-primary, var(--color-text-primary));
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border-primary, var(--color-border));
+  border-radius: var(--radius-input, 14px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--font-size-small, 14px);
+  color: var(--text-primary, var(--color-text-primary));
+  background: var(--surface-card, var(--color-surface));
+  transition: all var(--duration-fast, 150ms);
+}
+
+.form-input:focus {
+  border-color: var(--brand-primary, var(--color-primary));
+  box-shadow: 0 0 0 4px rgba(26, 58, 58, 0.12);
+  outline: none;
+}
+
+.payment-option {
+  border: 1.5px solid var(--border-primary, var(--color-border));
+  border-radius: var(--radius-card, 16px);
+  padding: var(--space-4, 20px);
+  margin-bottom: var(--space-3, 14px);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3, 14px);
+  cursor: pointer;
+  background: var(--surface-card, var(--color-surface));
+  transition: all var(--duration-fast, 150ms);
+}
+
+.payment-option:hover,
+.payment-option.active {
+  border-color: var(--brand-primary, var(--color-primary));
+  background: var(--teal-50, #F0FDFA);
+  box-shadow: var(--shadow-xs);
+}
+
+.payment-option input {
+  margin-top: 4px;
+  accent-color: var(--brand-primary, var(--color-primary));
+}
+
+/* Order Summary Box */
+.summary-card {
+  background: var(--surface-card, var(--color-surface));
+  border: 1px solid var(--border-primary, var(--color-border));
+  border-radius: var(--radius-card, 16px);
+  padding: var(--space-6, 28px);
+  height: fit-content;
+  box-shadow: var(--shadow-xs);
+}
+
+.summary-item-list {
+  max-height: 320px;
+  overflow-y: auto;
+  margin-bottom: var(--space-5, 20px);
+  padding-right: 4px;
+}
+
+.summary-item {
+  display: flex;
+  gap: var(--space-3, 14px);
+  margin-bottom: var(--space-3, 14px);
+  align-items: center;
+}
+
+.summary-item-img {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-input, 14px);
+  object-fit: contain;
+  background: var(--surface-primary, var(--color-bg));
+  border: 1px solid var(--border-primary, var(--color-border));
+  flex-shrink: 0;
+  padding: 4px;
+}
+
+.summary-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.summary-item-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: var(--font-size-small, 14px);
+  font-weight: 600;
+  color: var(--text-primary, var(--color-text-primary));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.summary-item-qty {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--font-size-caption, 12px);
+  color: var(--text-secondary, var(--color-text-secondary));
+}
+
+.summary-item-price {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: var(--font-size-body, 15px);
+  font-weight: 700;
+  color: var(--text-primary, var(--color-text-primary));
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--font-size-small, 14px);
+  color: var(--text-secondary, var(--color-text-secondary));
+  margin-bottom: var(--space-2, 10px);
+}
+
+.summary-row.total-row {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary, var(--color-text-primary));
+  margin-top: var(--space-4, 18px);
+  padding-top: var(--space-4, 18px);
+  border-top: 1px solid var(--border-primary, var(--color-border));
+}
+
+.btn-place-order {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 16px;
+  background: var(--brand-primary, var(--color-primary));
+  color: var(--color-surface);
+  border: none;
+  border-radius: var(--radius-button, 999px);
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-spring);
+  margin-top: var(--space-5, 24px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-place-order:hover {
+  background: var(--brand-primary-hover, var(--color-primary-hover));
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Security Trust Box */
+.checkout-security-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 12px;
+  color: var(--text-secondary, var(--color-text-secondary));
+}

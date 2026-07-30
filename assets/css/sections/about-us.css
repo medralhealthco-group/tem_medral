@@ -1,0 +1,281 @@
+/* ═══════════════════════════════════════════════════════════════════
+   REDESIGNED ABOUT US PAGE STYLES
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── 1. HERO BANNER ── */
+.about-hero {
+  position: relative;
+  height: 440px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  padding: 0 48px;
+  color: #ffffff;
+}
+
+.about-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(15, 23, 42, 0.85) 0%,
+    rgba(15, 23, 42, 0.4) 60%,
+    rgba(15, 23, 42, 0.15) 100%
+  );
+  z-index: 1;
+}
+
+.about-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.about-hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* ── 2. SPLIT ROW SECTIONS (OUR STORY & OUR PEOPLE) ── */
+.about-split-row {
+  display: flex;
+  min-height: 520px;
+  width: 100%;
+}
+
+.about-split-card--red {
+  flex: 1;
+  background-color: #c8102e;
+  color: #ffffff;
+  padding: 80px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-split-card--white {
+  flex: 1;
+  background-color: #ffffff;
+  color: #0f172a;
+  padding: 80px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-split-media {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-split-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Dual Media Grid for Our People */
+.about-dual-media {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  background-color: #f1f5f9;
+}
+
+.about-dual-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Eyebrows & Typography */
+.about-eyebrow {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.about-eyebrow--light {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.about-eyebrow--red {
+  color: #c8102e;
+}
+
+.about-heading {
+  font-size: 2.75rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.about-heading--light {
+  color: #ffffff;
+}
+
+.about-heading--dark {
+  color: #0f172a;
+}
+
+.about-paragraph {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+
+.about-paragraph--light {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.about-paragraph--dark {
+  color: #475569;
+}
+
+/* ── 3. OUR VALUES SECTION ── */
+.about-values-section {
+  padding: 100px 24px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.about-values-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.about-values-header {
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.about-value-card {
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-value-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.about-value-img-wrap {
+  height: 240px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.about-value-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.about-value-card:hover .about-value-img-wrap img {
+  transform: scale(1.05);
+}
+
+.about-value-body {
+  padding: 24px 20px;
+  flex: 1;
+}
+
+.about-value-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+.about-value-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #64748b;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 991px) {
+  .about-hero {
+    height: 320px;
+    padding: 0 24px;
+  }
+
+  .about-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .about-split-row {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .about-split-row--reverse {
+    flex-direction: column-reverse;
+  }
+
+  .about-split-card--red,
+  .about-split-card--white {
+    padding: 48px 24px;
+  }
+
+  .about-split-media {
+    height: 350px;
+  }
+
+  .about-heading {
+    font-size: 2rem;
+  }
+
+  .about-values-section {
+    padding: 60px 20px;
+  }
+
+  .about-values-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-dual-media {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .about-dual-media img {
+    height: 250px;
+  }
+}

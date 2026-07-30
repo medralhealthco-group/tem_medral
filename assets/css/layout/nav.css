@@ -1,0 +1,333 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — NAVIGATION LAYOUT STYLESHEET (nav.css)
+   Left menu · mathematically centered logo · right utilities.
+   Below 1100px the menu collapses to: hamburger · logo · search · cart.
+   ========================================================================== */
+
+.header-icon-sprite {
+  display: none;
+}
+
+#section-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky, 200);
+  background: var(--color-bg);
+  transition: box-shadow 0.25s ease;
+}
+
+#section-header.is-scrolled {
+  box-shadow: 0 1px 0 var(--color-border-subtle), 0 6px 24px -18px rgba(0, 0, 0, 0.35);
+}
+
+/* ── NAV CONTAINER ──
+   A three-column grid keeps the logo optically centered regardless of how many
+   menu items or utility icons sit either side of it. */
+.site-nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  height: 84px;
+  padding: 0 48px;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border-subtle);
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Must stay above the mega menu scrim, otherwise the scrim covers the trigger and
+     the resulting mouseleave closes the menu the instant it opens. */
+  position: relative;
+  z-index: 70;
+}
+
+#section-header.is-scrolled .site-nav {
+  height: 68px;
+}
+
+.site-nav .unstyled-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── ZONE 1: MENU ── */
+.nav-left {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  height: 100%;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  height: 100%;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-item__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  position: relative;
+  padding: 8px 0;
+  font-family: var(--font-ui, 'Instrument Sans', sans-serif);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.18s ease;
+}
+
+.nav-item__link:hover,
+.nav-item__link:focus-visible {
+  color: var(--color-primary);
+}
+
+.nav-item.is-active > .nav-item__link {
+  color: var(--color-primary);
+}
+
+/* Underline reveal on hover, mirroring the reference micro-interaction. */
+.nav-item__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  border-radius: 2px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.24s var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.nav-item__link:hover::after,
+.nav-item__link:focus-visible::after,
+.nav-item.is-active > .nav-item__link::after,
+.nav-item__link[aria-expanded='true']::after {
+  transform: scaleX(1);
+}
+
+/* Caret drawn in CSS so it inherits colour and rotation without an extra request. */
+.nav-item__caret {
+  width: 7px;
+  height: 7px;
+  margin-top: -3px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.24s ease;
+}
+
+.nav-item__link[aria-expanded='true'] .nav-item__caret {
+  transform: rotate(-135deg);
+  margin-top: 2px;
+}
+
+/* ── ZONE 2: LOGO ── */
+.nav-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.nav-logo img {
+  display: block;
+  width: auto;
+  height: 62px;
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#section-header.is-scrolled .nav-logo img {
+  height: 48px;
+}
+
+/* ── ZONE 3: UTILITIES ── */
+.nav-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nav-utilities {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── COMPACT DROPDOWN ── */
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  min-width: 210px;
+  padding: 8px 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 1000;
+}
+
+/* Invisible bridge so the cursor can travel from trigger to panel. */
+.nav-item.has-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -12px;
+  right: -12px;
+  height: 14px;
+}
+
+.nav-item.has-dropdown:hover > .nav-dropdown,
+.nav-item.has-dropdown:focus-within > .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown__link {
+  display: block;
+  padding: 10px 20px;
+  font-family: var(--font-ui, 'Instrument Sans', sans-serif);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-secondary, #4c4c4c);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.16s ease, color 0.16s ease, padding-left 0.16s ease;
+}
+
+.nav-dropdown__link:hover,
+.nav-dropdown__link:focus-visible {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  padding-left: 25px;
+}
+
+/* ── HAMBURGER (mobile only) ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.nav-hamburger:hover {
+  background: var(--color-surface-warm);
+}
+
+.nav-hamburger__bar {
+  display: block;
+  width: 21px;
+  height: 1.5px;
+  margin: 0 auto;
+  border-radius: 2px;
+  background: var(--color-text-primary);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+}
+
+.nav-hamburger.is-open .nav-hamburger__bar:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.nav-hamburger.is-open .nav-hamburger__bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-hamburger.is-open .nav-hamburger__bar:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ── MINIMAL VARIANT (checkout) ── */
+.site-nav--minimal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1400px) {
+  .nav-menu {
+    gap: 26px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .site-nav {
+    padding: 0 32px;
+  }
+  .nav-menu {
+    gap: 20px;
+  }
+  .nav-item__link {
+    font-size: 15px;
+  }
+  .nav-logo img {
+    height: 56px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .site-nav {
+    height: 64px;
+    padding: 0 16px;
+    gap: 12px;
+  }
+  #section-header.is-scrolled .site-nav {
+    height: 60px;
+  }
+  .nav-menu {
+    display: none;
+  }
+  .nav-hamburger {
+    display: flex;
+  }
+  /* .utility-icon--desktop is hidden in utility-icons.css, which loads after this
+     file and would otherwise win the display declaration at equal specificity. */
+  .nav-logo img,
+  #section-header.is-scrolled .nav-logo img {
+    height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav,
+  .nav-logo img,
+  .nav-item__link,
+  .nav-item__link::after,
+  .nav-item__caret,
+  .nav-dropdown,
+  .nav-hamburger__bar {
+    transition-duration: 0.01ms;
+  }
+}

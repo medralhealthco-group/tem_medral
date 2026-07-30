@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmation | Medral Health Co</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/assets/css/storefront.bundle.css?v=<%= assetVersion %>" rel="stylesheet" type="text/css" media="all" />
+    <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+
+    <main class="receipt-container">
+      <div class="receipt-card">
+        <div class="receipt-header">
+          <div class="check-icon-circle">&#10003;</div>
+          <h1 class="receipt-title">Thank You For Your Order!</h1>
+          <p class="receipt-sub">Order <strong>#<%= order.order_number %></strong> has been placed successfully.</p>
+        </div>
+
+        <div class="receipt-grid">
+          <div class="receipt-box">
+            <div class="receipt-box-title">Order Information</div>
+            <p ><strong>Order Date:</strong> <%= new Date(order.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) %></p>
+            <p ><strong>Payment Method:</strong> <%= order.payment_method.toUpperCase() %></p>
+            <p ><strong>Status:</strong> <span class="badge-status badge-pending"><%= order.order_status.toUpperCase() %></span></p>
+          </div>
+
+          <div class="receipt-box">
+            <div class="receipt-box-title">Shipping Address</div>
+            <p ><%= order.shipping_name %></p>
+            <p ><%= order.shipping_address %></p>
+            <p ><%= order.shipping_city %>, <%= order.shipping_state %> - <%= order.shipping_pincode %></p>
+            <p >Phone: <%= order.shipping_phone %></p>
+          </div>
+        </div>
+
+        <h3 >Ordered Items</h3>
+        <table class="receipt-table">
+          <thead>
+            <tr>
+              <th>Item Description</th>
+              <th>SKU</th>
+              <th>Qty</th>
+              <th style="text-align:right;">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (order.items) { %>
+              <% order.items.forEach(item => { %>
+                <tr>
+                  <td><strong><%= item.product_name %></strong></td>
+                  <td><code ><%= item.sku %></code></td>
+                  <td><%= item.quantity %></td>
+                  <td >₹<%= parseFloat(item.total_price).toFixed(2) %></td>
+                </tr>
+              <% }); %>
+            <% } %>
+          </tbody>
+        </table>
+
+        <div >
+          <span >Grand Total Paid / Due:</span>
+          <strong >₹<%= parseFloat(order.grand_total).toFixed(2) %></strong>
+        </div>
+
+        <div class="receipt-actions">
+          <a href="/shop" class="btn-primary">Continue Shopping</a>
+          <% if (locals.currentUser) { %>
+            <a href="/account/orders" >View My Orders</a>
+          <% } %>
+        </div>
+      </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>

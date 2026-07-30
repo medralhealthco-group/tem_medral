@@ -1,0 +1,351 @@
+<div id="section-footer">
+
+<footer class="nf-footer" role="contentinfo" aria-label="Site Footer">
+
+  <!-- ═══ TOP BAND ═══ -->
+  <div class="nf-top">
+    <div class="nf-brand">
+      <a href="/" class="nf-logo">
+        <img
+          src="<%= config.theme.logoWhite %>"
+          alt="<%= config.site.name %>"
+          style="height: 70px;width:auto;display:block;filter:brightness(0) invert(1);"
+          loading="lazy"
+        >
+      </a>
+      <p class="nf-tagline"><%= config.site.tagline %></p>
+    </div>
+    <div class="nf-social">
+      <% config.social.forEach(function(item) { %>
+        <a href="<%= item.url %>" class="nf-social__link" target="_blank" rel="noopener" aria-label="<%= item.name %>">
+          <svg><use href="#ico-<%= item.icon %>"/></svg>
+        </a>
+      <% }); %>
+    </div>
+  </div>
+
+  <div class="nf-divider"></div>
+
+  <!-- ═══ MAIN GRID ═══ -->
+  <div class="nf-grid">
+
+    <div class="nf-col nf-col--offices">
+      <div class="nf-col__label">Offices</div>
+      <% config.offices.forEach(function(office) { %>
+        <div class="nf-office">
+          <div class="nf-office__name"><%= office.name %></div>
+          <div class="nf-office__addr" style="white-space: pre-line;"><%= office.address %></div>
+        </div>
+      <% }); %>
+    </div>
+
+    <div class="nf-col">
+      <div class="nf-col__label">Contact</div>
+      
+      <div class="nf-contact-group">
+        <div class="nf-contact-group__title">Call Our Sales Experts</div>
+        <div class="nf-phones-grid">
+          <% config.contacts.salesPhones.forEach(function(phone) { %>
+            <a href="tel:<%= phone.value %>" class="nf-contact-group__item"><%= phone.label %></a>
+          <% }); %>
+        </div>
+      </div>
+      
+      <div class="nf-contact-group">
+        <div class="nf-contact-group__title">Email</div>
+        <% config.contacts.emails.forEach(function(email) { %>
+          <a href="mailto:<%= email.value %>" class="nf-contact-group__item nf-email-item"><%= email.label %></a>
+        <% }); %>
+      </div>
+    </div>
+
+    <div class="nf-col">
+      <div class="nf-col__label">Quick Links</div>
+      <% config.navigation.footer.quickLinks.forEach(function(link) { %>
+        <a href="<%= link.url %>" class="nf-nav-link" target="<%= link.target || '_self' %>" <% if (link.rel) { %>rel="<%= link.rel %>"<% } %>><%= link.title %></a>
+      <% }); %>
+    </div>
+
+    <div class="nf-col">
+      <div class="nf-col__label">Company</div>
+      <% config.navigation.footer.company.forEach(function(link) { %>
+        <a href="<%= link.url %>" class="nf-nav-link" target="<%= link.target || '_self' %>" <% if (link.rel) { %>rel="<%= link.rel %>"<% } %>><%= link.title %></a>
+      <% }); %>
+    </div>
+
+  </div>
+
+  <!-- ═══ CERT STRIP + DOWNLOAD BUTTONS ═══ -->
+  <div class="nf-divider"></div>
+  <div class="nf-certs-row">
+
+    <div class="nf-certs">
+      <% config.navigation.footer.certifications.forEach(function(cert) { %>
+        <span class="nf-cert-tag"><%= cert.tag %></span>
+      <% }); %>
+    </div>
+
+    <!-- Buttons: row 1 = handbook + brochure, row 2 = catalogue -->
+    <div class="nf-download-btns">
+      <!-- ROW 1 -->
+      <div class="nf-download-row1">
+        <% if (config.navigation.footer.downloads.row1) { %>
+          <% config.navigation.footer.downloads.row1.forEach(function(dl) { %>
+            <a href="<%= dl.url %>" class="nf-dl-btn nf-dl-btn--<%= dl.style %>" target="<%= dl.target %>" rel="<%= dl.rel %>" <% if (dl.download) { %>download<% } %>>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <%= dl.title %>
+            </a>
+          <% }); %>
+        <% } %>
+      </div>
+
+      <!-- ROW 2 -->
+      <% if (config.navigation.footer.downloads.row2 && config.navigation.footer.downloads.row2.length > 0) { %>
+        <div class="nf-download-row2">
+          <% config.navigation.footer.downloads.row2.forEach(function(dl) { %>
+            <a href="<%= dl.url %>" class="nf-dl-btn nf-dl-btn--<%= dl.style %>" target="<%= dl.target %>" rel="<%= dl.rel %>" <% if (dl.download) { %>download<% } %>>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              <%= dl.title %>
+            </a>
+          <% }); %>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <!-- ═══ BOTTOM BAR ═══ -->
+  <div class="nf-divider"></div>
+  <div class="nf-bottom">
+    <span class="nf-copyright">© <%= year %> <%= config.site.name %>. All Rights Reserved.</span>
+    <div class="nf-policy-links">
+      <link href="/assets/css/layout/footer.css" rel="stylesheet" />
+      <% config.navigation.footer.legal.forEach(function(link) { %>
+        <a href="<%= link.url %>" class="nf-policy-link" target="<%= link.target || '_self' %>" <% if (link.rel) { %>rel="<%= link.rel %>"<% } %>><%= link.title %></a>
+      <% }); %>
+    </div>
+  </div>
+
+</footer>
+
+</div>
+
+<%- include('./cart-drawer') %>
+<script src="/assets/js/cart.js?v=<%= typeof assetVersion !== 'undefined' ? assetVersion : '1.0.0' %>" type="text/javascript" nonce="<%= cspNonce %>"></script>
+<script src="/assets/js/medral-global.js" type="text/javascript" nonce="<%= cspNonce %>"></script>
+
+<div id="section-enquiry-modal">
+
+<!-- ═══ MODAL OVERLAY ═══ -->
+<div class="em-overlay" id="emOverlay" onclick="closeEnquiryModal()" aria-hidden="true"></div>
+
+<!-- ═══ MODAL BOX ═══ -->
+<div class="em-modal" id="emModal" role="dialog" aria-modal="true" aria-label="Quick Enquiry Form">
+  <div class="em-modal__inner">
+
+    <!-- Close -->
+    <button class="em-close" onclick="closeEnquiryModal()" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <!-- Left: form -->
+    <div class="em-left">
+      <div class="em-eyebrow">Quick Enquiry</div>
+      <h2 class="em-heading">Get a Free Quote</h2>
+      <p class="em-sub">Fill in the form and our team will send you a personalised quote within 24 hours.</p>
+
+      <!-- Success state (shown after submit) -->
+      <div class="em-success" id="emSuccess" style="display:none;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-success-text)" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Redirecting you to confirmation page…</span>
+      </div>
+
+      <!-- Error state -->
+      <div class="em-error" id="emError" style="display:none;">
+        Something went wrong. Please try again or call us directly.
+      </div>
+
+      <!-- Form — uses fetch POST, NOT a native HTML form submit -->
+      <div class="em-form" id="emForm" role="form" aria-label="Quick Enquiry Form">
+        <div id="emFormMessage" role="alert" aria-live="assertive" style="display:none;"></div>
+        <div style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+          <label for="emWebsite">Website</label>
+          <input type="text" id="emWebsite" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+        <div class="em-grid">
+          <div class="em-field">
+            <label for="emName">Full Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="emName" placeholder="Your full name" required aria-required="true" />
+          </div>
+          <div class="em-field">
+            <label for="emPhone">Mobile / WhatsApp <span aria-hidden="true">*</span></label>
+            <input type="tel" id="emPhone" placeholder="+91 XXXXX XXXXX" required aria-required="true" aria-describedby="emPhoneHint" />
+            <small id="emPhoneHint" >Include country code (+91)</small>
+          </div>
+        </div>
+        <div class="em-field">
+          <label for="emEmail">Email Address <span aria-hidden="true">*</span></label>
+          <input type="email" id="emEmail" placeholder="you@company.com" required aria-required="true" />
+        </div>
+        <div class="em-field">
+          <label for="emCompany">Company / Brand</label>
+          <input type="text" id="emCompany" placeholder="Your brand or company name" />
+        </div>
+        <div class="em-field">
+          <label for="emService">Service Required</label>
+          <select id="emService" aria-label="Select a service">
+            <option value="">— Select a service —</option>
+            <option value="Capsules">Capsules</option>
+            <option value="Gummies">Gummies</option>
+            <option value="Effervescent Tablets">Effervescent Tablets</option>
+            <option value="Shots">Shots</option>
+            <option value="Softgel Capsules">Softgel Capsules</option>
+            <option value="Sachets">Sachets</option>
+            <option value="General Enquiry">General Enquiry</option>
+          </select>
+        </div>
+        <div class="em-field">
+          <label for="emMessage">Your Requirement</label>
+          <textarea id="emMessage" rows="3" placeholder="Describe your product idea, quantity, packaging needs…"></textarea>
+        </div>
+        <button class="em-submit" id="emSubmit" type="button" onclick="emHandleSubmit()" aria-label="Send enquiry form">
+          <span id="emSubmitLabel">Send Enquiry</span>
+          <span id="emSubmitSpinner" style="display:none;" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="animation:em-spin 0.8s linear infinite;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Right: contact info panel -->
+    <div class="em-right">
+      <div class="em-right__label">Contact Our Sales Experts</div>
+      <div class="em-phones">
+        <% config.contacts.salesPhones.slice(0, 3).forEach(function(phone) { %>
+          <a href="tel:<%= phone.value %>" class="em-phone">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.57 3.18C1.52 2.1 2.42 1 3.5 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.92a16 16 0 0 0 6 6z"/></svg>
+            <%= phone.label %>
+          </a>
+        <% }); %>
+      </div>
+
+      <div class="em-right__divider"></div>
+
+      <a href="mailto:<%= config.contacts.primaryEmail %>" class="em-email">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <%= config.contacts.primaryEmail %>
+      </a>
+
+      <div class="em-right__divider"></div>
+
+      <div class="em-right__label">Working Hours</div>
+      <div class="em-hours"><%= config.site.workingHours %></div>
+      <div class="em-hours-note"><%= config.site.urgentQueryNote %></div>
+
+      <div class="em-right__divider"></div>
+
+      <div class="em-certs">
+        <div class="em-cert">ISO</div>
+        <div class="em-cert">GMP</div>
+        <div class="em-cert">HACCP</div>
+        <div class="em-cert">FSSAI</div>
+        <div class="em-cert">WHO</div>
+        <div class="em-cert">FDA</div>
+      </div>
+      <div class="em-cert-note"><%= config.site.certificationsCountNote %></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ STYLES ═══ -->
+
+
+<!-- ═══ JAVASCRIPT ═══ -->
+<script nonce="<%= cspNonce %>">
+/* ── Open / Close ── */
+function openEnquiryModal() {
+  document.getElementById('emOverlay').classList.add('is-open');
+  document.getElementById('emModal').classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeEnquiryModal() {
+  document.getElementById('emOverlay').classList.remove('is-open');
+  document.getElementById('emModal').classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeEnquiryModal();
+});
+
+/* ── Submit via fetch to native Express /contact ── */
+function emHandleSubmit() {
+  var name    = document.getElementById('emName').value.trim();
+  var phone   = document.getElementById('emPhone').value.trim();
+  var email   = document.getElementById('emEmail').value.trim();
+  var company = document.getElementById('emCompany').value.trim();
+  var service = document.getElementById('emService').value;
+  var message = document.getElementById('emMessage').value.trim();
+  var honeypot = document.getElementById('emWebsite') ? document.getElementById('emWebsite').value.trim() : '';
+
+  if (!name || !phone || !email) {
+    document.getElementById('emError').style.display = 'block';
+    document.getElementById('emError').textContent = 'Please fill in Name, Mobile and Email before submitting.';
+    return;
+  }
+  document.getElementById('emError').style.display = 'none';
+
+  var csrfMeta = document.querySelector('meta[name="csrf-token"]');
+  var csrf = csrfMeta ? csrfMeta.getAttribute('content') : '';
+
+  var btn     = document.getElementById('emSubmit');
+  var label   = document.getElementById('emSubmitLabel');
+  var spinner = document.getElementById('emSubmitSpinner');
+  btn.disabled = true;
+  label.style.display   = 'none';
+  spinner.style.display = 'inline-flex';
+
+  fetch('/contact', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'X-CSRF-Token': csrf
+    },
+    body: JSON.stringify({
+      source: 'enquiry_modal',
+      website: honeypot,
+      name: name,
+      phone: phone,
+      email: email,
+      company: company,
+      service: service,
+      message: message
+    })
+  })
+  .then(function(res) {
+    return res.json().then(function(data) {
+      if (!res.ok || !data.success) {
+        throw new Error((data && data.message) || 'Network error');
+      }
+      return data;
+    });
+  })
+  .then(function(data) {
+    document.getElementById('emForm').style.display    = 'none';
+    document.getElementById('emSuccess').style.display = 'flex';
+    setTimeout(function() {
+      window.location.href = data.redirect || '/pages/thank-you';
+    }, 600);
+  })
+  .catch(function(err) {
+    btn.disabled = false;
+    label.style.display   = 'inline';
+    spinner.style.display = 'none';
+    document.getElementById('emError').style.display = 'block';
+    document.getElementById('emError').textContent = err.message || 'Something went wrong. Please try again or call us directly.';
+  });
+}
+</script>
+
+</div>

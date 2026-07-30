@@ -1,0 +1,98 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — ADMIN HEADER MODULE (admin-header.css)
+   Extracted from admin-base.css into reusable Admin Shell Architecture.
+   ========================================================================== */
+
+.admin-header {
+  height: 70px;
+  background: #140829;
+  border-bottom: 1px solid var(--admin-border, #2c1a4d);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.admin-header__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.admin-sidebar-toggle {
+  background: none;
+  border: none;
+  color: var(--admin-text-main, #f3f0ff);
+  cursor: pointer;
+  display: none;
+}
+
+.admin-breadcrumb__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-surface);
+}
+
+.admin-header__right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.admin-user-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--color-surface);
+  font-size: 16px;
+}
+
+.admin-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-user-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-surface);
+}
+
+.admin-user-role {
+  font-size: 11px;
+  color: var(--admin-text-muted, #a497c6);
+  text-transform: capitalize;
+}
+
+.admin-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm, 6px);
+  background: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  text-decoration: none;
+  transition: background var(--duration-fast, 150ms);
+}
+
+.admin-logout-btn:hover {
+  background: rgba(239, 68, 68, 0.25);
+}

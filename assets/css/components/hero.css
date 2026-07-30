@@ -1,0 +1,105 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — PAGE HERO COMPONENT LIBRARY (hero.css)
+   Consolidates storefront page banners, hero sections, breadcrumb bars,
+   headings, subtitles, and CTA action groups.
+   Supports BEM syntax (.page-hero, .page-hero__title, etc.) with alias mapping
+   for 100% backward compatibility.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BASE PAGE HERO (.page-hero)
+   -------------------------------------------------------------------------- */
+.page-hero,
+.hero-section,
+.page-banner,
+.hero-banner {
+  background: var(--gradient-primary);
+  color: var(--color-text-inverse, var(--color-surface));
+  padding: var(--space-9, 60px) var(--space-6, 24px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Modifiers */
+.page-hero--compact {
+  padding: var(--space-7, 40px) var(--space-6, 24px);
+}
+
+.page-hero--large {
+  padding: var(--space-10, 80px) var(--space-6, 24px);
+}
+
+.page-hero--dark {
+  background: var(--neutral-900, var(--color-text-primary));
+}
+
+/* --------------------------------------------------------------------------
+   2. HERO SUB-COMPONENTS
+   -------------------------------------------------------------------------- */
+
+/* Hero Heading Title */
+.page-hero__title,
+.hero-title {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: clamp(28px, 4vw, var(--text-4xl, 44px));
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide, 0.05em);
+  text-transform: uppercase;
+  color: var(--text-inverse, var(--color-surface));
+  line-height: var(--leading-tight, 1.15);
+  margin: 0 0 var(--space-3, 12px) 0;
+}
+
+/* Hero Subtitle / Description */
+.page-hero__subtitle,
+.hero-subtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--type-body-lg, 18px);
+  color: var(--color-secondary-light, #F7F0E8);
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: var(--leading-relaxed, 1.6);
+  font-weight: 400;
+}
+
+.page-hero--dark .page-hero__subtitle,
+.page-hero--dark .hero-subtitle {
+  color: var(--neutral-300, #ddd8d3);
+}
+
+/* Hero CTA Action Buttons Container */
+.page-hero__actions,
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4, 16px);
+  margin-top: var(--space-7, 28px);
+  flex-wrap: wrap;
+}
+
+/* Hero Breadcrumb Wrapper */
+.page-hero__breadcrumb,
+.breadcrumb-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-sm, 13px);
+  color: var(--admin-text-muted, #a497c6);
+  margin-bottom: var(--space-4, 16px);
+}
+
+.page-hero__breadcrumb a,
+.breadcrumb-wrapper a {
+  color: var(--color-secondary-light, #F7F0E8);
+  text-decoration: none;
+  transition: color var(--duration-fast, 150ms);
+}
+
+.page-hero__breadcrumb a:hover,
+.breadcrumb-wrapper a:hover {
+  color: var(--text-inverse, var(--color-surface));
+  text-decoration: underline;
+}

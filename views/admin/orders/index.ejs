@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= typeof seo !== 'undefined' ? seo.title : 'Order Management | Medral Health Admin' %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/assets/css/admin-base.css" rel="stylesheet" />
+    <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+  </head>
+  <body data-theme="admin">
+    <%- include('../partials/sidebar') %>
+
+    <div class="admin-wrapper">
+      <%- include('../partials/header', { pageTitle: 'Store Orders Management' }) %>
+
+      <main class="admin-content">
+        <div class="page-actions-bar">
+          <h1 class="admin-page-title">Customer Orders</h1>
+        </div>
+
+        <% if (typeof success !== 'undefined' && success) { %>
+          <div class="alert alert-success"><%= success %></div>
+        <% } %>
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="alert alert-danger"><%= error %></div>
+        <% } %>
+
+        <div class="table-card">
+          <div class="table-card-header">
+            <form action="/admin/orders" method="GET" class="filter-form">
+              <input
+                type="text"
+                name="search"
+                class="search-input"
+                placeholder="Search order #, customer name, email, phone..."
+                value="<%= typeof pagination !== 'undefined' ? pagination.search : '' %>"
+              />
+              <select name="order_status" class="select-input">
+                <option value="">All Fulfillment Statuses</option>
+                <option value="pending" <%= pagination.orderStatus === 'pending' ? 'selected' : '' %>>Pending</option>
+                <option value="processing" <%= pagination.orderStatus === 'processing' ? 'selected' : '' %>>Processing</option>
+                <option value="shipped" <%= pagination.orderStatus === 'shipped' ? 'selected' : '' %>>Shipped</option>
+                <option value="delivered" <%= pagination.orderStatus === 'delivered' ? 'selected' : '' %>>Delivered</option>
+                <option value="cancelled" <%= pagination.orderStatus === 'cancelled' ? 'selected' : '' %>>Cancelled</option>
+              </select>
+              <select name="payment_status" class="select-input">
+                <option value="">All Payment Statuses</option>
+                <option value="pending" <%= pagination.paymentStatus === 'pending' ? 'selected' : '' %>>Pending</option>
+                <option value="paid" <%= pagination.paymentStatus === 'paid' ? 'selected' : '' %>>Paid</option>
+                <option value="failed" <%= pagination.paymentStatus === 'failed' ? 'selected' : '' %>>Failed</option>
+              </select>
+              <button type="submit" class="search-btn">Filter</button>
+            </form>
+            <div class="table-summary-count">
+              Total: <strong><%= pagination.totalCount %></strong> Orders
+            </div>
+          </div>
+
+          <div class="admin-table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Order #</th>
+                  <th>Customer</th>
+                  <th>Date</th>
+                  <th>Grand Total</th>
+                  <th>Payment</th>
+                  <th>Fulfillment Status</th>
+                  <th class="text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (orders && orders.length > 0) { %>
+                  <% orders.forEach(ord => { %>
+                    <tr>
+                      <td>
+                        <strong class="order-number"><%= ord.order_number %></strong>
+                        <div class="order-item-count">
+                          <%= ord.items_count %> item(s)
+                        </div>
+                      </td>
+                      <td>
+                        <div class="customer-name"><%= ord.shipping_name %></div>
+                        <div class="customer-contact"><%= ord.shipping_email %> | <%= ord.shipping_phone %></div>
+                      </td>
+                      <td>
+                        <span class="order-date">
+                          <%= new Date(ord.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) %>
+                        </span>
+                      </td>
+                      <td>
+                        <strong class="product-price">₹<%= parseFloat(ord.grand_total).toFixed(2) %></strong>
+                      </td>
+                      <td>
+                        <span class="badge pay-<%= ord.payment_status %>"><%= ord.payment_status.toUpperCase() %></span>
+                        <div class="payment-method"><%= ord.payment_method.toUpperCase() %></div>
+                      </td>
+                      <td>
+                        <span class="badge status-<%= ord.order_status %>"><%= ord.order_status.toUpperCase() %></span>
+                      </td>
+                      <td class="text-right">
+                        <a href="/admin/orders/view/<%= ord.id %>" class="btn-sm btn-view">Inspect Order &rarr;</a>
+                      </td>
+                    </tr>
+                  <% }); %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="7" class="table-empty">
+                      No store orders found matching filter criteria.
+                    </td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+
+          <% if (pagination.totalPages > 1) { %>
+            <div class="pagination-container">
+              <div>
+                Showing Page <strong><%= pagination.page %></strong> of <strong><%= pagination.totalPages %></strong>
+              </div>
+              <div class="pagination-links">
+                <% for(let i = 1; i <= pagination.totalPages; i++) { %>
+                  <a href="/admin/orders?page=<%= i %>&search=<%= encodeURIComponent(pagination.search) %>&order_status=<%= pagination.orderStatus || '' %>&payment_status=<%= pagination.paymentStatus || '' %>" class="page-link <%= pagination.page === i ? 'active' : '' %>">
+                    <%= i %>
+                  </a>
+                <% } %>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      </main>
+
+      <%- include('../partials/footer') %>
+    </div>
+  </body>
+</html>
+

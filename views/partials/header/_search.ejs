@@ -1,0 +1,55 @@
+<%
+/**
+ * Header search modal.
+ *
+ * The form submits to /shop?q= and works with JavaScript disabled. When JS is
+ * available, header.js fills #searchResults from /shop/api/search as the user types.
+ */
+const suggestions = (config.navigation.header && config.navigation.header.searchSuggestions) || [];
+%>
+<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Search products" hidden>
+  <div class="search-modal__backdrop" data-search-close></div>
+
+  <div class="search-modal__panel">
+    <form class="search-modal__form" action="/shop" method="GET" role="search" data-search-form>
+      <svg class="search-modal__icon" aria-hidden="true"><use href="#ico-search"/></svg>
+      <input
+        type="search"
+        name="q"
+        id="searchInputField"
+        class="search-modal__input"
+        placeholder="Search formulations, ingredients, concerns..."
+        aria-label="Search products"
+        autocomplete="off"
+        data-search-input
+      >
+      <button type="button" class="search-modal__close" aria-label="Close search" data-search-close>
+        <svg aria-hidden="true"><use href="#ico-close"/></svg>
+      </button>
+    </form>
+
+    <div class="search-modal__body">
+      <div class="search-modal__suggestions" data-search-idle>
+        <% if (suggestions.length) { %>
+        <p class="search-modal__label">Popular searches</p>
+        <ul class="search-modal__chips unstyled-list">
+          <% suggestions.forEach(function (suggestion) { %>
+            <li>
+              <a href="/shop?q=<%= encodeURIComponent(suggestion) %>" class="search-modal__chip" data-search-suggestion="<%= suggestion %>"><%= suggestion %></a>
+            </li>
+          <% }); %>
+        </ul>
+        <% } %>
+      </div>
+
+      <div
+        class="search-modal__results"
+        id="searchResults"
+        role="status"
+        aria-live="polite"
+        data-search-results
+        hidden
+      ></div>
+    </div>
+  </div>
+</div>

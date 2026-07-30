@@ -1,0 +1,112 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — ANNOUNCEMENT BAR MARQUEE (announcement-bar.css)
+   Thin top announcement bar with smooth infinite marquee scrolling,
+   pause on hover, and mobile responsiveness.
+   ========================================================================== */
+
+#section-topbar {
+  background: #1a1a1a;
+  color: var(--color-surface);
+  font-family: var(--font-ui, 'Instrument Sans', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  height: 40px;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  max-height: 40px;
+  z-index: 201;
+}
+
+#section-topbar.is-hidden {
+  max-height: 0;
+  opacity: 0;
+  border-bottom: none;
+}
+
+.topbar-marquee-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Three identical tracks scroll by exactly one track width, so the loop repeats
+   without a visible gap or jump. Keep MARQUEE_LOOPS in _announcement.ejs in sync
+   with the translate distance below. */
+.topbar-marquee {
+  display: flex;
+  align-items: center;
+  animation: marquee-scroll 45s linear infinite;
+  will-change: transform;
+}
+
+.topbar-marquee__track {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding-right: 40px;
+  flex-shrink: 0;
+}
+
+.topbar-marquee-container:hover .topbar-marquee,
+.topbar-marquee-container:focus-within .topbar-marquee {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.95);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+.marquee-divider {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-33.3333%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topbar-marquee {
+    animation: none;
+    justify-content: center;
+    width: 100%;
+  }
+  .topbar-marquee__track:not(:first-child) {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  #section-topbar {
+    height: 36px;
+    max-height: 36px;
+    font-size: 13px;
+  }
+  .marquee-item {
+    font-size: 13px;
+    gap: 8px;
+  }
+}

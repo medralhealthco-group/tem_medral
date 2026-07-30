@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= typeof seo !== 'undefined' ? seo.title : 'Admin Login | Medral Health Co' %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/assets/css/admin-base.css" rel="stylesheet" />
+    <link rel="icon" href="<%= typeof config !== 'undefined' && config.theme ? config.theme.favicon : '/assets/images/favicon.png' %>" type="image/png" />
+  </head>
+  <body data-theme="admin" class="admin-login-body">
+    <div class="admin-login-card">
+      <div class="admin-brand">
+        <img src="<%= typeof config !== 'undefined' && config.theme ? config.theme.logo : '/assets/images/Medral_Logo.png' %>" alt="Medral Health" />
+        <h1 class="admin-title">Store Administration</h1>
+        <p class="admin-subtitle">Secure Staff Portal</p>
+      </div>
+
+      <% if (typeof error !== 'undefined' && error) { %>
+        <div class="admin-alert">
+          <%= error %>
+        </div>
+      <% } %>
+
+      <form action="/admin/login" method="POST">
+        <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
+        <div class="admin-group">
+          <label for="email" class="admin-label">Admin Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="admin-input"
+            value="<%= typeof email !== 'undefined' ? email : '' %>"
+            placeholder="admin@medralhealth.com"
+            required
+            autofocus
+          />
+        </div>
+
+        <div class="admin-group">
+          <label for="password" class="admin-label">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="admin-input"
+            placeholder="••••••••••••"
+            required
+          />
+        </div>
+
+        <button type="submit" class="admin-btn">Authenticate & Access</button>
+      </form>
+    </div>
+  </body>
+</html>

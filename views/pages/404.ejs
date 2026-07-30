@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('../partials/head-seo') %>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/assets/css/storefront.bundle.css?v=<%= assetVersion %>" rel="stylesheet" type="text/css" media="all" />
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+
+    <main id="MainContent" style="min-height: 60vh; display: flex; align-items: center; justify-content: center; padding: 80px 24px; text-align: center; background: var(--color-bg);">
+      <div style="max-width: 560px;">
+        <h1 style="font-family: var(--font-heading); font-size: 80px; font-weight: 800; color: var(--color-primary); margin: 0 0 16px; line-height: 1;">404</h1>
+        <h2 style="font-family: var(--font-heading); font-size: 28px; font-weight: 700; color: var(--color-text-primary); margin: 0 0 16px;">Page Not Found</h2>
+        <p style="font-family: var(--font-body); font-size: 16px; color: var(--color-text-secondary); margin: 0 0 32px; line-height: 1.6;">
+          Sorry, the page you are looking for doesn't exist or has been moved.
+        </p>
+        <a href="/" class="btn btn--primary btn--pill" style="display: inline-flex; align-items: center; justify-content: center; padding: 14px 32px; background: var(--color-primary); color: var(--color-surface); text-decoration: none; border-radius: 999px; font-weight: 600;">
+          Return to Homepage
+        </a>
+      </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>

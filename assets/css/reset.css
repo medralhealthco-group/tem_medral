@@ -1,0 +1,87 @@
+/* ==========================================================================
+   MEDRAL HEALTH CO — BASE RESET & ACCESSIBILITY STYLES
+   Extracts normalize & element resets from medral-base.css (L1-36).
+   ========================================================================== */
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  color: var(--text-primary, var(--color-text-primary));
+  background: var(--surface-primary, var(--color-surface));
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.6;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+/* Accessibility Focus Ring & Skip Link Styles */
+:focus-visible {
+  outline: 3px solid var(--brand-accent, #7c3aed) !important;
+  outline-offset: 2px !important;
+  border-radius: var(--radius-sm, 2px);
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--brand-accent, #7c3aed) !important;
+  outline-offset: 2px !important;
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

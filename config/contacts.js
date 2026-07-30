@@ -8,7 +8,7 @@ module.exports = {
   ],
   emails: [
     { label: 'sales@medralhealth.com', value: 'sales@medralhealth.com', primary: true },
-    { label: 'admin@medral.com', value: 'admin@medral.com', primary: false },
+    { label: 'admin@medralhealth.com', value: 'admin@medralhealth.com', primary: false },
 
   ],
   primaryEmail: 'sales@medralhealth.com'

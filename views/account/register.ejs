@@ -1,16 +1,18 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <%- include('../partials/head-seo') %>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <%- include('../partials/head-seo') %>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="/assets/css/fonts.css" rel="stylesheet" />
     <link href="/assets/css/storefront.bundle.css?v=<%= assetVersion %>" rel="stylesheet" type="text/css" media="all" />
-  </head>
-  <body>
-    <%- include('../partials/header') %>
+</head>
+
+<body>
+  <%- include('../partials/header') %>
 
     <main class="auth-container" id="main-content" role="main" aria-label="Create Account">
       <div class="auth-card">
@@ -19,105 +21,69 @@
           <p class="auth-subtitle">Join Medral Health for easy ordering and tracking</p>
         </div>
 
-        <% if (typeof error !== 'undefined' && error) { %>
+        <% if (typeof error !=='undefined' && error) { %>
           <div class="auth-alert auth-alert--danger" role="alert" aria-live="assertive">
             <%= error %>
           </div>
-        <% } %>
+          <% } %>
 
-        <form action="/account/register" method="POST">
-          <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
-          <div class="auth-grid">
-            <div class="auth-form-group">
-              <label for="firstName" class="auth-label">First Name <span aria-hidden="true">*</span></label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                class="auth-input"
-                value="<%= typeof formData !== 'undefined' && formData.firstName ? formData.firstName : '' %>"
-                required
-                aria-required="true"
-              />
+            <form action="/account/register" method="POST">
+              <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
+              <div class="auth-grid">
+                <div class="auth-form-group">
+                  <label for="firstName" class="auth-label">First Name <span aria-hidden="true">*</span></label>
+                  <input type="text" id="firstName" name="firstName" class="auth-input"
+                    value="<%= typeof formData !== 'undefined' && formData.firstName ? formData.firstName : '' %>"
+                    required aria-required="true" />
+                </div>
+
+                <div class="auth-form-group">
+                  <label for="lastName" class="auth-label">Last Name <span aria-hidden="true">*</span></label>
+                  <input type="text" id="lastName" name="lastName" class="auth-input"
+                    value="<%= typeof formData !== 'undefined' && formData.lastName ? formData.lastName : '' %>"
+                    required aria-required="true" />
+                </div>
+              </div>
+
+              <div class="auth-form-group">
+                <label for="email" class="auth-label">Email Address *</label>
+                <input type="email" id="email" name="email" class="auth-input"
+                  value="<%= typeof formData !== 'undefined' && formData.email ? formData.email : '' %>"
+                  placeholder="name@example.com" required aria-required="true" />
+              </div>
+
+              <div class="auth-form-group">
+                <label for="phone" class="auth-label">Phone Number (Optional)</label>
+                <input type="tel" id="phone" name="phone" class="auth-input"
+                  value="<%= typeof formData !== 'undefined' && formData.phone ? formData.phone : '' %>"
+                  placeholder="+91 98765 43210" />
+              </div>
+
+              <div class="auth-grid">
+                <div class="auth-form-group">
+                  <label for="password" class="auth-label">Password *</label>
+                  <input type="password" id="password" name="password" class="auth-input" placeholder="Min 8 characters"
+                    required aria-required="true" />
+                </div>
+
+                <div class="auth-form-group">
+                  <label for="confirmPassword" class="auth-label">Confirm Password *</label>
+                  <input type="password" id="confirmPassword" name="confirmPassword" class="auth-input"
+                    placeholder="Re-enter password" required aria-required="true" />
+                </div>
+              </div>
+
+              <button type="submit" class="auth-btn" aria-label="Create your Medral Health account">Register
+                Account</button>
+            </form>
+
+            <div class="auth-footer-link">
+              Already have an account? <a href="/account/login">Sign in here</a>
             </div>
-
-            <div class="auth-form-group">
-              <label for="lastName" class="auth-label">Last Name <span aria-hidden="true">*</span></label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                class="auth-input"
-                value="<%= typeof formData !== 'undefined' && formData.lastName ? formData.lastName : '' %>"
-                required
-                aria-required="true"
-              />
-            </div>
-          </div>
-
-          <div class="auth-form-group">
-            <label for="email" class="auth-label">Email Address *</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="auth-input"
-              value="<%= typeof formData !== 'undefined' && formData.email ? formData.email : '' %>"
-              placeholder="name@example.com"
-              required
-              aria-required="true"
-            />
-          </div>
-
-          <div class="auth-form-group">
-            <label for="phone" class="auth-label">Phone Number (Optional)</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              class="auth-input"
-              value="<%= typeof formData !== 'undefined' && formData.phone ? formData.phone : '' %>"
-              placeholder="+91 98765 43210"
-            />
-          </div>
-
-          <div class="auth-grid">
-            <div class="auth-form-group">
-              <label for="password" class="auth-label">Password *</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                class="auth-input"
-                placeholder="Min 6 characters"
-                required
-                aria-required="true"
-              />
-            </div>
-
-            <div class="auth-form-group">
-              <label for="confirmPassword" class="auth-label">Confirm Password *</label>
-              <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                class="auth-input"
-                placeholder="Re-enter password"
-                required
-                aria-required="true"
-              />
-            </div>
-          </div>
-
-          <button type="submit" class="auth-btn" aria-label="Create your Medral Health account">Register Account</button>
-        </form>
-
-        <div class="auth-footer-link">
-          Already have an account? <a href="/account/login">Sign in here</a>
-        </div>
       </div>
     </main>
 
     <%- include('../partials/footer') %>
-  </body>
+</body>
+
 </html>

@@ -1,6 +1,7 @@
 const OrderService = require("../services/orderService");
 const CartService = require("../services/cartService");
 const { getSeoMetadata } = require("../utils/seoHelper");
+const { validateCheckoutFields } = require("../utils/checkoutValidation");
 
 // Render Checkout Form
 exports.renderCheckout = async (req, res) => {
@@ -23,6 +24,7 @@ exports.renderCheckout = async (req, res) => {
       cart,
       customerUser,
       error: null,
+      fieldErrors: {},
       formData: {
         name: customerUser.firstName ? `${customerUser.firstName} ${customerUser.lastName || ''}`.trim() : "",
         email: customerUser.email || "",
@@ -47,8 +49,7 @@ exports.handleCheckout = async (req, res) => {
   });
   const userId = req.session.user ? req.session.user.id : null;
   const sessionId = req.sessionID;
-  const { name, email, phone, address, city, state, pincode, payment_method } = req.body;
-  const formData = { name, email, phone, address, city, state, pincode, payment_method };
+  const validation = validateCheckoutFields(req.body);
 
   try {
     const cart = await CartService.getCart({ userId, sessionId });
@@ -56,21 +57,24 @@ exports.handleCheckout = async (req, res) => {
       return res.redirect("/cart");
     }
 
-    if (!name || !email || !phone || !address || !city || !state || !pincode) {
+    if (!validation.ok) {
       return res.status(400).render("checkout/index", {
         seo,
         cart,
         customerUser: req.session.user || {},
-        error: "Please fill in all required shipping address fields.",
-        formData
+        error: validation.message,
+        fieldErrors: validation.errors,
+        formData: validation.formData
       });
     }
+
+    const { name, email, phone, address, city, state, pincode, payment_method } = validation.data;
 
     const orderResult = await OrderService.createOrder({
       userId,
       sessionId,
       shippingData: { name, email, phone, address, city, state, pincode },
-      paymentMethod: payment_method || "cod"
+      paymentMethod: payment_method
     });
 
     req.session.lastOrderNumber = orderResult.orderNumber;
@@ -83,7 +87,17 @@ exports.handleCheckout = async (req, res) => {
       cart,
       customerUser: req.session.user || {},
       error: error.message || "An unexpected error occurred while placing your order.",
-      formData
+      fieldErrors: error.fieldErrors || {},
+      formData: error.formData || validation.formData || {
+        name: req.body.name || "",
+        email: req.body.email || "",
+        phone: req.body.phone || "",
+        address: req.body.address || "",
+        city: req.body.city || "",
+        state: req.body.state || "",
+        pincode: req.body.pincode || "",
+        payment_method: req.body.payment_method || "cod"
+      }
     });
   }
 };

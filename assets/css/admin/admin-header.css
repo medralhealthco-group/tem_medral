@@ -1,12 +1,11 @@
 /* ==========================================================================
    MEDRAL HEALTH CO — ADMIN HEADER MODULE (admin-header.css)
-   Extracted from admin-base.css into reusable Admin Shell Architecture.
    ========================================================================== */
 
 .admin-header {
   height: 70px;
-  background: #140829;
-  border-bottom: 1px solid var(--admin-border, #2c1a4d);
+  background: var(--admin-card-bg, #FFFFFF);
+  border-bottom: 1px solid var(--admin-border, #E8E4DF);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,7 +24,7 @@
 .admin-sidebar-toggle {
   background: none;
   border: none;
-  color: var(--admin-text-main, #f3f0ff);
+  color: var(--admin-text-main, #1F1F1F);
   cursor: pointer;
   display: none;
 }
@@ -33,7 +32,7 @@
 .admin-breadcrumb__title {
   font-size: 18px;
   font-weight: 700;
-  color: var(--color-surface);
+  color: var(--admin-text-main, #1F1F1F);
 }
 
 .admin-header__right {
@@ -52,12 +51,12 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: var(--gradient-primary);
+  background: var(--gradient-primary, linear-gradient(135deg, #D31145 0%, #A00C33 100%));
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  color: var(--color-surface);
+  color: #fff;
   font-size: 16px;
 }
 
@@ -69,12 +68,12 @@
 .admin-user-name {
   font-size: 14px;
   font-weight: 700;
-  color: var(--color-surface);
+  color: var(--admin-text-main, #1F1F1F);
 }
 
 .admin-user-role {
   font-size: 11px;
-  color: var(--admin-text-muted, #a497c6);
+  color: var(--admin-text-muted, #5C5C5C);
   text-transform: capitalize;
 }
 
@@ -84,15 +83,16 @@
   gap: 6px;
   padding: 8px 14px;
   border-radius: var(--radius-sm, 6px);
-  background: rgba(239, 68, 68, 0.15);
-  color: #fca5a5;
+  background: var(--color-danger-bg, #FDE7ED);
+  color: var(--color-danger-text, #A8071A);
   font-size: 13px;
   font-weight: 600;
-  border: 1px solid rgba(239, 68, 68, 0.3);
+  border: 1px solid var(--color-danger-border, #FFA39E);
   text-decoration: none;
-  transition: background var(--duration-fast, 150ms);
+  cursor: pointer;
+  transition: background 150ms;
 }
 
 .admin-logout-btn:hover {
-  background: rgba(239, 68, 68, 0.25);
+  background: #f9d0da;
 }

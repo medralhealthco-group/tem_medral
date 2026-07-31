@@ -235,6 +235,45 @@
   margin-top: 2px;
 }
 
+/* Admin table readability — explicit charcoal text on light rows */
+[data-theme="admin"] .admin-table th {
+  background: #1F1F1F;
+  color: #FFFFFF;
+  border-bottom-color: #1F1F1F;
+}
+
+[data-theme="admin"] .admin-table td {
+  color: #1F1F1F;
+  background: #FFFFFF;
+}
+
+[data-theme="admin"] .admin-table tr:hover td {
+  background: #FDFBF7;
+}
+
+[data-theme="admin"] .product-title,
+[data-theme="admin"] .customer-name,
+[data-theme="admin"] .order-number {
+  color: #1F1F1F;
+}
+
+[data-theme="admin"] .category-description,
+[data-theme="admin"] .customer-contact,
+[data-theme="admin"] .order-date,
+[data-theme="admin"] .order-item-count,
+[data-theme="admin"] .product-sku-info,
+[data-theme="admin"] .product-subcat-info,
+[data-theme="admin"] .table-summary-count,
+[data-theme="admin"] .table-empty,
+[data-theme="admin"] .payment-method {
+  color: #5C5C5C;
+}
+
+[data-theme="admin"] .table-card-header {
+  background: #FFFFFF;
+  color: #1F1F1F;
+}
+
 /* Table Column Width Utilities */
 .col-w-50 { width: 50px; }
 .col-w-60 { width: 60px; }

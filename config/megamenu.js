@@ -58,47 +58,48 @@ module.exports = {
       label: 'By Concern',
       groups: [
         {
-          slug: 'skin',
-          label: 'Skin',
+          slug: 'beauty',
+          label: 'Beauty',
           products: [
-            { slug: 'l-glutathione-capsules', name: 'L-Glutathione Capsules', image: IMG.capsule },
-            { slug: 'marine-collagen-powder', name: 'Marine Collagen (powder)', image: IMG.bottle },
-            { slug: 'hydrogel-eye-patches', name: 'Hydrogel Eye Patches', image: IMG.softgel },
+            { slug: 'mh-skin-renewal-capsules', name: 'M&H Skin Renewal Capsules', image: IMG.capsule },
+            { slug: 'mh-marine-collagen-powder', name: 'M&H Marine Collagen (powder)', image: IMG.bottle },
+            { slug: 'mh-hydrogel-eye-patches', name: 'M&H Hydrogel Eye Patches', image: IMG.softgel },
             {
-              slug: 'marine-collagen-unflavoured-powder',
-              name: 'Marine Collagen (Unflavoured) powder',
+              slug: 'mh-naked-marine-collagen-unflavoured-powder',
+              name: 'M&H Naked Marine Collagen (Unflavoured) powder',
               image: IMG.sachet
-            }
-          ]
-        },
-        {
-          slug: 'hair',
-          label: 'Hair',
-          products: [
-            {
-              slug: 'hair-growth-with-biotin-capsules',
-              name: 'Hair Growth with Biotin Capsules',
-              image: IMG.capsule
-            }
+            },
+            { slug: 'mh-hair-growth-capsules', name: 'M&H Hair Growth Capsules', image: IMG.capsule }
           ]
         },
         {
           slug: 'lifestyle',
           label: 'Lifestyle',
           products: [
-            { slug: 'omega-3-with-astaxanthin', name: 'Omega 3 with Astaxanthin', image: IMG.softgel },
+            { slug: 'mh-omega-3-with-astaxanthin', name: 'M&H Omega-3 with Astaxanthin', image: IMG.softgel },
             {
-              slug: 'magnesium-with-d3-k2-zinc',
-              name: 'Magnesium with D3, K2 & Zinc',
+              slug: 'mh-mag5x-pro-with-vitamin-d3-k2-zinc',
+              name: 'M&H Mag5X Pro with Vitamin D3, K2 & Zinc',
               image: IMG.bottle
             },
-            { slug: 'lung-liver-detox-capsules', name: 'Lung & Liver Detox Capsules', image: IMG.capsule },
+            { slug: 'mh-lung-liver-core-detox', name: 'M&H Lung & Liver Core Detox', image: IMG.capsule },
             {
-              slug: 'testosterone-booster-capsules-for-men',
-              name: 'Testosterone Booster Capsules for Men',
+              slug: 'mh-testosterone-booster-capsules-for-men',
+              name: 'M&H Testosterone Booster Capsules for Men',
               image: IMG.sachet
             },
-            { slug: 'coq10-capsules', name: 'CoQ10 Capsules', image: IMG.capsule }
+            { slug: 'mh-coq10-with-bioperine', name: 'M&H CoQ10 with BioPerine®', image: IMG.capsule }
+          ]
+        },
+        {
+          slug: 'recovery',
+          label: 'Recovery',
+          products: [
+            { slug: 'knee-support', name: 'Knee Support', image: IMG.bottle },
+            { slug: 'ankle-support', name: 'Ankle Support', image: IMG.softgel },
+            { slug: 'elbow-support', name: 'Elbow Support', image: IMG.capsule },
+            { slug: 'ls-belt', name: 'LS Belt', image: IMG.sachet },
+            { slug: 'digital-scale', name: 'Digital Scale', image: IMG.bottle }
           ]
         }
       ]
@@ -108,27 +109,36 @@ module.exports = {
       label: 'By Product',
       groups: [
         {
-          slug: 'collagen',
+          // Reuses Beauty category — no separate collagen category/SKUs
+          slug: 'beauty',
           label: 'Collagen',
           products: [
-            { slug: 'collagen-reglow', name: 'Collagen Reglow', image: IMG.bottle },
+            { slug: 'mh-marine-collagen-powder', name: 'M&H Marine Collagen (powder)', image: IMG.bottle },
             {
-              slug: 'collagen-naked-unflavoured',
-              name: 'Collagen Naked (Unflavoured)',
+              slug: 'mh-naked-marine-collagen-unflavoured-powder',
+              name: 'M&H Naked Marine Collagen (Unflavoured) powder',
               image: IMG.sachet
             }
           ]
         },
         {
-          slug: 'capsules',
+          // Reuses Lifestyle category — no separate capsules category/SKUs
+          slug: 'lifestyle',
           label: 'Capsules',
           products: [
-            { slug: 'keranat-hair-capsules', name: 'Keranat™ Hair Capsules', image: IMG.capsule },
-            { slug: 'gluta-skin-capsules', name: 'Gluta Skin Capsules', image: IMG.softgel },
-            { slug: 'mag-5x-pro', name: 'Mag 5X Pro', image: IMG.bottle },
-            { slug: 'omega-3-4x-with-astaxanthin', name: 'Omega-3 4X with Astaxanthin', image: IMG.softgel },
-            { slug: 'core-detox', name: 'Core Detox', image: IMG.sachet },
-            { slug: 'mojo', name: 'Mojo', image: IMG.capsule }
+            { slug: 'mh-omega-3-with-astaxanthin', name: 'M&H Omega-3 with Astaxanthin', image: IMG.softgel },
+            {
+              slug: 'mh-mag5x-pro-with-vitamin-d3-k2-zinc',
+              name: 'M&H Mag5X Pro with Vitamin D3, K2 & Zinc',
+              image: IMG.bottle
+            },
+            { slug: 'mh-lung-liver-core-detox', name: 'M&H Lung & Liver Core Detox', image: IMG.capsule },
+            {
+              slug: 'mh-testosterone-booster-capsules-for-men',
+              name: 'M&H Testosterone Booster Capsules for Men',
+              image: IMG.sachet
+            },
+            { slug: 'mh-coq10-with-bioperine', name: 'M&H CoQ10 with BioPerine®', image: IMG.capsule }
           ]
         }
       ]

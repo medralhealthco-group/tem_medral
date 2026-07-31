@@ -29,6 +29,7 @@ async function attachConfigToLocals(req, res, next) {
   }
 
   res.locals.year = new Date().getFullYear();
+  res.locals.appEnv = process.env.NODE_ENV || 'development';
 
   next();
 }

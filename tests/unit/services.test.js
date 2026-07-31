@@ -184,11 +184,36 @@ test('Suite 21: Shopping Service Unit Tests', async t => {
       async () => {
         await OrderService.createOrder({ shippingData: {} });
       },
-      /All shipping address fields are required/
+      /Enter a valid full name/
+    );
+
+    await assert.rejects(
+      async () => {
+        await OrderService.createOrder({
+          shippingData: {
+            name: 'John Doe',
+            email: 'j@ex.com',
+            phone: '123',
+            address: '12 MG Road',
+            city: 'Mumbai',
+            state: 'Maharashtra',
+            pincode: '400001'
+          }
+        });
+      },
+      /valid 10-digit Indian mobile/
     );
 
     const validOrder = await OrderService.createOrder({
-      shippingData: { name: 'John', email: 'j@ex.com', phone: '123', address: 'A', city: 'C', state: 'S', pincode: '110001' }
+      shippingData: {
+        name: 'John Doe',
+        email: 'j@ex.com',
+        phone: '9876543210',
+        address: '12 MG Road, Andheri',
+        city: 'Mumbai',
+        state: 'Maharashtra',
+        pincode: '400001'
+      }
     });
     assert.equal(validOrder.id, 88);
     assert.ok(validOrder.orderNumber.startsWith('MH-ORD-'));

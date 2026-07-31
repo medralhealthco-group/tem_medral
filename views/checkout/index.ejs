@@ -25,43 +25,155 @@
             <div class="alert-danger" role="alert" aria-live="assertive"><%= error %></div>
           <% } %>
 
-          <form action="/checkout" method="POST" id="checkoutForm">
+          <% const fe = typeof fieldErrors !== 'undefined' && fieldErrors ? fieldErrors : {}; %>
+
+          <form action="/checkout" method="POST" id="checkoutForm" novalidate>
             <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
             <div class="form-grid">
               <div class="form-group">
                 <label for="name" class="form-label">Full Name <span aria-hidden="true">*</span></label>
-                <input type="text" id="name" name="name" class="form-input" value="<%= formData.name %>" required aria-required="true" placeholder="John Doe" />
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-input<%= fe.name ? ' is-invalid' : '' %>"
+                  value="<%= formData.name %>"
+                  required
+                  aria-required="true"
+                  aria-describedby="name-error"
+                  aria-invalid="<%= fe.name ? 'true' : 'false' %>"
+                  autocomplete="name"
+                  minlength="2"
+                  maxlength="80"
+                  pattern="[A-Za-z][A-Za-z .'\-]{1,79}"
+                  placeholder="John Doe"
+                />
+                <p class="form-error" id="name-error" role="alert" <%= fe.name ? '' : 'hidden' %>><%= fe.name || '' %></p>
               </div>
               <div class="form-group">
                 <label for="phone" class="form-label">Phone Number <span aria-hidden="true">*</span></label>
-                <input type="tel" id="phone" name="phone" class="form-input" value="<%= formData.phone %>" required aria-required="true" placeholder="+91 98765 43210" />
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="form-input<%= fe.phone ? ' is-invalid' : '' %>"
+                  value="<%= formData.phone %>"
+                  required
+                  aria-required="true"
+                  aria-describedby="phone-error"
+                  aria-invalid="<%= fe.phone ? 'true' : 'false' %>"
+                  autocomplete="tel"
+                  inputmode="tel"
+                  maxlength="16"
+                  placeholder="+91 98765 43210"
+                />
+                <p class="form-hint">10-digit Indian mobile (starts with 6–9)</p>
+                <p class="form-error" id="phone-error" role="alert" <%= fe.phone ? '' : 'hidden' %>><%= fe.phone || '' %></p>
               </div>
             </div>
 
             <div class="form-group">
               <label for="email" class="form-label">Email Address <span aria-hidden="true">*</span></label>
-              <input type="email" id="email" name="email" class="form-input" value="<%= formData.email %>" required aria-required="true" placeholder="john@example.com" />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input<%= fe.email ? ' is-invalid' : '' %>"
+                value="<%= formData.email %>"
+                required
+                aria-required="true"
+                aria-describedby="email-error"
+                aria-invalid="<%= fe.email ? 'true' : 'false' %>"
+                autocomplete="email"
+                maxlength="120"
+                placeholder="john@example.com"
+              />
+              <p class="form-error" id="email-error" role="alert" <%= fe.email ? '' : 'hidden' %>><%= fe.email || '' %></p>
             </div>
 
             <div class="form-group">
               <label for="address" class="form-label">Street Address <span aria-hidden="true">*</span></label>
-              <input type="text" id="address" name="address" class="form-input" value="<%= formData.address %>" required aria-required="true" placeholder="Flat / House No., Colony / Street" />
+              <input
+                type="text"
+                id="address"
+                name="address"
+                class="form-input<%= fe.address ? ' is-invalid' : '' %>"
+                value="<%= formData.address %>"
+                required
+                aria-required="true"
+                aria-describedby="address-error"
+                aria-invalid="<%= fe.address ? 'true' : 'false' %>"
+                autocomplete="street-address"
+                minlength="10"
+                maxlength="200"
+                placeholder="Flat / House No., Colony / Street"
+              />
+              <p class="form-error" id="address-error" role="alert" <%= fe.address ? '' : 'hidden' %>><%= fe.address || '' %></p>
             </div>
 
             <div class="form-grid">
               <div class="form-group">
                 <label for="city" class="form-label">City / Town <span aria-hidden="true">*</span></label>
-                <input type="text" id="city" name="city" class="form-input" value="<%= formData.city %>" required aria-required="true" placeholder="Mumbai" />
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  class="form-input<%= fe.city ? ' is-invalid' : '' %>"
+                  value="<%= formData.city %>"
+                  required
+                  aria-required="true"
+                  aria-describedby="city-error"
+                  aria-invalid="<%= fe.city ? 'true' : 'false' %>"
+                  autocomplete="address-level2"
+                  minlength="2"
+                  maxlength="60"
+                  pattern="[A-Za-z][A-Za-z .'\-]{1,59}"
+                  placeholder="Mumbai"
+                />
+                <p class="form-error" id="city-error" role="alert" <%= fe.city ? '' : 'hidden' %>><%= fe.city || '' %></p>
               </div>
               <div class="form-group">
                 <label for="state" class="form-label">State <span aria-hidden="true">*</span></label>
-                <input type="text" id="state" name="state" class="form-input" value="<%= formData.state %>" required aria-required="true" placeholder="Maharashtra" />
+                <input
+                  type="text"
+                  id="state"
+                  name="state"
+                  class="form-input<%= fe.state ? ' is-invalid' : '' %>"
+                  value="<%= formData.state %>"
+                  required
+                  aria-required="true"
+                  aria-describedby="state-error"
+                  aria-invalid="<%= fe.state ? 'true' : 'false' %>"
+                  autocomplete="address-level1"
+                  minlength="2"
+                  maxlength="60"
+                  pattern="[A-Za-z][A-Za-z .'\-]{1,59}"
+                  placeholder="Maharashtra"
+                />
+                <p class="form-error" id="state-error" role="alert" <%= fe.state ? '' : 'hidden' %>><%= fe.state || '' %></p>
               </div>
             </div>
 
             <div class="form-group" style="max-width: 50%;">
               <label for="pincode" class="form-label">PIN Code <span aria-hidden="true">*</span></label>
-              <input type="text" id="pincode" name="pincode" class="form-input" value="<%= formData.pincode %>" required aria-required="true" placeholder="400001" />
+              <input
+                type="text"
+                id="pincode"
+                name="pincode"
+                class="form-input<%= fe.pincode ? ' is-invalid' : '' %>"
+                value="<%= formData.pincode %>"
+                required
+                aria-required="true"
+                aria-describedby="pincode-error"
+                aria-invalid="<%= fe.pincode ? 'true' : 'false' %>"
+                autocomplete="postal-code"
+                inputmode="numeric"
+                minlength="6"
+                maxlength="6"
+                pattern="[1-9][0-9]{5}"
+                placeholder="400001"
+              />
+              <p class="form-error" id="pincode-error" role="alert" <%= fe.pincode ? '' : 'hidden' %>><%= fe.pincode || '' %></p>
             </div>
 
             <h2 class="form-card-title" style="margin-top: 36px;">2. Payment Method</h2>
@@ -123,5 +235,6 @@
     </div>
 
     <%- include('../partials/footer') %>
+    <script src="/assets/js/checkout.js?v=<%= assetVersion %>" defer nonce="<%= cspNonce %>"></script>
   </body>
 </html>

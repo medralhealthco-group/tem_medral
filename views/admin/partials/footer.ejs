@@ -3,7 +3,7 @@
     &copy; <%= new Date().getFullYear() %> <strong>Medral Health Co</strong>. Store Administration System v1.0.
   </div>
   <div class="admin-footer__links">
-    <span>Production Environment</span>
+    <span><%= (typeof appEnv !== 'undefined' && appEnv === 'production') ? 'Production' : 'Development' %> Environment</span>
   </div>
 </footer>
 

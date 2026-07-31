@@ -27,7 +27,7 @@
 
   /* Neutral & Background Scale */
   --color-bg:              #FAFAF8; /* Warm Off-White Page Background */
-  --color-surface:         var(--color-surface); /* Pure White Card / Component Surface */
+  --color-surface:         #FFFFFF; /* Pure White Card / Component Surface */
   --color-surface-warm:    #F5F2EE; /* Warm Alternate Surface */
   --color-border:          #E8E4DF; /* Primary Border */
   --color-border-subtle:   #F0ECE7; /* Secondary / Soft Border */
@@ -310,29 +310,31 @@
 
 /* ------------------------------------------------------------------------
    ADMIN THEME OVERRIDES ([data-theme="admin"])
+   Light cream shell — keep text dark for readable tables/forms.
    ------------------------------------------------------------------------ */
 [data-theme="admin"] {
   --brand-primary:       var(--color-primary);
   --brand-primary-hover: var(--color-primary-hover);
   --brand-secondary:     var(--color-secondary);
 
-  --text-primary:   #f3f0ff;
-  --text-secondary: #a497c6;
-  --text-tertiary:  var(--color-primary-muted);
-  --text-inverse:   #1A1A1A;
+  --text-primary:   #1F1F1F;
+  --text-secondary: #5C5C5C;
+  --text-tertiary:  #8F8F8F;
+  --text-inverse:   #FFFFFF;
 
-  --surface-primary:   #0d061a;
-  --surface-secondary: #180d2e;
-  --surface-tertiary:  #120724;
-  --surface-elevated:  #140829;
+  --surface-primary:   #FDFBF7;
+  --surface-secondary: #FFFFFF;
+  --surface-tertiary:  #F5F2EB;
+  --surface-elevated:  #FFFFFF;
+  --surface-card:      #FFFFFF;
 
-  --border-primary:   #2c1a4d;
-  --border-secondary: #331f5c;
+  --border-primary:   #E8E4DF;
+  --border-secondary: #F2EFEA;
 
-  --feedback-error-bg:      rgba(196, 75, 61, 0.15);
-  --feedback-error-text:    #fca5a5;
-  --feedback-error-border:  rgba(196, 75, 61, 0.3);
-  --feedback-success-bg:    rgba(45, 138, 95, 0.15);
-  --feedback-success-text:  #86efac;
-  --feedback-success-border: rgba(45, 138, 95, 0.3);
+  --feedback-error-bg:      #FDE7ED;
+  --feedback-error-text:    #A8071A;
+  --feedback-error-border:  #FFA39E;
+  --feedback-success-bg:    #EAF4ED;
+  --feedback-success-text:  #1C5434;
+  --feedback-success-border: #B5D8C1;
 }

@@ -1,25 +1,34 @@
 /* ==========================================================================
    MEDRAL HEALTH CO — ADMIN LAYOUT & SHELL MODULE (admin-layout.css)
-   Extracted from admin-base.css into reusable Admin Shell Architecture.
+   Light cream + crimson admin shell aligned with storefront brand tokens.
    ========================================================================== */
 
 :root {
-  --admin-bg: #0d061a;
-  --admin-card-bg: #180d2e;
-  --admin-border: #2c1a4d;
-  --admin-accent: #7c3aed;
-  --admin-accent-hover: #6d28d9;
-  --admin-text-main: #f3f0ff;
-  --admin-text-muted: #a497c6;
+  --admin-bg: #FDFBF7;
+  --admin-card-bg: #FFFFFF;
+  --admin-border: #E8E4DF;
+  --admin-accent: #D31145;
+  --admin-accent-hover: #B00E39;
+  --admin-text-main: #1F1F1F;
+  --admin-text-muted: #5C5C5C;
   --sidebar-width: 260px;
 }
 
 body[data-theme="admin"] {
   font-family: var(--font-body, 'Inter', sans-serif);
-  background: var(--admin-bg, #0d061a);
-  color: var(--admin-text-main, #f3f0ff);
+  background: var(--admin-bg);
+  color: var(--admin-text-main);
   min-height: 100vh;
   display: flex;
+}
+
+/* Login page is centered — don't use the sidebar flex shell */
+body[data-theme="admin"].admin-login-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--admin-bg);
+  color: var(--admin-text-main);
 }
 
 .admin-wrapper {
@@ -28,6 +37,7 @@ body[data-theme="admin"] {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: var(--admin-bg);
 }
 
 .admin-content {
@@ -40,14 +50,16 @@ body[data-theme="admin"] {
 }
 
 .admin-page-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
   font-size: 26px;
   font-weight: 800;
   margin-bottom: 6px;
+  color: var(--admin-text-main);
 }
 
 .admin-page-subtitle {
   font-size: 14px;
-  color: var(--admin-text-muted, #a497c6);
+  color: var(--admin-text-muted);
 }
 
 .page-actions-bar {
@@ -61,13 +73,13 @@ body[data-theme="admin"] {
 
 .admin-footer {
   padding: 20px 28px;
-  border-top: 1px solid var(--admin-border, #2c1a4d);
+  border-top: 1px solid var(--admin-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 13px;
-  color: var(--admin-text-muted, #a497c6);
-  background: #140829;
+  color: var(--admin-text-muted);
+  background: var(--admin-card-bg);
 }
 
 @media (max-width: 992px) {
@@ -80,7 +92,94 @@ body[data-theme="admin"] {
 }
 
 /* --------------------------------------------------------------------------
-   GRID LAYOUT ARCHITECTURE & ORDER INSPECTOR HELPERS
+   DASHBOARD STATS + WELCOME
+   -------------------------------------------------------------------------- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 36px;
+}
+
+.stat-card {
+  background: var(--admin-card-bg);
+  border: 1px solid var(--admin-border);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: var(--shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.04));
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md, 0 8px 24px rgba(0, 0, 0, 0.08));
+  border-color: var(--color-primary-muted, #E68AA2);
+}
+
+.stat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--color-primary-light, #FDE7ED);
+  color: var(--admin-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stat-data {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.stat-value {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--admin-text-main);
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--admin-text-muted);
+  font-weight: 500;
+}
+
+.admin-welcome-card {
+  background: linear-gradient(135deg, #D31145 0%, #8F0B2E 100%);
+  border: none;
+  border-radius: 16px;
+  padding: 36px 40px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-md, 0 8px 24px rgba(211, 17, 69, 0.2));
+  color: #fff;
+}
+
+.admin-welcome-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  color: #fff;
+}
+
+.admin-welcome-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 720px;
+}
+
+/* --------------------------------------------------------------------------
+   GRID LAYOUT & ORDER HELPERS
    -------------------------------------------------------------------------- */
 .grid-2 {
   display: grid;
@@ -96,30 +195,30 @@ body[data-theme="admin"] {
 
 .back-link {
   font-size: 13px;
-  color: var(--purple-300, #c4b5fd);
+  color: var(--admin-accent);
   font-weight: 700;
   text-decoration: none;
-  transition: color var(--duration-fast, 150ms);
+  transition: color 150ms;
 }
 
 .back-link:hover {
-  color: var(--brand-accent, #7c3aed);
+  color: var(--admin-accent-hover);
 }
 
 .order-summary-total {
   margin-top: 20px;
   padding-top: 16px;
-  border-top: 1px solid var(--admin-border, #2c1a4d);
+  border-top: 1px solid var(--admin-border);
   display: flex;
   justify-content: space-between;
   font-size: 18px;
   font-weight: 800;
-  color: var(--text-inverse, var(--color-surface));
+  color: var(--admin-text-main);
 }
 
 .order-details-info {
   font-size: 15px;
-  color: var(--text-inverse, var(--color-surface));
+  color: var(--admin-text-main);
   line-height: 1.6;
 }
 
@@ -129,11 +228,10 @@ body[data-theme="admin"] {
 
 .payment-method-info {
   font-size: 13px;
-  color: var(--admin-text-muted, #a497c6);
+  color: var(--admin-text-muted);
   margin-bottom: 12px;
 }
 
 .text-inverse {
-  color: var(--text-inverse, var(--color-surface));
+  color: var(--admin-text-main);
 }
-

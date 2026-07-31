@@ -1,12 +1,11 @@
 /* ==========================================================================
    MEDRAL HEALTH CO — ADMIN SIDEBAR MODULE (admin-sidebar.css)
-   Extracted from admin-base.css into reusable Admin Shell Architecture.
    ========================================================================== */
 
 .admin-sidebar {
   width: var(--sidebar-width, 260px);
-  background: #120724;
-  border-right: 1px solid var(--admin-border, #2c1a4d);
+  background: var(--admin-card-bg, #FFFFFF);
+  border-right: 1px solid var(--admin-border, #E8E4DF);
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -19,7 +18,7 @@
 
 .admin-sidebar__head {
   padding: 24px 20px;
-  border-bottom: 1px solid var(--admin-border, #2c1a4d);
+  border-bottom: 1px solid var(--admin-border, #E8E4DF);
 }
 
 .admin-sidebar__logo {
@@ -40,8 +39,8 @@
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.15em;
-  color: #a78bfa;
-  background: rgba(124, 58, 237, 0.15);
+  color: var(--admin-accent, #D31145);
+  background: var(--color-primary-light, #FDE7ED);
   padding: 3px 8px;
   border-radius: var(--radius-sm, 4px);
 }
@@ -57,7 +56,7 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-primary-muted);
+  color: var(--admin-text-muted, #5C5C5C);
   margin: 20px 12px 10px;
 }
 
@@ -69,25 +68,27 @@
   border-radius: var(--radius-md, 8px);
   font-size: 14px;
   font-weight: 600;
-  color: var(--admin-text-muted, #a497c6);
+  color: var(--admin-text-muted, #5C5C5C);
   text-decoration: none;
-  transition: background var(--duration-fast, 150ms), color var(--duration-fast, 150ms);
+  transition: background 150ms, color 150ms;
   margin-bottom: 4px;
 }
 
-.admin-nav-item:hover,
-.admin-nav-item.active {
-  background: rgba(124, 58, 237, 0.2);
-  color: var(--color-surface);
+.admin-nav-item:hover {
+  background: var(--color-primary-light, #FDE7ED);
+  color: var(--admin-accent, #D31145);
 }
 
 .admin-nav-item.active {
-  border-left: 3px solid var(--admin-accent, #7c3aed);
+  background: var(--color-primary-light, #FDE7ED);
+  color: var(--admin-accent, #D31145);
+  border-left: 3px solid var(--admin-accent, #D31145);
 }
 
 @media (max-width: 992px) {
   .admin-sidebar {
     transform: translateX(-100%);
+    box-shadow: var(--shadow-lg, 0 16px 40px rgba(0, 0, 0, 0.12));
   }
   .admin-sidebar.is-open {
     transform: translateX(0);

@@ -101,12 +101,12 @@ async function buildFromDatabase(source) {
           });
 
           return {
-            id: `${tab.id}-${category.slug}`,
+            id: `${tab.id}-${group.slug}`,
             slug: category.slug,
-            label: category.name,
+            label: group.label || category.name,
             url: categoryUrl(category.slug, 'live'),
             products: (products || []).map(product => ({
-              id: `${tab.id}-${category.slug}-${product.slug}`,
+              id: `${tab.id}-${group.slug}-${product.slug}`,
               slug: product.slug,
               name: product.title,
               url: productUrl(product.slug, 'live'),

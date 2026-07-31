@@ -1,6 +1,9 @@
 /**
  * One-off local seed: schema.sql + seed-catalog.sql using .env DB_* settings.
- * Usage: node scripts/seed-local.js
+ * Usage:
+ *   node scripts/seed-local.js
+ *   node scripts/seed-local.js --catalog-only
+ *   node scripts/seed-local.js --beauty-recovery   # migration 004 + seed-catalog
  */
 require('dotenv').config();
 
@@ -41,9 +44,17 @@ async function main() {
     multipleStatements: true
   });
 
-  const files = process.argv.includes('--catalog-only')
-    ? ['seed-catalog.sql']
-    : ['schema.sql', 'seed-catalog.sql'];
+  let files;
+  if (process.argv.includes('--beauty-recovery')) {
+    files = [
+      path.join('migrations', '004_beauty_recovery_catalog.sql'),
+      'seed-catalog.sql'
+    ];
+  } else if (process.argv.includes('--catalog-only')) {
+    files = ['seed-catalog.sql'];
+  } else {
+    files = ['schema.sql', 'seed-catalog.sql'];
+  }
   for (const file of files) {
     const full = path.join(__dirname, '..', 'database', file);
     const sql = fs.readFileSync(full, 'utf8');

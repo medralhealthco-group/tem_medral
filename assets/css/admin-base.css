@@ -3,7 +3,7 @@
    Concatenates Admin Shell Architecture modules and shared tokens.
    ========================================================================== */
 
-@import "tokens-v3.css";
+@import "theme.css";
 @import "reset.css";
 
 /* Admin Shell Architecture */

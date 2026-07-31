@@ -20,7 +20,7 @@
     }
     </script>
     <% } %>
-    <!-- Google Fonts api -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="/assets/css/fonts.css" rel="stylesheet" />
@@ -64,7 +64,7 @@
                   <p class="ph-sub">
                     Clinically-backed Hydrolysed Collagen with glutathione, hyaluronic acid &amp; 14+ skin loving nutrients. Supple skin. Even tone. One potent sachet.
                   </p>
-                  <a class="ph-cta" href="/shop/product/collagen-reglow">Shop Now</a>
+                  <a class="ph-cta" href="/shop/product/mh-marine-collagen-powder">Shop Now</a>
                 </div>
 
                 <div class="ph-visual">
@@ -117,7 +117,7 @@
                   <p class="ph-sub">
                     Omega-3 with Astaxanthin for everyday wellness — clean softgels crafted for heart, brain, and vision support.
                   </p>
-                  <a class="ph-cta" href="/shop/product/omega-3-with-astaxanthin">Shop Now</a>
+                  <a class="ph-cta" href="/shop/product/mh-omega-3-with-astaxanthin">Shop Now</a>
                 </div>
 
                 <div class="ph-visual">
@@ -394,24 +394,43 @@
             );
             if (!canvas || !wrap) return;
 
+            /* Respect reduced motion */
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+              return;
+
             var ctx = canvas.getContext("2d");
             var W, H;
             var particles = [];
-            var mouse = { x: -9999, y: -9999 };
+            var mouse = { x: -9999, y: -9999, active: false };
             var raf;
+            var finePointer = window.matchMedia("(pointer: fine)").matches;
 
             /* Config */
-            var COUNT = 55; /* number of particles          */
-            var MAX_DIST = 120; /* max distance to draw a line  */
-            var SPEED = 0.35; /* base drift speed             */
+            var COUNT_DESKTOP = 55;
+            var COUNT_MOBILE = 28;
+            var MOBILE_BP = 768;
+            var MAX_DIST = 120;
+            var MAX_DIST_SQ = MAX_DIST * MAX_DIST;
+            var MAX_DIST_MOUSE = MAX_DIST * 1.4;
+            var MAX_DIST_MOUSE_SQ = MAX_DIST_MOUSE * MAX_DIST_MOUSE;
+            var SPEED = 0.35;
+            var ATTRACT = 0.012;
+            var MAX_SPEED = SPEED * 2.5;
+            var EDGE_FADE = 80;
 
-            /* Colours — very subtle, works on light bg */
+            /* Colours as RGBA components — alpha applied with edge fade */
             var COLORS = [
-              "rgba(200,16,46,0.18)" /* brand red  */,
-              "rgba(17,17,17,0.10)" /* near-black */,
-              "rgba(200,16,46,0.10)",
-              "rgba(17,17,17,0.06)",
+              [200, 16, 46, 0.18],
+              [17, 17, 17, 0.1],
+              [200, 16, 46, 0.1],
+              [17, 17, 17, 0.06],
             ];
+
+            function particleCount() {
+              return window.innerWidth < MOBILE_BP
+                ? COUNT_MOBILE
+                : COUNT_DESKTOP;
+            }
 
             function resize() {
               W = canvas.width = wrap.offsetWidth;
@@ -423,53 +442,71 @@
             }
 
             function createParticle() {
+              var c = COLORS[Math.floor(Math.random() * COLORS.length)];
               return {
                 x: rand(0, W),
                 y: rand(0, H),
                 vx: rand(-SPEED, SPEED),
                 vy: rand(-SPEED, SPEED),
-                r: rand(1.5, 3.5),
-                col: COLORS[Math.floor(Math.random() * COLORS.length)],
+                baseR: rand(1.5, 3.5),
+                phase: rand(0, Math.PI * 2),
+                r: c[0],
+                g: c[1],
+                b: c[2],
+                a: c[3],
               };
+            }
+
+            function edgeFade(x, y) {
+              var fx = Math.min(x, W - x) / EDGE_FADE;
+              var fy = Math.min(y, H - y) / EDGE_FADE;
+              if (fx > 1) fx = 1;
+              if (fy > 1) fy = 1;
+              if (fx < 0) fx = 0;
+              if (fy < 0) fy = 0;
+              return fx < fy ? fx : fy;
             }
 
             function init() {
               resize();
               particles = [];
-              for (var i = 0; i < COUNT; i++) particles.push(createParticle());
+              var n = particleCount();
+              for (var i = 0; i < n; i++) particles.push(createParticle());
             }
 
             function draw() {
               ctx.clearRect(0, 0, W, H);
 
-              /* Draw connecting lines */
               for (var i = 0; i < particles.length; i++) {
                 var a = particles[i];
 
-                /* connect to mouse */
-                var mdx = mouse.x - a.x;
-                var mdy = mouse.y - a.y;
-                var md = Math.sqrt(mdx * mdx + mdy * mdy);
-                if (md < MAX_DIST * 1.4) {
-                  ctx.beginPath();
-                  ctx.moveTo(a.x, a.y);
-                  ctx.lineTo(mouse.x, mouse.y);
-                  ctx.strokeStyle =
-                    "rgba(200,16,46," +
-                    0.08 * (1 - md / (MAX_DIST * 1.4)) +
-                    ")";
-                  ctx.lineWidth = 0.6;
-                  ctx.stroke();
+                /* connect to mouse (desktop only) */
+                if (mouse.active) {
+                  var mdx = mouse.x - a.x;
+                  var mdy = mouse.y - a.y;
+                  var mdSq = mdx * mdx + mdy * mdy;
+                  if (mdSq < MAX_DIST_MOUSE_SQ) {
+                    var md = Math.sqrt(mdSq);
+                    ctx.beginPath();
+                    ctx.moveTo(a.x, a.y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.strokeStyle =
+                      "rgba(200,16,46," +
+                      0.08 * (1 - md / MAX_DIST_MOUSE) +
+                      ")";
+                    ctx.lineWidth = 0.6;
+                    ctx.stroke();
+                  }
                 }
 
-                /* connect to nearby particles */
+                /* connect to nearby particles — squared distance, no sqrt */
                 for (var j = i + 1; j < particles.length; j++) {
                   var b = particles[j];
                   var dx = a.x - b.x;
                   var dy = a.y - b.y;
-                  var dst = Math.sqrt(dx * dx + dy * dy);
-                  if (dst < MAX_DIST) {
-                    var alpha = 0.12 * (1 - dst / MAX_DIST);
+                  var dstSq = dx * dx + dy * dy;
+                  if (dstSq < MAX_DIST_SQ) {
+                    var alpha = 0.12 * (1 - dstSq / MAX_DIST_SQ);
                     ctx.beginPath();
                     ctx.moveTo(a.x, a.y);
                     ctx.lineTo(b.x, b.y);
@@ -480,12 +517,23 @@
                 }
               }
 
-              /* Draw particles */
+              /* Draw particles — soft pulse + edge fade */
               for (var k = 0; k < particles.length; k++) {
                 var p = particles[k];
+                var pulseR = p.baseR + Math.sin(p.phase) * 0.4;
+                var fade = edgeFade(p.x, p.y);
                 ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = p.col;
+                ctx.arc(p.x, p.y, pulseR, 0, Math.PI * 2);
+                ctx.fillStyle =
+                  "rgba(" +
+                  p.r +
+                  "," +
+                  p.g +
+                  "," +
+                  p.b +
+                  "," +
+                  p.a * fade +
+                  ")";
                 ctx.fill();
               }
             }
@@ -493,8 +541,27 @@
             function update() {
               for (var i = 0; i < particles.length; i++) {
                 var p = particles[i];
+
+                /* mild cursor attraction */
+                if (mouse.active) {
+                  var mdx = mouse.x - p.x;
+                  var mdy = mouse.y - p.y;
+                  var mdSq = mdx * mdx + mdy * mdy;
+                  if (mdSq < MAX_DIST_MOUSE_SQ && mdSq > 0.01) {
+                    var md = Math.sqrt(mdSq);
+                    p.vx += (mdx / md) * ATTRACT;
+                    p.vy += (mdy / md) * ATTRACT;
+                    var spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+                    if (spd > MAX_SPEED) {
+                      p.vx = (p.vx / spd) * MAX_SPEED;
+                      p.vy = (p.vy / spd) * MAX_SPEED;
+                    }
+                  }
+                }
+
                 p.x += p.vx;
                 p.y += p.vy;
+                p.phase += 0.025;
 
                 /* bounce off walls */
                 if (p.x < 0 || p.x > W) {
@@ -514,16 +581,20 @@
               raf = requestAnimationFrame(loop);
             }
 
-            /* Mouse tracking */
-            wrap.addEventListener("mousemove", function (e) {
-              var rect = canvas.getBoundingClientRect();
-              mouse.x = e.clientX - rect.left;
-              mouse.y = e.clientY - rect.top;
-            });
-            wrap.addEventListener("mouseleave", function () {
-              mouse.x = -9999;
-              mouse.y = -9999;
-            });
+            /* Mouse tracking — skip on coarse pointers (touch) */
+            if (finePointer) {
+              wrap.addEventListener("mousemove", function (e) {
+                var rect = canvas.getBoundingClientRect();
+                mouse.x = e.clientX - rect.left;
+                mouse.y = e.clientY - rect.top;
+                mouse.active = true;
+              });
+              wrap.addEventListener("mouseleave", function () {
+                mouse.x = -9999;
+                mouse.y = -9999;
+                mouse.active = false;
+              });
+            }
 
             /* Resize */
             var rt;
@@ -542,10 +613,6 @@
                 loop();
               }
             });
-
-            /* Respect reduced motion */
-            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
-              return;
 
             init();
             loop();
@@ -2225,7 +2292,7 @@
             </div>
             <div class="contact-detail">
               <span class="contact-detail__arrow" aria-hidden="true">↗</span>
-              <a href="tel:+91 982115840">+91 982115840 </a>
+              <a href="tel:+919821115848">+91 98211 15848</a>
             </div>
             <div class="contact-detail">
               <span class="contact-detail__arrow" aria-hidden="true">↗</span>
@@ -2233,7 +2300,8 @@
             </div>
             <div class="contact-detail">
               <span class="contact-detail__arrow" aria-hidden="true">↗</span>
-              <span>First Floor 169, Spaze Platinum Tower, Sector-47, Shona Road, Gurugram, Haryana:122018</span>
+              <span>First Floor 169, Spaze Platinum Tower, Sector 47,
+              Sohna Road, Gurugram, Haryana: 122018</span>
             </div>
           </div>
 

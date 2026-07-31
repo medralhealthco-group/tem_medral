@@ -1,4 +1,5 @@
 const OrderModel = require('../models/orderModel');
+const { validateCheckoutFields } = require('../utils/checkoutValidation');
 
 class OrderService {
   static async createOrder({
@@ -7,11 +8,30 @@ class OrderService {
     shippingData,
     paymentMethod = 'cod'
   }) {
+    const result = validateCheckoutFields({
+      ...shippingData,
+      payment_method: paymentMethod
+    });
+    if (!result.ok) {
+      const err = new Error(result.message);
+      err.fieldErrors = result.errors;
+      err.formData = result.formData;
+      throw err;
+    }
+
     return await OrderModel.createOrderFromCart({
       userId,
       sessionId,
-      shippingData,
-      paymentMethod
+      shippingData: {
+        name: result.data.name,
+        email: result.data.email,
+        phone: result.data.phone,
+        address: result.data.address,
+        city: result.data.city,
+        state: result.data.state,
+        pincode: result.data.pincode
+      },
+      paymentMethod: result.data.payment_method
     });
   }
 

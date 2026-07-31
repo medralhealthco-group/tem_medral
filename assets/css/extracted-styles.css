@@ -13804,13 +13804,47 @@
 .nf-brand { display:flex; flex-direction:column; gap:8px; }
 .nf-logo { display:inline-block; }
 .nf-tagline { font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.76); margin:0; }
+/* ── SOCIAL ─────────────────────────────── */
 
-/* ── SOCIAL ── */
-.nf-social { display:flex; align-items:center; gap:8px; }
-.nf-social__link { width:38px; height:38px; border:1px solid #2a2a2a; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.4); transition:all 0.2s; flex-shrink:0; }
-.nf-social__link svg { width:16px; height:16px; }
-.nf-social__link:hover { background:var(--color-primary); border-color:var(--color-primary); color:var(--color-surface); }
+.nf-social {
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    gap: 10px;
+}
 
+.nf-social__link {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #2a2a2a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    transition: all 0.25s ease;
+    overflow: hidden;
+}
+
+.nf-social__icon {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    display: block;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* Makes black SVGs white */
+    transition: transform 0.25s ease;
+}
+
+.nf-social__link:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.nf-social__link:hover .nf-social__icon {
+    transform: scale(1.1);
+}
+.
 /* ── DIVIDER ── */
 .nf-divider { height:1px; background:var(--color-border); margin:0 56px; }
 

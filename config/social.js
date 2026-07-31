@@ -5,7 +5,7 @@ module.exports = [
     url: 'https://www.instagram.com/medral',
     enabled: true,
     order: 1,
-    icon: 'instagram'
+    icon: '/assets/images/social/instagram.png'
   },
   {
     id: 'facebook',
@@ -13,14 +13,14 @@ module.exports = [
     url: 'https://www.facebook.com/medral',
     enabled: true,
     order: 2,
-    icon: 'facebook'
+    icon: '/assets/images/social/facebook.svg'
   },
   {
     id: 'youtube',
     name: 'YouTube',
-    url: 'https://www.youtube.com/@medral5105',
+    url: 'https://www.youtube.com/@medral',
     enabled: true,
     order: 3,
-    icon: 'youtube'
+    icon: '/assets/images/social/youtube.svg'
   }
 ];

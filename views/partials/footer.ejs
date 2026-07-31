@@ -18,7 +18,11 @@
     <div class="nf-social">
       <% config.social.forEach(function(item) { %>
         <a href="<%= item.url %>" class="nf-social__link" target="_blank" rel="noopener" aria-label="<%= item.name %>">
-          <svg><use href="#ico-<%= item.icon %>"/></svg>
+         <img
+        src="<%= item.icon %>"
+        alt="<%= item.name %>"
+        class="nf-social__icon"
+      >
         </a>
       <% }); %>
     </div>

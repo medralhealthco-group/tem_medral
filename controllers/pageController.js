@@ -8,6 +8,7 @@ const ALLOWED_PAGES = new Set([
   "certifications",
   "contact",
   "effervescent-tablets",
+  "explore",
   "faqs",
   "gummies",
   "privacy-policy",
@@ -47,6 +48,11 @@ const PAGE_SEO = {
     title: "Effervescent Tablet Manufacturing | Medral Health Co",
     description:
       "Contract manufacturing of effervescent tablets with quality assurance for wellness and sports nutrition brands."
+  },
+  explore: {
+    title: "Explore | Medral Health Co",
+    description:
+      "Explore Medral Health Co — Our story, philosophy, values, and the team driving our nutraceutical innovations."
   },
   faqs: {
     title: "Frequently Asked Questions | Medral Health Co",
@@ -125,6 +131,8 @@ exports.renderPage = (req, res, next) => {
   let pageParam = req.params.page || "";
   if (pageParam.endsWith(".html")) {
     pageParam = pageParam.slice(0, -5);
+  } else if (pageParam.endsWith(".ejs")) {
+    pageParam = pageParam.slice(0, -4);
   }
 
   if (pageParam === "products-by-forms") {

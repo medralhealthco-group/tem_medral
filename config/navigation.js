@@ -26,21 +26,14 @@ module.exports = {
         order: 2
       },
       {
-        id: 'manufacturing',
-        title: 'B2B White Labeling',
-        url: '/pages/b2b-white-labeling.html',
-        position: 'left',
-        type: 'link',
-        order: 3
-      },
-      {
-        id: 'about',
-        title: 'About Us',
-        url: '/pages/about-us.html',
+        id: 'explore',
+        title: 'Explore',
+        url: '/pages/explore.html',
         position: 'left',
         type: 'dropdown',
-        order: 4,
+        order: 3,
         children: [
+          { id: 'b2b-labeling', title: 'B2B White Labeling', url: '/pages/b2b-white-labeling.html' },
           { id: 'team', title: 'Team', url: '#' },
           { id: 'certifications', title: 'Certifications', url: '/pages/certifications.html' },
           { id: 'careers', title: 'Careers', url: '#' },

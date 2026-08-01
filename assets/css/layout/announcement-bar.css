@@ -41,6 +41,7 @@
 .topbar-marquee {
   display: flex;
   align-items: center;
+
   animation: marquee-scroll 45s linear infinite;
   will-change: transform;
 }
@@ -51,6 +52,7 @@
   gap: 40px;
   padding-right: 40px;
   flex-shrink: 0;
+
 }
 
 .topbar-marquee-container:hover .topbar-marquee,
@@ -105,8 +107,14 @@
     max-height: 36px;
     font-size: 13px;
   }
+
+
+
+
+
   .marquee-item {
     font-size: 13px;
     gap: 8px;
+  
   }
 }

@@ -431,8 +431,9 @@ select[aria-invalid="true"] {
 .cta-contact {
   background: var(--white);
   border-top: 1px solid var(--lightgray);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  display: flex;
+
 }
 
 .cta-contact__left {
